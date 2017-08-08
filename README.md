@@ -1,52 +1,36 @@
-# <bindingName> Binding
+# BeeClear Binding
 
-_Give some details about what this binding is meant for - a protocol, system, specific device._
-
-_If possible, provide some resources like pictures, a YouTube video, etc. to give an impression of what can be done with this binding. You can place such resources into a `doc` folder next to this README.md._
+This binding is intended to integrate the BeeClear Energy Manager into openHAB2. See for BeeClear information and ordering https://beeclear.nl/. It is a unit intended to be used with smart energy meter with P1 external port.
+The majority of the more recently installed systems by public services in The Netherlands are equipped with such a port.    
 
 ## Supported Things
 
-_Please describe the different supported things / devices within this section._
-_Which different types are supported, which models were tested etc.?_
-_Note that it is planned to generate some part of this based on the XML files within ```ESH-INF/thing``` of your binding._
+The BeeClear unit comes with a set of databases that collect real time telegram data from the smart energy meter. In general,
+openHAB2 will be used to collect the real time data. The RRD4j Persistence addon will typically be used to collect and manage
+data over time and generate graphics in e.g. the Basic UI or HABPanel.     
 
 ## Discovery
 
-_Describe the available auto-discovery features here. Mention for what it works and what needs to be kept in mind when using it._
+Currently, no auto discovery is included. A manual configuration of the IP address is needed. The easiest way to configure
+the binding is to use the Paper UI.
 
 ## Binding Configuration
 
-_If your binding requires or supports general configuration settings, please create a folder ```cfg``` and place the configuration file ```<bindingId>.cfg``` inside it. In this section, you should link to this file and provide some information about the options. The file could e.g. look like:_
-
-```
-# Configuration for the Philips Hue Binding
-#
-# Default secret key for the pairing of the Philips Hue Bridge.
-# It has to be between 10-40 (alphanumeric) characters 
-# This may be changed by the user for security reasons.
-secret=EclipseSmartHome
-```
-
-_Note that it is planned to generate some part of this based on the information that is available within ```ESH-INF/binding``` of your binding._
-
-_If your binding does not offer any generic configurations, you can remove this section completely._
+Todo.
 
 ## Thing Configuration
 
-_Describe what is needed to manually configure a thing, either through the (Paper) UI or via a thing-file. This should be mainly about its mandatory and optional configuration parameters. A short example entry for a thing file can help!_
-
-_Note that it is planned to generate some part of this based on the XML files within ```ESH-INF/thing``` of your binding._
+At this moment, the IP-address will be the only configuration needed. Maybe there will be other configuration items in
+the future.
 
 ## Channels
 
-_Here you should provide information about available channel types, what their meaning is and how they can be used._
-
-_Note that it is planned to generate some part of this based on the XML files within ```ESH-INF/thing``` of your binding._
+To be planned.
 
 ## Full Example
 
-_Provide a full usage example based on textual configuration files (*.things, *.items, *.sitemap)._
+Not available yet.
 
 ## Any custom content here!
 
-_Feel free to add additional sections for whatever you think should also be mentioned about your binding!_
+
