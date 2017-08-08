@@ -1,5 +1,7 @@
 # BeeClear Binding
 
+Attention: development is not finished yet. This is just an announcement of the start of the development of this binding.
+
 This binding is intended to integrate the BeeClear Energy Manager into openHAB2. See for BeeClear information and ordering https://beeclear.nl/. It is a unit intended to be used with smart energy meter with P1 external port.
 The majority of the more recently installed systems by public services in The Netherlands are equipped with such a port.    
 
