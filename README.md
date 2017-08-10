@@ -7,9 +7,12 @@ The majority of the more recently installed systems by public services in The Ne
 
 ## Supported Things
 
-The BeeClear unit comes with a set of databases that collect real time telegram data from the smart energy meter. In general,
-openHAB2 will be used to collect the real time data. The RRD4j Persistence addon will typically be used to collect and manage
-data over time and generate graphics in e.g. the Basic UI or HABPanel.     
+The basic thing is the "meter" thing, representing the energy meter attached to the BeeClear unit.
+
+Although the BeeClear unit comes with a set of databases that collect real time telegram data from the smart 
+energy meter, usually openHAB will be used for this purpose. 
+The RRD4j Persistence addon will typically be used to collect and managedata over time and generate graphics 
+in e.g. the Basic UI or HABPanel.     
 
 ## Discovery
 
@@ -27,7 +30,28 @@ the future.
 
 ## Channels
 
-To be planned.
+Currently, the following channels for the "meter" thing are available:
+
+power - reports the current total power consumption in kW.
+
+usedLow - reports the current electricity meter reading for low tariff in kWh.
+
+usedHigh - reports the current electricity meter reading for high tariff in kWh.
+
+engine - reports the "engine" version retrieved from the BeeClear.
+
+## Item configuration Example
+
+Items can be configured using an ".items" file in the conf/items directory. A typical example:
+
+
+```
+String BC_Engine    "BeeClear Engine version [%s]"  <energy> { channel = "beeclear:meter:unit:engine" }
+Number BC_Power     "Consumption [%.3f kW]"         <energy> { channel = "beeclear:meter:unit:power" }
+Number BC_Used_Low  "Reading low [%.1f kWh]"        <energy> { channel = "beeclear:meter:unit:usedLow" }
+Number BC_Used_High "Meterstand hoog [%.1f kWh]"    <energy> { channel = "beeclear:meter:unit:usedHigh" }
+```
+
 
 ## Full Example
 
