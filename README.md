@@ -44,12 +44,11 @@ engine - reports the "engine" version retrieved from the BeeClear.
 
 Items can be configured using an ".items" file in the conf/items directory. A typical example:
 
-
 ```
 String BC_Engine    "BeeClear Engine version [%s]"  <energy> { channel = "beeclear:meter:unit:engine" }
 Number BC_Power     "Consumption [%.3f kW]"         <energy> { channel = "beeclear:meter:unit:power" }
 Number BC_Used_Low  "Reading low [%.1f kWh]"        <energy> { channel = "beeclear:meter:unit:usedLow" }
-Number BC_Used_High "Meterstand hoog [%.1f kWh]"    <energy> { channel = "beeclear:meter:unit:usedHigh" }
+Number BC_Used_High "Reading high [%.1f kWh]"       <energy> { channel = "beeclear:meter:unit:usedHigh" }
 ```
 
 
