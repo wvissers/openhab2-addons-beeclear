@@ -1,24 +1,48 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<thing:thing-descriptions bindingId="beeclear"
-						  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-						  xmlns:thing="http://eclipse.org/smarthome/schemas/thing-description/v1.0.0"
-						  xsi:schemaLocation="http://eclipse.org/smarthome/schemas/thing-description/v1.0.0 http://eclipse.org/smarthome/schemas/thing-description-1.0.0.xsd">
+<thing:thing-descriptions bindingId="beeclear" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:thing="http://eclipse.org/smarthome/schemas/thing-description/v1.0.0"
+	xsi:schemaLocation="http://eclipse.org/smarthome/schemas/thing-description/v1.0.0 http://eclipse.org/smarthome/schemas/thing-description-1.0.0.xsd">
 
-	<!-- Sample Thing Type -->
-	<thing-type id="sample">
+	<!-- Thing Type -->
+	<thing-type id="meter">
 		<label>BeeClear Binding Thing</label>
-		<description>Sample thing for BeeClear Binding</description>
+		<description>BeeClear Binding Energy meter</description>
 
 		<channels>
-			<channel id="channel1" typeId="sample-channel"/>
+            <channel id="power" typeId="power-channel" />
+            <channel id="usedHigh" typeId="reading-channel" />
+            <channel id="usedLow" typeId="reading-channel" />
+            <channel id="engine" typeId="engine-channel" />
 		</channels>
+		<config-description>
+			<parameter name="host" type="text" required="true">
+				<label>Host address</label>
+				<description>Host name or IP address of BeeClear device (beeclear.local if router supports it).</description>
+                <default>beeclear.local</default>
+			</parameter>
+			<parameter name="port" type="integer">
+				<label>TCP/IP port</label>
+				<description>TCP/IP Port of BeeClear device (usually 80).</description>
+				<default>80</default>
+			</parameter>
+		</config-description>
 	</thing-type>
 
-	<!-- Sample Channel Type -->
-	<channel-type id="sample-channel">
-		<item-type>beeclearItem</item-type>
-		<label>BeeClear Binding Channel</label>
-		<description>Sample channel for BeeClear Binding</description>
-	</channel-type>
+	<!-- Channel Types -->
+    <channel-type id="power-channel">
+        <item-type>DecimalType</item-type>
+        <label>Current power consumption (kW)</label>
+        <description>Current total power consumption in kiloWatts.</description>
+    </channel-type>
+    <channel-type id="reading-channel">
+        <item-type>DecimalType</item-type>
+        <label>Meter reading (kWh)</label>
+        <description>Current meter reading for used or generated power in either high or low tariff.</description>
+    </channel-type>
+    <channel-type id="engine-channel">
+        <item-type>String</item-type>
+        <label>Engine version</label>
+        <description>Engine version of installed BeeClear firmware.</description>
+    </channel-type>
 
 </thing:thing-descriptions>

@@ -21,9 +21,12 @@ public class BeeClearBindingConstants {
     private static final String BINDING_ID = "beeclear";
 
     // List of all Thing Type UIDs
-    public static final ThingTypeUID THING_TYPE_SAMPLE = new ThingTypeUID(BINDING_ID, "sample");
+    public static final ThingTypeUID THING_TYPE_METER = new ThingTypeUID(BINDING_ID, "meter");
 
     // List of all Channel ids
-    public static final String CHANNEL_1 = "channel1";
+    public static final String CHANNEL_POWER = "power";
+    public static final String CHANNEL_USED_HIGH = "usedHigh";
+    public static final String CHANNEL_USED_LOW = "usedLow";
+    public static final String CHANNEL_ENGINE = "engine";
 
 }

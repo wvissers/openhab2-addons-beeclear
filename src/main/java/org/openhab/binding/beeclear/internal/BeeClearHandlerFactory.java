@@ -30,7 +30,7 @@ import org.osgi.service.component.annotations.Component;
 @Component(service = ThingHandlerFactory.class, immediate = true)
 public class BeeClearHandlerFactory extends BaseThingHandlerFactory {
 
-    private static final Set<ThingTypeUID> SUPPORTED_THING_TYPES_UIDS = Collections.singleton(THING_TYPE_SAMPLE);
+    private static final Set<ThingTypeUID> SUPPORTED_THING_TYPES_UIDS = Collections.singleton(THING_TYPE_METER);
 
     @Override
     public boolean supportsThingType(ThingTypeUID thingTypeUID) {
@@ -41,7 +41,7 @@ public class BeeClearHandlerFactory extends BaseThingHandlerFactory {
     protected ThingHandler createHandler(Thing thing) {
         ThingTypeUID thingTypeUID = thing.getThingTypeUID();
 
-        if (thingTypeUID.equals(THING_TYPE_SAMPLE)) {
+        if (thingTypeUID.equals(THING_TYPE_METER)) {
             return new BeeClearHandler(thing);
         }
 
