@@ -10,15 +10,20 @@
 
 		<channels>
             <channel id="power" typeId="power-channel" />
-            <channel id="usedHigh" typeId="reading-channel" />
-            <channel id="usedLow" typeId="reading-channel" />
-            <channel id="engine" typeId="engine-channel" />
+            <channel id="usedHigh" typeId="reading-high-channel" />
+            <channel id="usedLow" typeId="reading-low-channel" />
+            <channel id="usedGas" typeId="reading-gas-channel" />
+            <channel id="tariff" typeId="tariff-channel" />
+            <channel id="firmware" typeId="firmware-channel" />
+            <channel id="hardware" typeId="hardware-channel" />
+            <channel id="serialElec" typeId="serial-elec-channel" />
+            <channel id="serialGas" typeId="serial-gas-channel" />
 		</channels>
 		<config-description>
 			<parameter name="host" type="text" required="true">
 				<label>Host address</label>
-				<description>Host name or IP address of BeeClear device (beeclear.local if router supports it).</description>
-                <default>beeclear.local</default>
+				<description>Host name or IP address of BeeClear device (beeclear if router supports it).</description>
+                <default>beeclear</default>
 			</parameter>
 			<parameter name="port" type="integer">
 				<label>TCP/IP port</label>
@@ -31,18 +36,48 @@
 	<!-- Channel Types -->
     <channel-type id="power-channel">
         <item-type>DecimalType</item-type>
-        <label>Current power consumption (kW)</label>
-        <description>Current total power consumption in kiloWatts.</description>
+        <label>Current power consumption (W)</label>
+        <description>Current total power consumption in Watts.</description>
     </channel-type>
-    <channel-type id="reading-channel">
+    <channel-type id="reading-high-channel">
         <item-type>DecimalType</item-type>
-        <label>Meter reading (kWh)</label>
-        <description>Current meter reading for used or generated power in either high or low tariff.</description>
+        <label>Meter reading high tariff electricity (kWh)</label>
+        <description>Current meter reading for used or generated power in high tariff.</description>
     </channel-type>
-    <channel-type id="engine-channel">
+    <channel-type id="reading-low-channel">
+        <item-type>DecimalType</item-type>
+        <label>Meter reading low tariff electricity (kWh)</label>
+        <description>Current meter reading for used or generated power in low tariff.</description>
+    </channel-type>
+    <channel-type id="reading-gas-channel">
+        <item-type>DecimalType</item-type>
+        <label>Meter reading gas (m3)</label>
+        <description>Current meter reading for used gas.</description>
+    </channel-type>
+    <channel-type id="tariff-channel">
+        <item-type>StringType</item-type>
+        <label>Electricity tariff (HIGH/LOW).</label>
+        <description>Current electricity tariff (HIGH/LOW).</description>
+    </channel-type>
+    <channel-type id="firmware-channel">
         <item-type>String</item-type>
-        <label>Engine version</label>
-        <description>Engine version of installed BeeClear firmware.</description>
+        <label>Firmware version</label>
+        <description>Firmware version of BeeClear.</description>
+    </channel-type>
+    <channel-type id="hardware-channel">
+        <item-type>String</item-type>
+        <label>Hardware version</label>
+        <description>Hardware version of BeeClear.</description>
+    </channel-type>
+    <channel-type id="serial-elec-channel">
+        <item-type>String</item-type>
+        <label>Electricity meter serial number.</label>
+        <description>Electricity meter serial number reported by BeeClear.</description>
+    </channel-type>
+    <channel-type id="serial-gas-channel">
+        <item-type>String</item-type>
+        <label>Gas meter serial number.</label>
+        <description>Gas meter serial number reported by BeeClear.</description>
     </channel-type>
 
 </thing:thing-descriptions>

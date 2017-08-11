@@ -168,4 +168,14 @@ public class RestClient {
         return result;
     }
 
+    /**
+     * Determine if a version is supported.
+     * 
+     * @param softwareVersion
+     * @return
+     */
+    public boolean isSupported(SoftwareVersion softwareVersion) {
+        return _factory.isSupported(softwareVersion);
+    }
+
 }

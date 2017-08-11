@@ -20,12 +20,14 @@ import org.eclipse.smarthome.core.library.types.StringType;
 import org.eclipse.smarthome.core.thing.ChannelUID;
 import org.eclipse.smarthome.core.thing.Thing;
 import org.eclipse.smarthome.core.thing.ThingStatus;
+import org.eclipse.smarthome.core.thing.ThingStatusDetail;
 import org.eclipse.smarthome.core.thing.binding.BaseThingHandler;
 import org.eclipse.smarthome.core.types.Command;
 import org.eclipse.smarthome.core.types.RefreshType;
-import org.openhab.binding.beeclear.internal.RestClient;
+import org.json.simple.JSONObject;
+import org.openhab.binding.beeclear.internal.DataCollectorFacade;
 import org.openhab.binding.beeclear.internal.data.ActiveValues;
-import org.openhab.binding.beeclear.internal.data.SoftwareVersion;
+import org.openhab.binding.beeclear.internal.data.ActiveValuesImplRev1;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -39,34 +41,28 @@ public class BeeClearHandler extends BaseThingHandler {
 
     private final Logger _logger = LoggerFactory.getLogger(BeeClearHandler.class);
 
-    // The RestClient instance connects to the BeeClear device using http.
-    private RestClient _restClient;
-
-    // The BeeClear unit software version.
-    private SoftwareVersion _softwareVersion;
+    // The Facade to the BeeClear restfull webAPI.
+    private DataCollectorFacade _data;
 
     // The last retrieved actual data
     private ActiveValues _activeValues;
 
     // Helper fields and constants
-    private int _versionRefreshCnt;
-    private static final int VERSION_REFRESH_INTERVAL = 60;
+    private boolean _online;
 
     // Scheduler to retrieve data from time to time.
     ScheduledFuture<?> _refreshJob;
 
     public BeeClearHandler(Thing thing) {
         super(thing);
-        _versionRefreshCnt = 2;
+        _online = false;
+        _activeValues = new ActiveValuesImplRev1(new JSONObject());
     }
 
     @Override
     public void handleCommand(ChannelUID channelUID, Command command) {
         if (command instanceof RefreshType) {
             switch (channelUID.getId()) {
-                case CHANNEL_ENGINE:
-                    updateState(channelUID, new StringType(_softwareVersion.getEngine()));
-                    break;
                 case CHANNEL_POWER:
                     updateState(channelUID, new DecimalType(_activeValues.getUsedPower()));
                     break;
@@ -75,6 +71,24 @@ public class BeeClearHandler extends BaseThingHandler {
                     break;
                 case CHANNEL_USED_LOW:
                     updateState(channelUID, new DecimalType(_activeValues.getUsedElectricityLow()));
+                    break;
+                case CHANNEL_USED_GAS:
+                    updateState(channelUID, new DecimalType(_activeValues.getUsedGas()));
+                    break;
+                case CHANNEL_TARIFF:
+                    updateState(channelUID, new StringType("" + _activeValues.getTariffStatus()));
+                    break;
+                case CHANNEL_FIRMWARE:
+                    updateState(channelUID, new StringType(_data.getSoftwareVersion().getFirmware()));
+                    break;
+                case CHANNEL_HARDWARE:
+                    updateState(channelUID, new StringType(_data.getSoftwareVersion().getHardware()));
+                    break;
+                case CHANNEL_SERIAL_ELEC:
+                    updateState(channelUID, new StringType(_data.getSoftwareVersion().getSerialElec()));
+                    break;
+                case CHANNEL_SERIAL_GAS:
+                    updateState(channelUID, new StringType(_data.getSoftwareVersion().getSerialGas()));
                     break;
                 default:
                     _logger.warn("Unexpected channel {}", channelUID);
@@ -87,28 +101,25 @@ public class BeeClearHandler extends BaseThingHandler {
     @Override
     public void initialize() {
         Configuration config = getThing().getConfiguration();
-        String ip = (String) config.get("host");
+        String host = (String) config.get("host");
         BigDecimal port = ((BigDecimal) config.get("port"));
 
-        // Create a client for the restfull API.
-        _restClient = new RestClient(ip, port.intValue());
+        // Create a Facade to the API
+        _data = new DataCollectorFacade(host, port.intValue());
 
-        // Retrieve the BeeClear software version.
-        _softwareVersion = _restClient.getSoftwareVersion();
-
-        // TODO: Initialize the thing. If done set status to ONLINE to indicate proper working.
-        // Long running initialization should be done asynchronously in background.
-        updateStatus(ThingStatus.ONLINE);
-
-        // Note: When initialization can NOT be done set the status with more details for further
-        // analysis. See also class ThingStatusDetail for all available status details.
-        // Add a description to give user information to understand why thing does not work
-        // as expected. E.g.
-        // updateStatus(ThingStatus.OFFLINE, ThingStatusDetail.CONFIGURATION_ERROR,
-        // "Can not access device as username and/or password are invalid");
-
+        if (_data.getSoftwareVersion().getInfo().equals("notAuthenticated")) {
+            updateStatus(ThingStatus.OFFLINE, ThingStatusDetail.CONFIGURATION_ERROR,
+                    "Not authenticated. Please use the BeeClear software, login and enter http://youraddress/bc_securitybc_security?set=off and try again.");
+            _online = false;
+        } else if (!_data.isVersionSupported()) {
+            updateStatus(ThingStatus.OFFLINE, ThingStatusDetail.CONFIGURATION_ERROR,
+                    "Firmware version " + _data.getSoftwareVersion().getFirmware() + " not supported.");
+            _online = false;
+        } else {
+            updateStatus(ThingStatus.ONLINE);
+            _online = true;
+        }
         startAutomaticRefresh();
-
     }
 
     /**
@@ -119,13 +130,21 @@ public class BeeClearHandler extends BaseThingHandler {
             @Override
             public void run() {
                 try {
-                    _activeValues = _restClient.getActiveValues(_softwareVersion);
-                    handleCommand(new ChannelUID(getThing().getUID(), CHANNEL_POWER), RefreshType.REFRESH);
-                    handleCommand(new ChannelUID(getThing().getUID(), CHANNEL_USED_HIGH), RefreshType.REFRESH);
-                    handleCommand(new ChannelUID(getThing().getUID(), CHANNEL_USED_LOW), RefreshType.REFRESH);
-                    if (--_versionRefreshCnt <= 0) {
-                        _versionRefreshCnt = VERSION_REFRESH_INTERVAL;
-                        handleCommand(new ChannelUID(getThing().getUID(), CHANNEL_ENGINE), RefreshType.REFRESH);
+                    if (_online) {
+                        if (_data.isVersionDataExpired()) {
+                            handleCommand(new ChannelUID(getThing().getUID(), CHANNEL_FIRMWARE), RefreshType.REFRESH);
+                            handleCommand(new ChannelUID(getThing().getUID(), CHANNEL_HARDWARE), RefreshType.REFRESH);
+                            handleCommand(new ChannelUID(getThing().getUID(), CHANNEL_SERIAL_ELEC),
+                                    RefreshType.REFRESH);
+                            handleCommand(new ChannelUID(getThing().getUID(), CHANNEL_SERIAL_GAS), RefreshType.REFRESH);
+                        }
+
+                        _activeValues = _data.getActiveValues();
+                        handleCommand(new ChannelUID(getThing().getUID(), CHANNEL_POWER), RefreshType.REFRESH);
+                        handleCommand(new ChannelUID(getThing().getUID(), CHANNEL_USED_HIGH), RefreshType.REFRESH);
+                        handleCommand(new ChannelUID(getThing().getUID(), CHANNEL_USED_LOW), RefreshType.REFRESH);
+                        handleCommand(new ChannelUID(getThing().getUID(), CHANNEL_USED_GAS), RefreshType.REFRESH);
+                        handleCommand(new ChannelUID(getThing().getUID(), CHANNEL_TARIFF), RefreshType.REFRESH);
                     }
                 } catch (Exception e) {
                     _logger.debug("Exception occurred during execution: {}", e.getMessage(), e);
