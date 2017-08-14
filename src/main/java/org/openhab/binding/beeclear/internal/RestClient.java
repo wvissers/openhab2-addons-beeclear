@@ -170,7 +170,7 @@ public class RestClient {
 
     /**
      * Determine if a version is supported.
-     * 
+     *
      * @param softwareVersion
      * @return
      */

@@ -5,8 +5,8 @@
 
 	<!-- Thing Type -->
 	<thing-type id="meter">
-		<label>BeeClear Binding Thing</label>
-		<description>BeeClear Binding Energy meter</description>
+		<label>BeeClear Device</label>
+		<description>BeeClear energy meter device</description>
 
 		<channels>
             <channel id="power" typeId="power-channel" />

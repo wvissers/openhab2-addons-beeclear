@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<sca>
+   <file name="org.openhab.binding.beeclear.internal.DataElementFactory.java">
+      <message tool="findbugs" line=""
+               message="&#xA;      Logger should be non-static field. Change this field (_logger) to non-static field.&#xA;    "
+               priority="3"
+               rule="Logger should be non-static field (SLF4J)"
+               category="bad practice"
+               rule_id="SLF4J_LOGGER_SHOULD_BE_NON_STATIC"/>
+   </file>
+</sca>

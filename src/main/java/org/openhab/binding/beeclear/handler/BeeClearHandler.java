@@ -25,6 +25,7 @@ import org.eclipse.smarthome.core.thing.binding.BaseThingHandler;
 import org.eclipse.smarthome.core.types.Command;
 import org.eclipse.smarthome.core.types.RefreshType;
 import org.json.simple.JSONObject;
+import org.openhab.binding.beeclear.internal.BeeClearRegistry;
 import org.openhab.binding.beeclear.internal.DataCollectorFacade;
 import org.openhab.binding.beeclear.internal.data.ActiveValues;
 import org.openhab.binding.beeclear.internal.data.ActiveValuesImplRev1;
@@ -49,6 +50,9 @@ public class BeeClearHandler extends BaseThingHandler {
 
     // Helper fields and constants
     private boolean _online;
+
+    // The unique id
+    private String _id;
 
     // Scheduler to retrieve data from time to time.
     ScheduledFuture<?> _refreshJob;
@@ -103,6 +107,9 @@ public class BeeClearHandler extends BaseThingHandler {
         Configuration config = getThing().getConfiguration();
         String host = (String) config.get("host");
         BigDecimal port = ((BigDecimal) config.get("port"));
+
+        // Register the device
+        _id = BeeClearRegistry.getInstance().registerByName(host, port.intValue());
 
         // Create a Facade to the API
         _data = new DataCollectorFacade(host, port.intValue());
@@ -171,6 +178,7 @@ public class BeeClearHandler extends BaseThingHandler {
     @Override
     public void dispose() {
         stopAutomaticRefresh();
+        BeeClearRegistry.getInstance().remove(_id);
     }
 
 }
