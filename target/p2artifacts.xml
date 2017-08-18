@@ -1,10 +1,10 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <?artifactRepository version='1.1.0'?>
 <artifacts size='1'>
-  <artifact classifier='osgi.bundle' id='org.openhab.binding.beeclear' version='2.2.0.201708110624'>
+  <artifact classifier='osgi.bundle' id='org.openhab.binding.beeclear' version='2.2.0.201708181442'>
     <properties size='5'>
-      <property name='artifact.size' value='45153'/>
-      <property name='download.size' value='45153'/>
+      <property name='artifact.size' value='51867'/>
+      <property name='download.size' value='51867'/>
       <property name='maven-groupId' value='org.openhab.binding'/>
       <property name='maven-artifactId' value='org.openhab.binding.beeclear'/>
       <property name='maven-version' value='2.2.0-SNAPSHOT'/>

@@ -19,6 +19,11 @@
 <file name="c:\OH2dev\master\git\openhab2-addons\addons\binding\org.openhab.binding.beeclear\OSGI-INF\.gitignore">
 <error line="0" severity="info" message="File does not end with a newline." source="com.puppycrawl.tools.checkstyle.checks.NewlineAtEndOfFileCheck"/>
 </file>
+<file name="c:\OH2dev\master\git\openhab2-addons\addons\binding\org.openhab.binding.beeclear\OSGI-INF\BeeClearDiscoveryService.xml">
+</file>
+<file name="c:\OH2dev\master\git\openhab2-addons\addons\binding\org.openhab.binding.beeclear\OSGI-INF\BeeClearHandlerFactory.xml">
+<error line="0" severity="info" message="File does not end with a newline." source="com.puppycrawl.tools.checkstyle.checks.NewlineAtEndOfFileCheck"/>
+</file>
 <file name="c:\OH2dev\master\git\openhab2-addons\addons\binding\org.openhab.binding.beeclear\OSGI-INF\org.openhab.binding.beeclear.internal.BeeClearHandlerFactory.xml">
 <error line="0" severity="info" message="File does not end with a newline." source="com.puppycrawl.tools.checkstyle.checks.NewlineAtEndOfFileCheck"/>
 </file>
@@ -32,6 +37,9 @@
 <file name="c:\OH2dev\master\git\openhab2-addons\addons\binding\org.openhab.binding.beeclear\src\main\java\org\openhab\binding\beeclear\handler\BeeClearHandler.java">
 </file>
 <file name="c:\OH2dev\master\git\openhab2-addons\addons\binding\org.openhab.binding.beeclear\src\main\java\org\openhab\binding\beeclear\internal\BeeClearHandlerFactory.java">
+</file>
+<file name="c:\OH2dev\master\git\openhab2-addons\addons\binding\org.openhab.binding.beeclear\src\main\java\org\openhab\binding\beeclear\internal\BeeClearRegistry.java">
+<error line="0" severity="info" message="File does not end with a newline." source="com.puppycrawl.tools.checkstyle.checks.NewlineAtEndOfFileCheck"/>
 </file>
 <file name="c:\OH2dev\master\git\openhab2-addons\addons\binding\org.openhab.binding.beeclear\src\main\java\org\openhab\binding\beeclear\internal\data\ActiveValues.java">
 <error line="0" severity="info" message="File does not end with a newline." source="com.puppycrawl.tools.checkstyle.checks.NewlineAtEndOfFileCheck"/>
@@ -60,6 +68,11 @@
 <file name="c:\OH2dev\master\git\openhab2-addons\addons\binding\org.openhab.binding.beeclear\src\main\java\org\openhab\binding\beeclear\internal\DataElementFactory.java">
 <error line="0" severity="info" message="File does not end with a newline." source="com.puppycrawl.tools.checkstyle.checks.NewlineAtEndOfFileCheck"/>
 <error line="27" column="33" severity="info" message="Name &apos;_logger&apos; must match pattern &apos;^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$&apos;." source="com.puppycrawl.tools.checkstyle.checks.naming.ConstantNameCheck"/>
+</file>
+<file name="c:\OH2dev\master\git\openhab2-addons\addons\binding\org.openhab.binding.beeclear\src\main\java\org\openhab\binding\beeclear\internal\discovery\BeeClearDiscoveryService.java">
+<error line="0" severity="info" message="File does not end with a newline." source="com.puppycrawl.tools.checkstyle.checks.NewlineAtEndOfFileCheck"/>
+<error line="4" severity="info" message="Line does not match expected header line of &apos; * All rights reserved. This program and the accompanying materials&apos;." source="com.puppycrawl.tools.checkstyle.checks.header.HeaderCheck"/>
+<error line="51" column="38" severity="info" message="Name &apos;SUPPORTED_THING_TYPES_UIDS&apos; must match pattern &apos;^[a-z][a-zA-Z0-9]*$&apos;." source="com.puppycrawl.tools.checkstyle.checks.naming.StaticVariableNameCheck"/>
 </file>
 <file name="c:\OH2dev\master\git\openhab2-addons\addons\binding\org.openhab.binding.beeclear\src\main\java\org\openhab\binding\beeclear\internal\RestClient.java">
 <error line="0" severity="info" message="File does not end with a newline." source="com.puppycrawl.tools.checkstyle.checks.NewlineAtEndOfFileCheck"/>

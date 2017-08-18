@@ -25,10 +25,10 @@ under the License.
     <language>en-us</language>
     <copyright>&#169;2017 openHAB.org</copyright>
     <item>
-      <title>File: 24,
+      <title>File: 28,
              Errors: 0,
              Warnings: 0,
-             Infos: 16
+             Infos: 21
       </title>
             <link>${project.url}/checkstyle.html</link>
       <description>
@@ -46,10 +46,10 @@ under the License.
           <tbody>
                           <tr>
                 <td>
-                  <a href="${project.url}/checkstyle.html#about.html">about.html</a>
+                  <a href="${project.url}/checkstyle.html#src.main.java.org.openhab.binding.beeclear.internal.BeeClearRegistry.java">src/main/java/org/openhab/binding/beeclear/internal/BeeClearRegistry.java</a>
                 </td>
                 <td>
-                  0
+                  1
                 </td>
                 <td>
                   0
@@ -74,10 +74,10 @@ under the License.
               </tr>
                           <tr>
                 <td>
-                  <a href="${project.url}/checkstyle.html#src.main.java.org.openhab.binding.beeclear.internal.DataElementFactory.java">src/main/java/org/openhab/binding/beeclear/internal/DataElementFactory.java</a>
+                  <a href="${project.url}/checkstyle.html#OSGI-INF.BeeClearDiscoveryService.xml">OSGI-INF/BeeClearDiscoveryService.xml</a>
                 </td>
                 <td>
-                  2
+                  0
                 </td>
                 <td>
                   0
@@ -106,6 +106,146 @@ under the License.
                 </td>
                 <td>
                   1
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="${project.url}/checkstyle.html#src.main.java.org.openhab.binding.beeclear.internal.data.UnsupportedTariffCodeException.java">src/main/java/org/openhab/binding/beeclear/internal/data/UnsupportedTariffCodeException.java</a>
+                </td>
+                <td>
+                  1
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="${project.url}/checkstyle.html#ESH-INF.binding.binding.xml">ESH-INF/binding/binding.xml</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="${project.url}/checkstyle.html#pom.xml">pom.xml</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="${project.url}/checkstyle.html#build.properties">build.properties</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="${project.url}/checkstyle.html#src.main.java.org.openhab.binding.beeclear.BeeClearBindingConstants.java">src/main/java/org/openhab/binding/beeclear/BeeClearBindingConstants.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="${project.url}/checkstyle.html#src.main.java.org.openhab.binding.beeclear.internal.RestClient.java">src/main/java/org/openhab/binding/beeclear/internal/RestClient.java</a>
+                </td>
+                <td>
+                  1
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="${project.url}/checkstyle.html#META-INF.MANIFEST.MF">META-INF/MANIFEST.MF</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="${project.url}/checkstyle.html#about.html">about.html</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="${project.url}/checkstyle.html#src.main.java.org.openhab.binding.beeclear.internal.discovery.BeeClearDiscoveryService.java">src/main/java/org/openhab/binding/beeclear/internal/discovery/BeeClearDiscoveryService.java</a>
+                </td>
+                <td>
+                  3
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="${project.url}/checkstyle.html#src.main.java.org.openhab.binding.beeclear.internal.DataElementFactory.java">src/main/java/org/openhab/binding/beeclear/internal/DataElementFactory.java</a>
+                </td>
+                <td>
+                  2
                 </td>
                 <td>
                   0
@@ -186,48 +326,6 @@ under the License.
               </tr>
                           <tr>
                 <td>
-                  <a href="${project.url}/checkstyle.html#src.main.java.org.openhab.binding.beeclear.internal.data.UnsupportedTariffCodeException.java">src/main/java/org/openhab/binding/beeclear/internal/data/UnsupportedTariffCodeException.java</a>
-                </td>
-                <td>
-                  1
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-              </tr>
-                          <tr>
-                <td>
-                  <a href="${project.url}/checkstyle.html#ESH-INF.binding.binding.xml">ESH-INF/binding/binding.xml</a>
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-              </tr>
-                          <tr>
-                <td>
-                  <a href="${project.url}/checkstyle.html#pom.xml">pom.xml</a>
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-              </tr>
-                          <tr>
-                <td>
                   <a href="${project.url}/checkstyle.html#README.md">README.md</a>
                 </td>
                 <td>
@@ -270,20 +368,6 @@ under the License.
               </tr>
                           <tr>
                 <td>
-                  <a href="${project.url}/checkstyle.html#build.properties">build.properties</a>
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-              </tr>
-                          <tr>
-                <td>
                   <a href="${project.url}/checkstyle.html#src.main.java.org.openhab.binding.beeclear.internal.DataCollectorFacade.java">src/main/java/org/openhab/binding/beeclear/internal/DataCollectorFacade.java</a>
                 </td>
                 <td>
@@ -298,21 +382,7 @@ under the License.
               </tr>
                           <tr>
                 <td>
-                  <a href="${project.url}/checkstyle.html#src.main.java.org.openhab.binding.beeclear.BeeClearBindingConstants.java">src/main/java/org/openhab/binding/beeclear/BeeClearBindingConstants.java</a>
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-              </tr>
-                          <tr>
-                <td>
-                  <a href="${project.url}/checkstyle.html#src.main.java.org.openhab.binding.beeclear.internal.RestClient.java">src/main/java/org/openhab/binding/beeclear/internal/RestClient.java</a>
+                  <a href="${project.url}/checkstyle.html#OSGI-INF.BeeClearHandlerFactory.xml">OSGI-INF/BeeClearHandlerFactory.xml</a>
                 </td>
                 <td>
                   1
@@ -358,20 +428,6 @@ under the License.
                 </td>
                 <td>
                   1
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-              </tr>
-                          <tr>
-                <td>
-                  <a href="${project.url}/checkstyle.html#META-INF.MANIFEST.MF">META-INF/MANIFEST.MF</a>
-                </td>
-                <td>
-                  0
                 </td>
                 <td>
                   0

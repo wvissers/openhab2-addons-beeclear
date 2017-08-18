@@ -163,6 +163,8 @@ public class BeeClearHandler extends BaseThingHandler {
 
                         _activeValues = _data.getActiveValues();
                         handleCommand(new ChannelUID(getThing().getUID(), CHANNEL_POWER), RefreshType.REFRESH);
+                        handleCommand(new ChannelUID(getThing().getUID(), CHANNEL_POWER_HIGH), RefreshType.REFRESH);
+                        handleCommand(new ChannelUID(getThing().getUID(), CHANNEL_POWER_LOW), RefreshType.REFRESH);
                         handleCommand(new ChannelUID(getThing().getUID(), CHANNEL_USED_HIGH), RefreshType.REFRESH);
                         handleCommand(new ChannelUID(getThing().getUID(), CHANNEL_USED_LOW), RefreshType.REFRESH);
                         handleCommand(new ChannelUID(getThing().getUID(), CHANNEL_USED_GAS), RefreshType.REFRESH);
