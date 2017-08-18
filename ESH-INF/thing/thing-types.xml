@@ -10,6 +10,8 @@
 
 		<channels>
             <channel id="power" typeId="power-channel" />
+            <channel id="powerHigh" typeId="power-high-channel" />
+            <channel id="powerLow" typeId="power-low-channel" />
             <channel id="usedHigh" typeId="reading-high-channel" />
             <channel id="usedLow" typeId="reading-low-channel" />
             <channel id="usedGas" typeId="reading-gas-channel" />
@@ -37,6 +39,16 @@
     <channel-type id="power-channel">
         <item-type>DecimalType</item-type>
         <label>Current power consumption (W)</label>
+        <description>Current total power consumption in Watts.</description>
+    </channel-type>
+    <channel-type id="power-high-channel">
+        <item-type>DecimalType</item-type>
+        <label>Current power consumption high tariff (W)</label>
+        <description>Current total power consumption in Watts.</description>
+    </channel-type>
+    <channel-type id="power-low-channel">
+        <item-type>DecimalType</item-type>
+        <label>Current power consumption low tariff (W)</label>
         <description>Current total power consumption in Watts.</description>
     </channel-type>
     <channel-type id="reading-high-channel">

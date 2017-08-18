@@ -29,6 +29,7 @@ import org.openhab.binding.beeclear.internal.BeeClearRegistry;
 import org.openhab.binding.beeclear.internal.DataCollectorFacade;
 import org.openhab.binding.beeclear.internal.data.ActiveValues;
 import org.openhab.binding.beeclear.internal.data.ActiveValuesImplRev1;
+import org.openhab.binding.beeclear.internal.data.TariffStatusType;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -69,6 +70,20 @@ public class BeeClearHandler extends BaseThingHandler {
             switch (channelUID.getId()) {
                 case CHANNEL_POWER:
                     updateState(channelUID, new DecimalType(_activeValues.getUsedPower()));
+                    break;
+                case CHANNEL_POWER_HIGH:
+                    if (_activeValues.getTariffStatus() == TariffStatusType.HIGH) {
+                        updateState(channelUID, new DecimalType(_activeValues.getUsedPower()));
+                    } else {
+                        updateState(channelUID, DecimalType.ZERO);
+                    }
+                    break;
+                case CHANNEL_POWER_LOW:
+                    if (_activeValues.getTariffStatus() == TariffStatusType.LOW) {
+                        updateState(channelUID, new DecimalType(_activeValues.getUsedPower()));
+                    } else {
+                        updateState(channelUID, DecimalType.ZERO);
+                    }
                     break;
                 case CHANNEL_USED_HIGH:
                     updateState(channelUID, new DecimalType(_activeValues.getUsedElectricityHigh()));

@@ -25,6 +25,8 @@ public class BeeClearBindingConstants {
 
     // List of all Channel ids
     public static final String CHANNEL_POWER = "power";
+    public static final String CHANNEL_POWER_HIGH = "powerHigh";
+    public static final String CHANNEL_POWER_LOW = "powerLow";
     public static final String CHANNEL_USED_HIGH = "usedHigh";
     public static final String CHANNEL_USED_LOW = "usedLow";
     public static final String CHANNEL_USED_GAS = "gas";
