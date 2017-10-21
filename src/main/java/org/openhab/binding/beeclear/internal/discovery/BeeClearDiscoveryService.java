@@ -39,10 +39,10 @@ import org.slf4j.LoggerFactory;
  */
 public class BeeClearDiscoveryService extends AbstractDiscoveryService {
 
-    private Logger _logger = LoggerFactory.getLogger(BeeClearDiscoveryService.class);
-    private RestClient _restClient;
-    private ScheduledFuture<?> _discoveryJob;
-    private int _holdOff;
+    private Logger logger = LoggerFactory.getLogger(BeeClearDiscoveryService.class);
+    private RestClient restClient;
+    private ScheduledFuture<?> discoveryJob;
+    private int holdOff;
 
     private static final String BEECLEAR_HOSTNAME = "beeclear";
     private static final int BEECLEAR_PORT = 80;
@@ -60,11 +60,11 @@ public class BeeClearDiscoveryService extends AbstractDiscoveryService {
 
     public BeeClearDiscoveryService() {
         super(getSupportedTypes(), 5, true);
-        _holdOff = 1;
+        holdOff = 1;
     }
 
     public void activate() {
-        _logger.debug("Starting BeeClear discovery...");
+        logger.debug("Starting BeeClear discovery...");
         removeOlderResults(System.currentTimeMillis(), getSupportedTypes());
         startScan();
         startBackgroundDiscovery();
@@ -72,15 +72,15 @@ public class BeeClearDiscoveryService extends AbstractDiscoveryService {
 
     @Override
     public void deactivate() {
-        _logger.debug("Stopping BeeClear discovery...");
+        logger.debug("Stopping BeeClear discovery...");
         stopBackgroundDiscovery();
         stopScan();
     }
 
     private void discover() {
-        if (_holdOff == 0) {
+        if (holdOff == 0) {
             if (!BeeClearRegistry.getInstance().isRegistered(BEECLEAR_HOSTNAME, BEECLEAR_PORT)) {
-                SoftwareVersion softwareVersion = _restClient.getSoftwareVersion();
+                SoftwareVersion softwareVersion = restClient.getSoftwareVersion();
                 if (softwareVersion.getInfo() != null && !softwareVersion.getInfo().isEmpty()) {
                     DiscoveryResult discoveryResult = DiscoveryResultBuilder
                             .create(new ThingUID("beeclear:meter:unit1")).withProperties(getConfigProperties())
@@ -90,8 +90,8 @@ public class BeeClearDiscoveryService extends AbstractDiscoveryService {
                 }
             }
         }
-        if (_holdOff > 0) {
-            _holdOff--;
+        if (holdOff > 0) {
+            holdOff--;
         }
     }
 
@@ -110,30 +110,30 @@ public class BeeClearDiscoveryService extends AbstractDiscoveryService {
                 try {
                     discover();
                 } catch (Exception e) {
-                    _logger.debug("Exception occurred during execution: {}", e.getMessage(), e);
+                    logger.debug("Exception occurred during execution: {}", e.getMessage(), e);
                 }
             }
         };
-        _logger.info("Start BeeClear device background discovery");
-        if (_discoveryJob == null || _discoveryJob.isCancelled()) {
-            _restClient = new RestClient(BEECLEAR_HOSTNAME, BEECLEAR_PORT);
-            _discoveryJob = scheduler.scheduleAtFixedRate(runnable, 0, INTERVAL, TimeUnit.SECONDS);
+        logger.info("Start BeeClear device background discovery");
+        if (discoveryJob == null || discoveryJob.isCancelled()) {
+            restClient = new RestClient(BEECLEAR_HOSTNAME, BEECLEAR_PORT);
+            discoveryJob = scheduler.scheduleAtFixedRate(runnable, 0, INTERVAL, TimeUnit.SECONDS);
         }
     }
 
     @Override
     protected void stopBackgroundDiscovery() {
-        _logger.info("Stop Souliss2 background discovery");
-        if (_discoveryJob != null && !_discoveryJob.isCancelled()) {
-            _discoveryJob.cancel(true);
-            _restClient = null;
-            _discoveryJob = null;
+        logger.info("Stop Souliss2 background discovery");
+        if (discoveryJob != null && !discoveryJob.isCancelled()) {
+            discoveryJob.cancel(true);
+            restClient = null;
+            discoveryJob = null;
         }
     }
 
     @Override
     protected void startScan() {
-        _logger.debug("Starting device search...");
+        logger.debug("Starting device search...");
     }
 
     @Override

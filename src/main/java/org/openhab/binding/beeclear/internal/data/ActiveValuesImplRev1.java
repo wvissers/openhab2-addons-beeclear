@@ -22,10 +22,10 @@ import org.json.simple.JSONObject;
  */
 public class ActiveValuesImplRev1 implements ActiveValues {
 
-    private JSONObject _jsonObj;
+    private JSONObject jsonObj;
 
     public ActiveValuesImplRev1(JSONObject jsonObj) {
-        _jsonObj = jsonObj;
+        this.jsonObj = jsonObj;
     }
 
     /**
@@ -60,49 +60,49 @@ public class ActiveValuesImplRev1 implements ActiveValues {
     @SuppressWarnings("unchecked")
     @Override
     public BigDecimal getUsedElectricityHigh() {
-        return convert(_jsonObj.getOrDefault("uh", "0").toString());
+        return convert(jsonObj.getOrDefault("uh", "0").toString());
     }
 
     @SuppressWarnings("unchecked")
     @Override
     public BigDecimal getUsedElectricityLow() {
-        return convert(_jsonObj.getOrDefault("ul", "0").toString());
+        return convert(jsonObj.getOrDefault("ul", "0").toString());
     }
 
     @SuppressWarnings("unchecked")
     @Override
     public BigDecimal getGeneratedElectricityHigh() {
-        return convert(_jsonObj.getOrDefault("gh", "0").toString());
+        return convert(jsonObj.getOrDefault("gh", "0").toString());
     }
 
     @SuppressWarnings("unchecked")
     @Override
     public BigDecimal getGeneratedElectricityLow() {
-        return convert(_jsonObj.getOrDefault("gl", "0").toString());
+        return convert(jsonObj.getOrDefault("gl", "0").toString());
     }
 
     @SuppressWarnings("unchecked")
     @Override
     public BigDecimal getUsedPower() {
-        return new BigDecimal(_jsonObj.getOrDefault("u", "0").toString());
+        return new BigDecimal(jsonObj.getOrDefault("u", "0").toString());
     }
 
     @SuppressWarnings("unchecked")
     @Override
     public BigDecimal getGeneratedPower() {
-        return new BigDecimal(_jsonObj.getOrDefault("g", "0").toString());
+        return new BigDecimal(jsonObj.getOrDefault("g", "0").toString());
     }
 
     @SuppressWarnings("unchecked")
     @Override
     public BigDecimal getUsedGas() {
-        return new BigDecimal(_jsonObj.getOrDefault("gas", "0").toString());
+        return new BigDecimal(jsonObj.getOrDefault("gas", "0").toString());
     }
 
     @SuppressWarnings("unchecked")
     @Override
     public TariffStatusType getTariffStatus() {
-        Long status = (Long) _jsonObj.getOrDefault("tariefStatus", 0);
+        Long status = (Long) jsonObj.getOrDefault("tariefStatus", 0);
         try {
             return TariffStatusType.getByCode(status.intValue());
         } catch (UnsupportedTariffCodeException e) {

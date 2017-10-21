@@ -19,18 +19,18 @@ import org.openhab.binding.beeclear.internal.data.SoftwareVersion;
  */
 public class DataCollectorFacade {
 
-    private final RestClient _restClient;
+    private final RestClient restClient;
 
-    private SoftwareVersion _softwareVersion;
+    private SoftwareVersion softwareVersion;
 
-    private long _versionRefreshed;
+    private long versionRefreshed;
     private static final long VERSION_INIT_DELAY = 1000 * 30;
     private static final long VERSION_REFRESH_INTERVAL = 1000 * 60 * 15;
 
     public DataCollectorFacade(String host, int port) {
-        _restClient = new RestClient(host, port);
-        _softwareVersion = _restClient.getSoftwareVersion();
-        _versionRefreshed = System.currentTimeMillis() - VERSION_REFRESH_INTERVAL + VERSION_INIT_DELAY;
+        restClient = new RestClient(host, port);
+        softwareVersion = restClient.getSoftwareVersion();
+        versionRefreshed = System.currentTimeMillis() - VERSION_REFRESH_INTERVAL + VERSION_INIT_DELAY;
     }
 
     /**
@@ -39,11 +39,11 @@ public class DataCollectorFacade {
      * @return
      */
     public SoftwareVersion getSoftwareVersion() {
-        if (_softwareVersion == null || isVersionDataExpired()) {
-            _softwareVersion = _restClient.getSoftwareVersion();
-            _versionRefreshed = System.currentTimeMillis();
+        if (softwareVersion == null || isVersionDataExpired()) {
+            softwareVersion = restClient.getSoftwareVersion();
+            versionRefreshed = System.currentTimeMillis();
         }
-        return _softwareVersion;
+        return softwareVersion;
     }
 
     /**
@@ -52,7 +52,7 @@ public class DataCollectorFacade {
      * @return
      */
     public boolean isVersionDataExpired() {
-        return (System.currentTimeMillis() - _versionRefreshed) > VERSION_REFRESH_INTERVAL;
+        return (System.currentTimeMillis() - versionRefreshed) > VERSION_REFRESH_INTERVAL;
     }
 
     /**
@@ -61,7 +61,7 @@ public class DataCollectorFacade {
      * @return
      */
     public boolean isVersionSupported() {
-        return _restClient.isSupported(getSoftwareVersion());
+        return restClient.isSupported(getSoftwareVersion());
     }
 
     /**
@@ -70,7 +70,7 @@ public class DataCollectorFacade {
      * @return
      */
     public ActiveValues getActiveValues() {
-        return _restClient.getActiveValues(_softwareVersion);
+        return restClient.getActiveValues(softwareVersion);
     }
 
 }

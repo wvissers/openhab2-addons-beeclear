@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<pmd version="5.5.1" timestamp="2017-08-18T16:43:19.970">
+<pmd version="5.5.1" timestamp="2017-08-18T16:56:28.802">
 <file name="C:\OH2dev\master\git\openhab2-addons\addons\binding\org.openhab.binding.beeclear\src\main\java\org\openhab\binding\beeclear\internal\RestClient.java">
 <violation beginline="66" endline="66" begincolumn="27" endcolumn="42" rule="AvoidThrowingRawExceptionTypes" ruleset="Strict Exceptions" package="org.openhab.binding.beeclear.internal" class="RestClient" method="getResponse" externalInfoUrl="https://pmd.github.io/pmd-5.5.1/pmd-java/rules/java/strictexception.html#AvoidThrowingRawExceptionTypes" priority="2">
 Avoid throwing raw exception types.

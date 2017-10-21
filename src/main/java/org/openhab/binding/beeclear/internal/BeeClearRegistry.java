@@ -29,11 +29,11 @@ public class BeeClearRegistry {
     private static final BeeClearRegistry INSTANCE = new BeeClearRegistry();
 
     // Devices are registered by IPv4 ip-address + ":" + port.
-    private Set<String> _devices;
-    private Logger _logger = LoggerFactory.getLogger(BeeClearRegistry.class);
+    private Set<String> devices;
+    private Logger logger = LoggerFactory.getLogger(BeeClearRegistry.class);
 
     private BeeClearRegistry() {
-        _devices = new HashSet<>();
+        devices = new HashSet<>();
     }
 
     /**
@@ -55,7 +55,7 @@ public class BeeClearRegistry {
     public String registerByName(String hostName, int port) {
         String id = getId(hostName, port);
         if (id != null) {
-            _devices.add(id);
+            devices.add(id);
         }
         return id;
     }
@@ -69,7 +69,7 @@ public class BeeClearRegistry {
      */
     public boolean isRegistered(String hostName, int port) {
         String id = getId(hostName, port);
-        return id == null ? false : _devices.contains(id);
+        return id == null ? false : devices.contains(id);
     }
 
     /**
@@ -78,7 +78,7 @@ public class BeeClearRegistry {
      * @return
      */
     public int size() {
-        return _devices.size();
+        return devices.size();
     }
 
     /**
@@ -88,7 +88,7 @@ public class BeeClearRegistry {
      */
     public void remove(String id) {
         if (id != null) {
-            _devices.remove(id);
+            devices.remove(id);
         }
     }
 
@@ -104,7 +104,7 @@ public class BeeClearRegistry {
             InetAddress address = InetAddress.getByName(hostName);
             return address.getHostAddress() + ":" + port;
         } catch (UnknownHostException e) {
-            _logger.error("Host {} not found.", hostName);
+            logger.error("Host {} not found.", hostName);
             return null;
         }
     }

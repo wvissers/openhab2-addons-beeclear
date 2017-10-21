@@ -8,6 +8,8 @@
  */
 package org.openhab.binding.beeclear.internal.data;
 
+import java.math.BigDecimal;
+
 /**
  * On initialization of the handler, the software version of the
  * BeeClear unit will be stored for future reference. Factories
@@ -18,7 +20,8 @@ package org.openhab.binding.beeclear.internal.data;
 public interface SoftwareVersion {
 
     /**
-     * Get the name part of the json response.
+     * Get the name part of the json response which apparently
+     * represents the meter type.
      *
      * @return
      */
@@ -58,6 +61,13 @@ public interface SoftwareVersion {
      * @return
      */
     public String getSerialGas();
+
+    /**
+     * Get the up time in hours.
+     *
+     * @return
+     */
+    public BigDecimal getUptimeHours();
 
     /**
      * Get the info (basically the response status).

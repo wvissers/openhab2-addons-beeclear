@@ -24,14 +24,14 @@ import org.slf4j.LoggerFactory;
  */
 public class DataElementFactory {
 
-    private static final Logger _logger = LoggerFactory.getLogger(DataElementFactory.class);
+    private static final Logger logger = LoggerFactory.getLogger(DataElementFactory.class);
     private static final DataElementFactory INSTANCE = new DataElementFactory();
 
     /**
      * Private constructor to avoid creating more than one instance.
      */
     private DataElementFactory() {
-        _logger.debug("Creating DataElementFactory {}", this.toString());
+        logger.debug("Creating DataElementFactory {}", this.toString());
     }
 
     /**

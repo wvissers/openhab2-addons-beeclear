@@ -11,6 +11,8 @@ package org.openhab.binding.beeclear.handler;
 import static org.openhab.binding.beeclear.BeeClearBindingConstants.*;
 
 import java.math.BigDecimal;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.concurrent.ScheduledFuture;
 import java.util.concurrent.TimeUnit;
 
@@ -41,27 +43,49 @@ import org.slf4j.LoggerFactory;
  */
 public class BeeClearHandler extends BaseThingHandler {
 
-    private final Logger _logger = LoggerFactory.getLogger(BeeClearHandler.class);
+    private final Logger logger = LoggerFactory.getLogger(BeeClearHandler.class);
 
     // The Facade to the BeeClear restfull webAPI.
-    private DataCollectorFacade _data;
+    private DataCollectorFacade data;
 
     // The last retrieved actual data
-    private ActiveValues _activeValues;
+    private ActiveValues activeValues;
 
     // Helper fields and constants
-    private boolean _online;
+    private boolean online;
 
     // The unique id
-    private String _id;
+    private String id;
+
+    // List with channels to update fast (every minute)
+    private final List<ChannelUID> refreshFast;
+
+    // List with channels to update slow.
+    private final List<ChannelUID> refreshSlow;
 
     // Scheduler to retrieve data from time to time.
-    ScheduledFuture<?> _refreshJob;
+    ScheduledFuture<?> refreshJob;
 
     public BeeClearHandler(Thing thing) {
         super(thing);
-        _online = false;
-        _activeValues = new ActiveValuesImplRev1(new JSONObject());
+        refreshFast = new ArrayList<>();
+        refreshFast.add(new ChannelUID(getThing().getUID(), CHANNEL_UPTIME));
+        refreshFast.add(new ChannelUID(getThing().getUID(), CHANNEL_POWER));
+        refreshFast.add(new ChannelUID(getThing().getUID(), CHANNEL_POWER_HIGH));
+        refreshFast.add(new ChannelUID(getThing().getUID(), CHANNEL_POWER_LOW));
+        refreshFast.add(new ChannelUID(getThing().getUID(), CHANNEL_USED_HIGH));
+        refreshFast.add(new ChannelUID(getThing().getUID(), CHANNEL_USED_LOW));
+        refreshFast.add(new ChannelUID(getThing().getUID(), CHANNEL_USED_GAS));
+        refreshSlow = new ArrayList<>();
+        refreshSlow.add(new ChannelUID(getThing().getUID(), CHANNEL_TARIFF));
+        refreshSlow.add(new ChannelUID(getThing().getUID(), CHANNEL_FIRMWARE));
+        refreshSlow.add(new ChannelUID(getThing().getUID(), CHANNEL_HARDWARE));
+        refreshSlow.add(new ChannelUID(getThing().getUID(), CHANNEL_SERIAL_ELEC));
+        refreshSlow.add(new ChannelUID(getThing().getUID(), CHANNEL_SERIAL_GAS));
+        refreshSlow.add(new ChannelUID(getThing().getUID(), CHANNEL_METER_TYPE));
+        refreshSlow.add(new ChannelUID(getThing().getUID(), CHANNEL_PROTOCOL_VERSION));
+        online = false;
+        activeValues = new ActiveValuesImplRev1(new JSONObject());
     }
 
     @Override
@@ -69,51 +93,60 @@ public class BeeClearHandler extends BaseThingHandler {
         if (command instanceof RefreshType) {
             switch (channelUID.getId()) {
                 case CHANNEL_POWER:
-                    updateState(channelUID, new DecimalType(_activeValues.getUsedPower()));
+                    updateState(channelUID, new DecimalType(activeValues.getUsedPower()));
                     break;
                 case CHANNEL_POWER_HIGH:
-                    if (_activeValues.getTariffStatus() == TariffStatusType.HIGH) {
-                        updateState(channelUID, new DecimalType(_activeValues.getUsedPower()));
+                    if (activeValues.getTariffStatus() == TariffStatusType.HIGH) {
+                        updateState(channelUID, new DecimalType(activeValues.getUsedPower()));
                     } else {
                         updateState(channelUID, DecimalType.ZERO);
                     }
                     break;
                 case CHANNEL_POWER_LOW:
-                    if (_activeValues.getTariffStatus() == TariffStatusType.LOW) {
-                        updateState(channelUID, new DecimalType(_activeValues.getUsedPower()));
+                    if (activeValues.getTariffStatus() == TariffStatusType.LOW) {
+                        updateState(channelUID, new DecimalType(activeValues.getUsedPower()));
                     } else {
                         updateState(channelUID, DecimalType.ZERO);
                     }
                     break;
                 case CHANNEL_USED_HIGH:
-                    updateState(channelUID, new DecimalType(_activeValues.getUsedElectricityHigh()));
+                    updateState(channelUID, new DecimalType(activeValues.getUsedElectricityHigh()));
                     break;
                 case CHANNEL_USED_LOW:
-                    updateState(channelUID, new DecimalType(_activeValues.getUsedElectricityLow()));
+                    updateState(channelUID, new DecimalType(activeValues.getUsedElectricityLow()));
                     break;
                 case CHANNEL_USED_GAS:
-                    updateState(channelUID, new DecimalType(_activeValues.getUsedGas()));
+                    updateState(channelUID, new DecimalType(activeValues.getUsedGas()));
                     break;
                 case CHANNEL_TARIFF:
-                    updateState(channelUID, new StringType("" + _activeValues.getTariffStatus()));
+                    updateState(channelUID, new StringType("" + activeValues.getTariffStatus()));
                     break;
                 case CHANNEL_FIRMWARE:
-                    updateState(channelUID, new StringType(_data.getSoftwareVersion().getFirmware()));
+                    updateState(channelUID, new StringType(data.getSoftwareVersion().getFirmware()));
                     break;
                 case CHANNEL_HARDWARE:
-                    updateState(channelUID, new StringType(_data.getSoftwareVersion().getHardware()));
+                    updateState(channelUID, new StringType(data.getSoftwareVersion().getHardware()));
                     break;
                 case CHANNEL_SERIAL_ELEC:
-                    updateState(channelUID, new StringType(_data.getSoftwareVersion().getSerialElec()));
+                    updateState(channelUID, new StringType(data.getSoftwareVersion().getSerialElec()));
                     break;
                 case CHANNEL_SERIAL_GAS:
-                    updateState(channelUID, new StringType(_data.getSoftwareVersion().getSerialGas()));
+                    updateState(channelUID, new StringType(data.getSoftwareVersion().getSerialGas()));
+                    break;
+                case CHANNEL_METER_TYPE:
+                    updateState(channelUID, new StringType(data.getSoftwareVersion().getName()));
+                    break;
+                case CHANNEL_PROTOCOL_VERSION:
+                    updateState(channelUID, new StringType(data.getSoftwareVersion().getProtocolVersion()));
+                    break;
+                case CHANNEL_UPTIME:
+                    updateState(channelUID, new DecimalType(data.getSoftwareVersion().getUptimeHours()));
                     break;
                 default:
-                    _logger.warn("Unexpected channel {}", channelUID);
+                    logger.warn("Unexpected channel {}", channelUID);
             }
         } else {
-            _logger.warn("Unexpected command type {}", command.getClass().getName());
+            logger.warn("Unexpected command type {}", command.getClass().getName());
         }
     }
 
@@ -124,22 +157,22 @@ public class BeeClearHandler extends BaseThingHandler {
         BigDecimal port = ((BigDecimal) config.get("port"));
 
         // Register the device
-        _id = BeeClearRegistry.getInstance().registerByName(host, port.intValue());
+        id = BeeClearRegistry.getInstance().registerByName(host, port.intValue());
 
         // Create a Facade to the API
-        _data = new DataCollectorFacade(host, port.intValue());
+        data = new DataCollectorFacade(host, port.intValue());
 
-        if (_data.getSoftwareVersion().getInfo().equals("notAuthenticated")) {
+        if (data.getSoftwareVersion().getInfo().equals("notAuthenticated")) {
             updateStatus(ThingStatus.OFFLINE, ThingStatusDetail.CONFIGURATION_ERROR,
                     "Not authenticated. Please use the BeeClear software, login and enter http://youraddress/bc_securitybc_security?set=off and try again.");
-            _online = false;
-        } else if (!_data.isVersionSupported()) {
+            online = false;
+        } else if (!data.isVersionSupported()) {
             updateStatus(ThingStatus.OFFLINE, ThingStatusDetail.CONFIGURATION_ERROR,
-                    "Firmware version " + _data.getSoftwareVersion().getFirmware() + " not supported.");
-            _online = false;
+                    "Firmware version " + data.getSoftwareVersion().getFirmware() + " not supported.");
+            online = false;
         } else {
             updateStatus(ThingStatus.ONLINE);
-            _online = true;
+            online = true;
         }
         startAutomaticRefresh();
     }
@@ -152,40 +185,34 @@ public class BeeClearHandler extends BaseThingHandler {
             @Override
             public void run() {
                 try {
-                    if (_online) {
-                        if (_data.isVersionDataExpired()) {
-                            handleCommand(new ChannelUID(getThing().getUID(), CHANNEL_FIRMWARE), RefreshType.REFRESH);
-                            handleCommand(new ChannelUID(getThing().getUID(), CHANNEL_HARDWARE), RefreshType.REFRESH);
-                            handleCommand(new ChannelUID(getThing().getUID(), CHANNEL_SERIAL_ELEC),
-                                    RefreshType.REFRESH);
-                            handleCommand(new ChannelUID(getThing().getUID(), CHANNEL_SERIAL_GAS), RefreshType.REFRESH);
+                    if (online) {
+                        if (data.isVersionDataExpired()) {
+                            for (ChannelUID channel : refreshSlow) {
+                                handleCommand(channel, RefreshType.REFRESH);
+                            }
                         }
 
-                        _activeValues = _data.getActiveValues();
-                        handleCommand(new ChannelUID(getThing().getUID(), CHANNEL_POWER), RefreshType.REFRESH);
-                        handleCommand(new ChannelUID(getThing().getUID(), CHANNEL_POWER_HIGH), RefreshType.REFRESH);
-                        handleCommand(new ChannelUID(getThing().getUID(), CHANNEL_POWER_LOW), RefreshType.REFRESH);
-                        handleCommand(new ChannelUID(getThing().getUID(), CHANNEL_USED_HIGH), RefreshType.REFRESH);
-                        handleCommand(new ChannelUID(getThing().getUID(), CHANNEL_USED_LOW), RefreshType.REFRESH);
-                        handleCommand(new ChannelUID(getThing().getUID(), CHANNEL_USED_GAS), RefreshType.REFRESH);
-                        handleCommand(new ChannelUID(getThing().getUID(), CHANNEL_TARIFF), RefreshType.REFRESH);
+                        activeValues = data.getActiveValues();
+                        for (ChannelUID channel : refreshFast) {
+                            handleCommand(channel, RefreshType.REFRESH);
+                        }
                     }
                 } catch (Exception e) {
-                    _logger.debug("Exception occurred during execution: {}", e.getMessage(), e);
+                    logger.debug("Exception occurred during execution: {}", e.getMessage(), e);
                 }
             }
         };
 
-        _refreshJob = scheduler.scheduleAtFixedRate(runnable, 0, 60, TimeUnit.SECONDS);
+        refreshJob = scheduler.scheduleAtFixedRate(runnable, 0, 60, TimeUnit.SECONDS);
     }
 
     /**
      * Stop the automatic refresh.
      */
     private void stopAutomaticRefresh() {
-        if (_refreshJob != null) {
-            _refreshJob.cancel(true);
-            _refreshJob = null;
+        if (refreshJob != null) {
+            refreshJob.cancel(true);
+            refreshJob = null;
         }
     }
 
@@ -195,7 +222,7 @@ public class BeeClearHandler extends BaseThingHandler {
     @Override
     public void dispose() {
         stopAutomaticRefresh();
-        BeeClearRegistry.getInstance().remove(_id);
+        BeeClearRegistry.getInstance().remove(id);
     }
 
 }

@@ -35,5 +35,8 @@ public class BeeClearBindingConstants {
     public static final String CHANNEL_HARDWARE = "hardware";
     public static final String CHANNEL_SERIAL_ELEC = "serialElec";
     public static final String CHANNEL_SERIAL_GAS = "serialGas";
+    public static final String CHANNEL_METER_TYPE = "meterType";
+    public static final String CHANNEL_PROTOCOL_VERSION = "protocolVersion";
+    public static final String CHANNEL_UPTIME = "uptime";
 
 }

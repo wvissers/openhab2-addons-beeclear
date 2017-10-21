@@ -8,6 +8,8 @@
  */
 package org.openhab.binding.beeclear.internal.data;
 
+import java.math.BigDecimal;
+
 import org.json.simple.JSONObject;
 
 /**
@@ -21,52 +23,58 @@ import org.json.simple.JSONObject;
  */
 public class SoftwareVersionImpl implements SoftwareVersion {
 
-    private JSONObject _jsonObj;
+    private JSONObject jsonObj;
 
     public SoftwareVersionImpl(JSONObject jsonObj) {
-        _jsonObj = jsonObj;
+        this.jsonObj = jsonObj;
     }
 
     @SuppressWarnings("unchecked")
     @Override
     public String getName() {
-        return _jsonObj.getOrDefault("www", "").toString();
+        return jsonObj.getOrDefault("name", "").toString();
     }
 
     @SuppressWarnings("unchecked")
     @Override
     public String getFirmware() {
-        return _jsonObj.getOrDefault("firmware", "").toString();
+        return jsonObj.getOrDefault("firmware", "").toString();
     }
 
     @SuppressWarnings("unchecked")
     @Override
     public String getHardware() {
-        return _jsonObj.getOrDefault("hardware", "").toString();
+        return jsonObj.getOrDefault("hardware", "").toString();
     }
 
     @SuppressWarnings("unchecked")
     @Override
     public String getProtocolVersion() {
-        return _jsonObj.getOrDefault("protocolVersion", "").toString();
+        return jsonObj.getOrDefault("protocolVersion", "").toString();
     }
 
     @SuppressWarnings("unchecked")
     @Override
     public String getSerialElec() {
-        return _jsonObj.getOrDefault("serialElec", "").toString();
+        return jsonObj.getOrDefault("serialElec", "").toString();
     }
 
     @SuppressWarnings("unchecked")
     @Override
     public String getSerialGas() {
-        return _jsonObj.getOrDefault("serialGas", "").toString();
+        return jsonObj.getOrDefault("serialGas", "").toString();
     }
 
     @SuppressWarnings("unchecked")
     @Override
     public String getInfo() {
-        return _jsonObj.getOrDefault("info", "").toString();
+        return jsonObj.getOrDefault("info", "").toString();
+    }
+
+    @SuppressWarnings("unchecked")
+    @Override
+    public BigDecimal getUptimeHours() {
+        return new BigDecimal((Long) jsonObj.getOrDefault("uptime", 0L) / 60 / 60);
     }
 
 }
