@@ -10,6 +10,7 @@ package org.openhab.binding.beeclear.internal;
 
 import org.openhab.binding.beeclear.internal.data.ActiveValues;
 import org.openhab.binding.beeclear.internal.data.SoftwareVersion;
+import org.openhab.binding.beeclear.internal.data.Status;
 
 /**
  * The Facade that is used for a firmware version independent way
@@ -57,7 +58,7 @@ public class DataCollectorFacade {
 
     /**
      * Determine is the version is supported.
-     * 
+     *
      * @return
      */
     public boolean isVersionSupported() {
@@ -71,6 +72,15 @@ public class DataCollectorFacade {
      */
     public ActiveValues getActiveValues() {
         return restClient.getActiveValues(softwareVersion);
+    }
+
+    /**
+     * Retrieve the current status.
+     *
+     * @return
+     */
+    public Status getStatus() {
+        return restClient.getStatus(softwareVersion);
     }
 
 }

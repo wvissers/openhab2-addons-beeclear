@@ -12,6 +12,8 @@ import org.json.simple.JSONObject;
 import org.openhab.binding.beeclear.internal.data.ActiveValues;
 import org.openhab.binding.beeclear.internal.data.ActiveValuesImplRev1;
 import org.openhab.binding.beeclear.internal.data.SoftwareVersion;
+import org.openhab.binding.beeclear.internal.data.Status;
+import org.openhab.binding.beeclear.internal.data.StatusImplRev1;
 import org.openhab.binding.beeclear.internal.data.UnsupportedVersionException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -60,6 +62,28 @@ public class DataElementFactory {
         }
     }
 
+    /**
+     * Create a Status DataElement for a given BeeClear software
+     * version and jsonResponse from the BeeClear device.
+     *
+     * @param softwareVersion the BeeClear software version.
+     * @param jsonObj the response retrieved from the BeeClear device.
+     * @return a new ActiveValues DataElement object.
+     */
+    public Status createStatus(SoftwareVersion softwareVersion, JSONObject jsonObj) throws UnsupportedVersionException {
+        if (ActiveValuesImplRev1.isSupported(softwareVersion)) {
+            return new StatusImplRev1(jsonObj);
+        } else {
+            throw new UnsupportedVersionException("This version of BeeClear software not supported.");
+        }
+    }
+
+    /**
+     * Determine from the retrieved SoftwareVersion object if the version is supported.
+     * 
+     * @param softwareVersion
+     * @return
+     */
     public boolean isSupported(SoftwareVersion softwareVersion) {
         boolean result = true;
         try {

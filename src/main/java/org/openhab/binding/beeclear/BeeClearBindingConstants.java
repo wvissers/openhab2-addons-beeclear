@@ -38,5 +38,9 @@ public class BeeClearBindingConstants {
     public static final String CHANNEL_METER_TYPE = "meterType";
     public static final String CHANNEL_PROTOCOL_VERSION = "protocolVersion";
     public static final String CHANNEL_UPTIME = "uptime";
+    public static final String CHANNEL_P1 = "p1";
+    public static final String CHANNEL_SDCARD = "sdcard";
+    public static final String CHANNEL_SDCARD_FREE = "sdcardFree";
+    public static final String CHANNEL_SDCARD_TOTAL = "sdcardTotal";
 
 }

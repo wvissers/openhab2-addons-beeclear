@@ -23,6 +23,10 @@
             <channel id="meterType" typeId="meter-type-channel" />
             <channel id="protocolVersion" typeId="protocol-version-channel" />
             <channel id="uptime" typeId="uptime-channel" />
+            <channel id="p1" typeId="p1-channel" />
+            <channel id="sdcard" typeId="sdcard-channel" />
+            <channel id="sdcardFree" typeId="sdcard-free-channel" />
+            <channel id="sdcardTotal" typeId="sdcard-total-channel" />
 		</channels>
 		<config-description>
 			<parameter name="host" type="text" required="true">
@@ -108,6 +112,31 @@
         <item-type>DecimalType</item-type>
         <label>Uptime in hours.</label>
         <description>The time (in hours) the Beeclear unit was switched on.</description>
+    </channel-type>
+    <channel-type id="p1-channel">
+        <item-type>OnOffType</item-type>
+        <label>P1 signal status.</label>
+        <description>When ON, the P1 signal is available, otherwise the BeeClear unit is not receiving data.</description>
+    </channel-type>
+    <channel-type id="sdcard-channel">
+        <item-type>OnOffType</item-type>
+        <label>SD card available.</label>
+        <description>When ON, the SD card signal is available, otherwise the BeeClear unit will not run properly.</description>
+    </channel-type>
+    <channel-type id="sdcard-channel">
+        <item-type>OnOffType</item-type>
+        <label>SD card available.</label>
+        <description>When ON, the SD card signal is available, otherwise the BeeClear unit will not run properly.</description>
+    </channel-type>
+    <channel-type id="sdcard-free-channel">
+        <item-type>PercentType</item-type>
+        <label>SD card free memory.</label>
+        <description>Returns the percentage (as PercentType) of free memory on the SD card.</description>
+    </channel-type>
+    <channel-type id="sdcard-total-channel">
+        <item-type>String</item-type>
+        <label>SD card total memory.</label>
+        <description>Returns the total memory on the SD card as text.</description>
     </channel-type>
 
 </thing:thing-descriptions>

@@ -20,7 +20,7 @@
   </module>
 
   <!--See http://checkstyle.sourceforge.net/config_header.html#Header -->
-  <module name="Header">
+  <module name="RegexpHeader">
     <!--  This property represents the severity level of a check violation. The valid options are:
         -ignore
         -info
@@ -28,12 +28,13 @@
         -error   -->
     <!-- The default level of a check is "error". -->
     <!-- See http://checkstyle.sourceforge.net/config.html#Severity -->
-    <property name="severity" value="info" />
-    <property name="ignoreLines" value="1,2,3"/>
+    <property name="severity" value="error" />
     <property name="fileExtensions" value="java"/>
     <property name="header"
         value="${checkstyle.headerCheck.content}"
-        default="/**\n * Copyright (c) 2010-year by the respective copyright holders.\n *\n * All rights reserved. This program and the accompanying materials\n * are made available under the terms of the Eclipse Public License v1.0\n * which accompanies this distribution, and is available at\n * http://www.eclipse.org/legal/epl-v10.html\n */"/>  </module>
+        default="^/\*\*$\n^ \* Copyright \(c\) \d\d\d\d-\d\d\d\d by the respective copyright holders\.$\n^ \*$\n^ \* All rights reserved\. This program and the accompanying materials$\n^ \* are made available under the terms of the Eclipse Public License v1\.0$\n^ \* which accompanies this distribution, and is available at$\n^ \* http://www.eclipse.org/legal/epl\-v10\.html$"/>
+  </module>
+  
   <module name="NewlineAtEndOfFile">
     <property name="severity" value="info"/>
   </module>
@@ -41,7 +42,24 @@
   <module name="org.openhab.tools.analysis.checkstyle.ExportInternalPackageCheck">
     <property name="severity" value="error" />
   </module>
-
+    
+  <module name="org.openhab.tools.analysis.checkstyle.ManifestExternalLibrariesCheck">
+    <property name="severity" value="error" />
+  </module>
+  
+  <module name="org.openhab.tools.analysis.checkstyle.BuildPropertiesExternalLibrariesCheck">
+    <property name="severity" value="error" />
+  </module>
+  
+  <module name="org.openhab.tools.analysis.checkstyle.OutsideOfLibExternalLibrariesCheck">
+    <property name="severity" value="error" />
+    <property name="ignoredDirectories" value="target,bin" />
+  </module>
+  
+  <module name="org.openhab.tools.analysis.checkstyle.readme.MarkdownCheck">
+    <property name="severity" value="warning" />
+  </module>  
+  
   <module name="org.openhab.tools.analysis.checkstyle.MavenPomderivedInClasspathCheck">
     <property name="severity" value="warning" />
   </module>
@@ -52,6 +70,7 @@
 
   <module name="org.openhab.tools.analysis.checkstyle.RequireBundleCheck">
       <property name="severity" value="error" />
+      <property name="allowedRequireBundles" value="${checkstyle.requireBundleCheck.allowedBundles}" default="org.junit,org.mockito,org.hamcrest" />
    </module>
 
    <module name="org.openhab.tools.analysis.checkstyle.AboutHtmlCheck">
@@ -72,7 +91,8 @@
   <module name="org.openhab.tools.analysis.checkstyle.RequiredFilesCheck">
      <property name="severity" value="error" />
      <property name="extensions" value="${checkstyle.requiredFilesCheck.extensions}" default="html,properties,xml,MF" />
-     <property name="requiredFiles" value="${checkstyle.requiredFilesCheck.files}" default="about.html,build.properties,pom.xml,MANIFEST.MF" />
+     <!-- Relative path to the root directory of the module-->
+     <property name="requiredFiles" value="${checkstyle.requiredFilesCheck.files}" default="about.html,build.properties,pom.xml,META-INF/MANIFEST.MF" />
   </module>
    
   <module name="org.openhab.tools.analysis.checkstyle.BuildPropertiesCheck">
@@ -111,6 +131,12 @@
   
   <module name="org.openhab.tools.analysis.checkstyle.PomXmlCheck">
     <property name="severity" value="error" />
+  </module>
+  
+  <module name="org.openhab.tools.analysis.checkstyle.PackageExportsNameCheck">
+    <property name="severity" value="warning" />
+    <property name="sourceDirectories" value="src/main/java" />
+    <property name="excludedPackages" value=".*.internal.*" />
   </module>
 
   <module name="TreeWalker">
@@ -155,6 +181,10 @@
       <property name="severity" value="error"/> <!-- A property defining what should be done if the author is missing. In our case we want the build to fail. -->
       <property name="tagSeverity" value="ignore"/> <!-- A property defining what should be done when the author tag is found. In our case we want to ignore it. -->
       <message key="type.missingTag" value="An author tag is missing"/>
+    </module>
+    
+    <module name="org.openhab.tools.analysis.checkstyle.NoEmptyLineSeparatorCheck">
+      <property name="severity" value="info"/>
     </module>
 
     <!-- Rules for Java Naming Convention -->

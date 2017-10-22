@@ -1,25 +1,939 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" 
-"http://www.w3.org/TR/html4/loose.dtd">
-<html>
-	<head>
-		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-		<title>Summary Report</title>
-		<style type="text/css">
-					body {margin-left: 3%; font-size:10pt;font-family:Arial;color:#000000 ; }
+<html xmlns:uml="http://www.eclipse.org/uml2/2.0.0/UML" xmlns:xmi="http://schema.omg.org/spec/XMI/2.1" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:fn="http://www.w3.org/2005/xpath-functions">
+   <head>
+      <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+      <title>Analysis Report</title><style type="text/css">
+					body {margin-left: 3%; font-size:10pt;font-family:Arial;color:#000000 ; }					
 					table.details tr th {font-size:10pt;font-family:Arial;font-weight:bold;background:#AC58FA}
 					table.details tr {font-size:10pt;font-family:Arial;font-weight:normal;background:#BEa1Fa}
 					table tbody	tr.alternate {background:#BAF4A7;}
 					table tbody tr.dark {background:#F4F4A7;}
-		</style>
-	</head>
-	<body>
-		<h2>Summary report (2017-08-10 10:42:15.172)</h2>
-		<h3>Individual reports</h3>
-		<table width="90%" border="0" class="details">
-			<tr>
-				<th align="left">Bundle</th>
-			</tr>
-			<tr class=alternate><td><a href="code-analysis\report.html">org.openhab.binding.beeclear</a></td></tr><tr class=alternate><td><a href="code-analysis\report.html">org.openhab.binding.beeclear</a></td></tr><tr class=alternate><td><a href="code-analysis\report.html">org.openhab.binding.beeclear</a></td></tr><tr class=alternate><td><a href="code-analysis\report.html">org.openhab.binding.beeclear</a></td></tr><tr class=alternate><td><a href="code-analysis\report.html">org.openhab.binding.beeclear</a></td></tr><tr class=alternate><td><a href="code-analysis\report.html">org.openhab.binding.beeclear</a></td></tr><tr></tr>
-		</table>
-	</body>
+				</style></head>
+   <body>
+      <h2>Report
+         					 
+         					(2017-10-22+02:00;
+         					 12:25:14.666+02:00)
+         				
+      </h2>
+      <h3>Summary Messages</h3>
+      <table width="90%" border="0" class="details">
+         <tr>
+            <th align="left">category</th>
+            <th align="left">tool</th>
+            <th align="left">priority</th>
+            <th align="left">rule</th>
+            <th align="left">count</th>
+         </tr>
+         <tr>
+            <td colspan="5">bad practice</td>
+         </tr>
+         <tr class="alternate">
+            <td></td>
+            <td>findbugs</td>
+            <td align="left">3</td>
+            <td> <a href="http://findbugs.sourceforge.net/bugDescriptions.html#SLF4J_LOGGER_SHOULD_BE_NON_STATIC">Logger should be non-static field (SLF4J)</a></td>
+            <td align="center">1</td>
+         </tr>
+         <tr>
+            <td colspan="5">design</td>
+         </tr>
+         <tr class="alternate">
+            <td></td>
+            <td>pmd</td>
+            <td align="left">3</td>
+            <td> <a href="https://pmd.github.io/pmd-5.8.1/pmd-java/rules/java/design.html#NonThreadSafeSingleton">NonThreadSafeSingleton</a></td>
+            <td align="center">1</td>
+         </tr>
+         <tr>
+            <td colspan="5">empty code</td>
+         </tr>
+         <tr class="alternate">
+            <td></td>
+            <td>pmd</td>
+            <td align="left">3</td>
+            <td> <a href="https://pmd.github.io/pmd-5.8.1/pmd-java/rules/java/empty.html#EmptyIfStmt">EmptyIfStmt</a></td>
+            <td align="center">1</td>
+         </tr>
+         <tr>
+            <td colspan="5">java logging</td>
+         </tr>
+         <tr class="alternate">
+            <td></td>
+            <td>pmd</td>
+            <td align="left">3</td>
+            <td> <a href="https://pmd.github.io/pmd-5.8.1/pmd-java/rules/java/logging-java.html#SystemPrintln">SystemPrintln</a></td>
+            <td align="center">2</td>
+         </tr>
+         <tr class="alternate">
+            <td></td>
+            <td>pmd</td>
+            <td align="left">3</td>
+            <td> <a href="https://pmd.github.io/pmd-5.8.1/pmd-java/rules/java/logging-java.html#AvoidPrintStackTrace">AvoidPrintStackTrace</a></td>
+            <td align="center">4</td>
+         </tr>
+         <tr>
+            <td colspan="5">strict exceptions</td>
+         </tr>
+         <tr class="alternate">
+            <td></td>
+            <td>pmd</td>
+            <td align="left">2</td>
+            <td> <a href="https://pmd.github.io/pmd-5.8.1/pmd-java/rules/java/strictexception.html#AvoidThrowingRawExceptionTypes">AvoidThrowingRawExceptionTypes</a></td>
+            <td align="center">2</td>
+         </tr>
+         <tr>
+            <td colspan="5">style</td>
+         </tr>
+         <tr class="alternate">
+            <td></td>
+            <td>checkstyle</td>
+            <td align="left">3</td>
+            <td>NewlineAtEndOfFileCheck</td>
+            <td align="center">20</td>
+         </tr>
+         <tr class="alternate">
+            <td></td>
+            <td>checkstyle</td>
+            <td align="left">3</td>
+            <td>ConstantNameCheck</td>
+            <td align="center">1</td>
+         </tr>
+         <tr class="alternate">
+            <td></td>
+            <td>checkstyle</td>
+            <td align="left">3</td>
+            <td>StaticVariableNameCheck</td>
+            <td align="center">1</td>
+         </tr>
+         <tr class="dark">
+            <td colspan="4"></td>
+            <td align="center">33</td>
+         </tr>
+      </table>
+      <p></p>
+      <h3>Summary Files</h3>
+      <table width="90%" border="0" class="details">
+         <tr>
+            <th align="left" width="90pt">class file</th>
+            <th align="center" width="90pt">high</th>
+            <th align="center" width="90pt">medium</th>
+            <th align="center" width="90pt">low</th>
+            <th align="center" width="90pt">total</th>
+         </tr>
+         <tr class="alternate">
+            <td><a href="#.binding.beeclear.internal.BeeClearHandlerFactory.xml" title=".binding.beeclear.internal.BeeClearHandlerFactory.xml">.binding.beeclear.internal.BeeClearHandlerFactory.xml</a></td>
+            <td align="center">
+               <div class="p1">0</div>
+            </td>
+            <td align="center">
+               <div class="p2">0</div>
+            </td>
+            <td align="center">
+               <div class="p3">1</div>
+            </td>
+            <td align="center">
+               <div class="p3">1</div>
+            </td>
+         </tr>
+         <tr class="alternate">
+            <td><a href="#.binding.beeclear\.classpath" title=".binding.beeclear\.classpath">.binding.beeclear\.classpath</a></td>
+            <td align="center">
+               <div class="p1">0</div>
+            </td>
+            <td align="center">
+               <div class="p2">0</div>
+            </td>
+            <td align="center">
+               <div class="p3">1</div>
+            </td>
+            <td align="center">
+               <div class="p3">1</div>
+            </td>
+         </tr>
+         <tr class="alternate">
+            <td><a href="#.binding.beeclear\ESH-INF\i18n\beeclear_xx_XX.properties" title=".binding.beeclear\ESH-INF\i18n\beeclear_xx_XX.properties">.binding.beeclear\ESH-INF\i18n\beeclear_xx_XX.properties</a></td>
+            <td align="center">
+               <div class="p1">0</div>
+            </td>
+            <td align="center">
+               <div class="p2">0</div>
+            </td>
+            <td align="center">
+               <div class="p3">1</div>
+            </td>
+            <td align="center">
+               <div class="p3">1</div>
+            </td>
+         </tr>
+         <tr class="alternate">
+            <td><a href="#.binding.beeclear\OSGI-INF\.gitignore" title=".binding.beeclear\OSGI-INF\.gitignore">.binding.beeclear\OSGI-INF\.gitignore</a></td>
+            <td align="center">
+               <div class="p1">0</div>
+            </td>
+            <td align="center">
+               <div class="p2">0</div>
+            </td>
+            <td align="center">
+               <div class="p3">1</div>
+            </td>
+            <td align="center">
+               <div class="p3">1</div>
+            </td>
+         </tr>
+         <tr class="alternate">
+            <td><a href="#.binding.beeclear\OSGI-INF\BeeClearHandlerFactory.xml" title=".binding.beeclear\OSGI-INF\BeeClearHandlerFactory.xml">.binding.beeclear\OSGI-INF\BeeClearHandlerFactory.xml</a></td>
+            <td align="center">
+               <div class="p1">0</div>
+            </td>
+            <td align="center">
+               <div class="p2">0</div>
+            </td>
+            <td align="center">
+               <div class="p3">1</div>
+            </td>
+            <td align="center">
+               <div class="p3">1</div>
+            </td>
+         </tr>
+         <tr class="alternate">
+            <td><a href="#.binding.beeclear\README.md" title=".binding.beeclear\README.md">.binding.beeclear\README.md</a></td>
+            <td align="center">
+               <div class="p1">0</div>
+            </td>
+            <td align="center">
+               <div class="p2">0</div>
+            </td>
+            <td align="center">
+               <div class="p3">1</div>
+            </td>
+            <td align="center">
+               <div class="p3">1</div>
+            </td>
+         </tr>
+         <tr class="alternate">
+            <td><a href="#org.openhab.binding.beeclear.internal.BeeClearRegistry.java" title="org.openhab.binding.beeclear.internal.BeeClearRegistry.java">org.openhab.binding.beeclear.internal.BeeClearRegistry.java</a></td>
+            <td align="center">
+               <div class="p1">0</div>
+            </td>
+            <td align="center">
+               <div class="p2">0</div>
+            </td>
+            <td align="center">
+               <div class="p3">1</div>
+            </td>
+            <td align="center">
+               <div class="p3">1</div>
+            </td>
+         </tr>
+         <tr class="alternate">
+            <td><a href="#org.openhab.binding.beeclear.internal.DataCollectorFacade.java" title="org.openhab.binding.beeclear.internal.DataCollectorFacade.java">org.openhab.binding.beeclear.internal.DataCollectorFacade.java</a></td>
+            <td align="center">
+               <div class="p1">0</div>
+            </td>
+            <td align="center">
+               <div class="p2">0</div>
+            </td>
+            <td align="center">
+               <div class="p3">1</div>
+            </td>
+            <td align="center">
+               <div class="p3">1</div>
+            </td>
+         </tr>
+         <tr class="alternate">
+            <td><a href="#org.openhab.binding.beeclear.internal.DataElementFactory.java" title="org.openhab.binding.beeclear.internal.DataElementFactory.java">org.openhab.binding.beeclear.internal.DataElementFactory.java</a></td>
+            <td align="center">
+               <div class="p1">0</div>
+            </td>
+            <td align="center">
+               <div class="p2">0</div>
+            </td>
+            <td align="center">
+               <div class="p3">3</div>
+            </td>
+            <td align="center">
+               <div class="p3">3</div>
+            </td>
+         </tr>
+         <tr class="alternate">
+            <td><a href="#org.openhab.binding.beeclear.internal.RestClient.java" title="org.openhab.binding.beeclear.internal.RestClient.java">org.openhab.binding.beeclear.internal.RestClient.java</a></td>
+            <td align="center">
+               <div class="p1">0</div>
+            </td>
+            <td align="center">
+               <div class="p2">2</div>
+            </td>
+            <td align="center">
+               <div class="p3">7</div>
+            </td>
+            <td align="center">
+               <div class="p3">9</div>
+            </td>
+         </tr>
+         <tr class="alternate">
+            <td><a href="#org.openhab.binding.beeclear.internal.data.ActiveValues.java" title="org.openhab.binding.beeclear.internal.data.ActiveValues.java">org.openhab.binding.beeclear.internal.data.ActiveValues.java</a></td>
+            <td align="center">
+               <div class="p1">0</div>
+            </td>
+            <td align="center">
+               <div class="p2">0</div>
+            </td>
+            <td align="center">
+               <div class="p3">1</div>
+            </td>
+            <td align="center">
+               <div class="p3">1</div>
+            </td>
+         </tr>
+         <tr class="alternate">
+            <td><a href="#org.openhab.binding.beeclear.internal.data.ActiveValuesImplRev1.java" title="org.openhab.binding.beeclear.internal.data.ActiveValuesImplRev1.java">org.openhab.binding.beeclear.internal.data.ActiveValuesImplRev1.java</a></td>
+            <td align="center">
+               <div class="p1">0</div>
+            </td>
+            <td align="center">
+               <div class="p2">0</div>
+            </td>
+            <td align="center">
+               <div class="p3">1</div>
+            </td>
+            <td align="center">
+               <div class="p3">1</div>
+            </td>
+         </tr>
+         <tr class="alternate">
+            <td><a href="#org.openhab.binding.beeclear.internal.data.SoftwareVersion.java" title="org.openhab.binding.beeclear.internal.data.SoftwareVersion.java">org.openhab.binding.beeclear.internal.data.SoftwareVersion.java</a></td>
+            <td align="center">
+               <div class="p1">0</div>
+            </td>
+            <td align="center">
+               <div class="p2">0</div>
+            </td>
+            <td align="center">
+               <div class="p3">1</div>
+            </td>
+            <td align="center">
+               <div class="p3">1</div>
+            </td>
+         </tr>
+         <tr class="alternate">
+            <td><a href="#org.openhab.binding.beeclear.internal.data.SoftwareVersionImpl.java" title="org.openhab.binding.beeclear.internal.data.SoftwareVersionImpl.java">org.openhab.binding.beeclear.internal.data.SoftwareVersionImpl.java</a></td>
+            <td align="center">
+               <div class="p1">0</div>
+            </td>
+            <td align="center">
+               <div class="p2">0</div>
+            </td>
+            <td align="center">
+               <div class="p3">1</div>
+            </td>
+            <td align="center">
+               <div class="p3">1</div>
+            </td>
+         </tr>
+         <tr class="alternate">
+            <td><a href="#org.openhab.binding.beeclear.internal.data.Status.java" title="org.openhab.binding.beeclear.internal.data.Status.java">org.openhab.binding.beeclear.internal.data.Status.java</a></td>
+            <td align="center">
+               <div class="p1">0</div>
+            </td>
+            <td align="center">
+               <div class="p2">0</div>
+            </td>
+            <td align="center">
+               <div class="p3">1</div>
+            </td>
+            <td align="center">
+               <div class="p3">1</div>
+            </td>
+         </tr>
+         <tr class="alternate">
+            <td><a href="#org.openhab.binding.beeclear.internal.data.StatusImplRev1.java" title="org.openhab.binding.beeclear.internal.data.StatusImplRev1.java">org.openhab.binding.beeclear.internal.data.StatusImplRev1.java</a></td>
+            <td align="center">
+               <div class="p1">0</div>
+            </td>
+            <td align="center">
+               <div class="p2">0</div>
+            </td>
+            <td align="center">
+               <div class="p3">1</div>
+            </td>
+            <td align="center">
+               <div class="p3">1</div>
+            </td>
+         </tr>
+         <tr class="alternate">
+            <td><a href="#org.openhab.binding.beeclear.internal.data.TariffStatusType.java" title="org.openhab.binding.beeclear.internal.data.TariffStatusType.java">org.openhab.binding.beeclear.internal.data.TariffStatusType.java</a></td>
+            <td align="center">
+               <div class="p1">0</div>
+            </td>
+            <td align="center">
+               <div class="p2">0</div>
+            </td>
+            <td align="center">
+               <div class="p3">1</div>
+            </td>
+            <td align="center">
+               <div class="p3">1</div>
+            </td>
+         </tr>
+         <tr class="alternate">
+            <td><a href="#org.openhab.binding.beeclear.internal.data.UnsupportedTariffCodeException.java" title="org.openhab.binding.beeclear.internal.data.UnsupportedTariffCodeException.java">org.openhab.binding.beeclear.internal.data.UnsupportedTariffCodeException.java</a></td>
+            <td align="center">
+               <div class="p1">0</div>
+            </td>
+            <td align="center">
+               <div class="p2">0</div>
+            </td>
+            <td align="center">
+               <div class="p3">1</div>
+            </td>
+            <td align="center">
+               <div class="p3">1</div>
+            </td>
+         </tr>
+         <tr class="alternate">
+            <td><a href="#org.openhab.binding.beeclear.internal.data.UnsupportedVersionException.java" title="org.openhab.binding.beeclear.internal.data.UnsupportedVersionException.java">org.openhab.binding.beeclear.internal.data.UnsupportedVersionException.java</a></td>
+            <td align="center">
+               <div class="p1">0</div>
+            </td>
+            <td align="center">
+               <div class="p2">0</div>
+            </td>
+            <td align="center">
+               <div class="p3">1</div>
+            </td>
+            <td align="center">
+               <div class="p3">1</div>
+            </td>
+         </tr>
+         <tr class="alternate">
+            <td><a href="#org.openhab.binding.beeclear.internal.discovery.BeeClearDiscoveryService.java" title="org.openhab.binding.beeclear.internal.discovery.BeeClearDiscoveryService.java">org.openhab.binding.beeclear.internal.discovery.BeeClearDiscoveryService.java</a></td>
+            <td align="center">
+               <div class="p1">0</div>
+            </td>
+            <td align="center">
+               <div class="p2">0</div>
+            </td>
+            <td align="center">
+               <div class="p3">4</div>
+            </td>
+            <td align="center">
+               <div class="p3">4</div>
+            </td>
+         </tr>
+         <tr class="dark">
+            <td></td>
+            <td align="center">
+               <div class="p1">0</div>
+            </td>
+            <td align="center">
+               <div class="p2">2</div>
+            </td>
+            <td align="center">
+               <div class="p3">31</div>
+            </td>
+            <td align="center">
+               <div class="p3">33</div>
+            </td>
+         </tr>
+      </table>
+      <p></p>
+      <h3>Details by Class</h3>
+      <table width="90%" border="0" class="details">
+         <th align="left" colspan="6"><a name=".binding.beeclear.internal.BeeClearHandlerFactory.xml">.binding.beeclear.internal.BeeClearHandlerFactory.xml</a></th>
+         <tr>
+            <th align="left" width="80pt">tool</th>
+            <th align="left" width="50pt">priority</th>
+            <th align="left" width="30pt">line</th>
+            <th align="left" width="80pt">category</th>
+            <th align="left" width="380pt">rule</th>
+            <th align="left">message</th>
+         </tr>
+         <tr class="alternate">
+            <td>checkstyle</td>
+            <td>3</td>
+            <td>0</td>
+            <td>style</td>
+            <td>NewlineAtEndOfFileCheck</td>
+            <td>File does not end with a newline.</td>
+         </tr>
+      </table><br><table width="90%" border="0" class="details">
+         <th align="left" colspan="6"><a name=".binding.beeclear\.classpath">.binding.beeclear\.classpath</a></th>
+         <tr>
+            <th align="left" width="80pt">tool</th>
+            <th align="left" width="50pt">priority</th>
+            <th align="left" width="30pt">line</th>
+            <th align="left" width="80pt">category</th>
+            <th align="left" width="380pt">rule</th>
+            <th align="left">message</th>
+         </tr>
+         <tr class="alternate">
+            <td>checkstyle</td>
+            <td>3</td>
+            <td>0</td>
+            <td>style</td>
+            <td>NewlineAtEndOfFileCheck</td>
+            <td>File does not end with a newline.</td>
+         </tr>
+      </table><br><table width="90%" border="0" class="details">
+         <th align="left" colspan="6"><a name=".binding.beeclear\ESH-INF\i18n\beeclear_xx_XX.properties">.binding.beeclear\ESH-INF\i18n\beeclear_xx_XX.properties</a></th>
+         <tr>
+            <th align="left" width="80pt">tool</th>
+            <th align="left" width="50pt">priority</th>
+            <th align="left" width="30pt">line</th>
+            <th align="left" width="80pt">category</th>
+            <th align="left" width="380pt">rule</th>
+            <th align="left">message</th>
+         </tr>
+         <tr class="alternate">
+            <td>checkstyle</td>
+            <td>3</td>
+            <td>0</td>
+            <td>style</td>
+            <td>NewlineAtEndOfFileCheck</td>
+            <td>File does not end with a newline.</td>
+         </tr>
+      </table><br><table width="90%" border="0" class="details">
+         <th align="left" colspan="6"><a name=".binding.beeclear\OSGI-INF\.gitignore">.binding.beeclear\OSGI-INF\.gitignore</a></th>
+         <tr>
+            <th align="left" width="80pt">tool</th>
+            <th align="left" width="50pt">priority</th>
+            <th align="left" width="30pt">line</th>
+            <th align="left" width="80pt">category</th>
+            <th align="left" width="380pt">rule</th>
+            <th align="left">message</th>
+         </tr>
+         <tr class="alternate">
+            <td>checkstyle</td>
+            <td>3</td>
+            <td>0</td>
+            <td>style</td>
+            <td>NewlineAtEndOfFileCheck</td>
+            <td>File does not end with a newline.</td>
+         </tr>
+      </table><br><table width="90%" border="0" class="details">
+         <th align="left" colspan="6"><a name=".binding.beeclear\OSGI-INF\BeeClearHandlerFactory.xml">.binding.beeclear\OSGI-INF\BeeClearHandlerFactory.xml</a></th>
+         <tr>
+            <th align="left" width="80pt">tool</th>
+            <th align="left" width="50pt">priority</th>
+            <th align="left" width="30pt">line</th>
+            <th align="left" width="80pt">category</th>
+            <th align="left" width="380pt">rule</th>
+            <th align="left">message</th>
+         </tr>
+         <tr class="alternate">
+            <td>checkstyle</td>
+            <td>3</td>
+            <td>0</td>
+            <td>style</td>
+            <td>NewlineAtEndOfFileCheck</td>
+            <td>File does not end with a newline.</td>
+         </tr>
+      </table><br><table width="90%" border="0" class="details">
+         <th align="left" colspan="6"><a name=".binding.beeclear\README.md">.binding.beeclear\README.md</a></th>
+         <tr>
+            <th align="left" width="80pt">tool</th>
+            <th align="left" width="50pt">priority</th>
+            <th align="left" width="30pt">line</th>
+            <th align="left" width="80pt">category</th>
+            <th align="left" width="380pt">rule</th>
+            <th align="left">message</th>
+         </tr>
+         <tr class="alternate">
+            <td>checkstyle</td>
+            <td>3</td>
+            <td>0</td>
+            <td>style</td>
+            <td>NewlineAtEndOfFileCheck</td>
+            <td>File does not end with a newline.</td>
+         </tr>
+      </table><br><table width="90%" border="0" class="details">
+         <th align="left" colspan="6"><a name="org.openhab.binding.beeclear.internal.BeeClearRegistry.java">org.openhab.binding.beeclear.internal.BeeClearRegistry.java</a></th>
+         <tr>
+            <th align="left" width="80pt">tool</th>
+            <th align="left" width="50pt">priority</th>
+            <th align="left" width="30pt">line</th>
+            <th align="left" width="80pt">category</th>
+            <th align="left" width="380pt">rule</th>
+            <th align="left">message</th>
+         </tr>
+         <tr class="alternate">
+            <td>checkstyle</td>
+            <td>3</td>
+            <td>0</td>
+            <td>style</td>
+            <td>NewlineAtEndOfFileCheck</td>
+            <td>File does not end with a newline.</td>
+         </tr>
+      </table><br><table width="90%" border="0" class="details">
+         <th align="left" colspan="6"><a name="org.openhab.binding.beeclear.internal.DataCollectorFacade.java">org.openhab.binding.beeclear.internal.DataCollectorFacade.java</a></th>
+         <tr>
+            <th align="left" width="80pt">tool</th>
+            <th align="left" width="50pt">priority</th>
+            <th align="left" width="30pt">line</th>
+            <th align="left" width="80pt">category</th>
+            <th align="left" width="380pt">rule</th>
+            <th align="left">message</th>
+         </tr>
+         <tr class="alternate">
+            <td>checkstyle</td>
+            <td>3</td>
+            <td>0</td>
+            <td>style</td>
+            <td>NewlineAtEndOfFileCheck</td>
+            <td>File does not end with a newline.</td>
+         </tr>
+      </table><br><table width="90%" border="0" class="details">
+         <th align="left" colspan="6"><a name="org.openhab.binding.beeclear.internal.DataElementFactory.java">org.openhab.binding.beeclear.internal.DataElementFactory.java</a></th>
+         <tr>
+            <th align="left" width="80pt">tool</th>
+            <th align="left" width="50pt">priority</th>
+            <th align="left" width="30pt">line</th>
+            <th align="left" width="80pt">category</th>
+            <th align="left" width="380pt">rule</th>
+            <th align="left">message</th>
+         </tr>
+         <tr class="alternate">
+            <td>findbugs</td>
+            <td>3</td>
+            <td></td>
+            <td>bad practice</td>
+            <td>Logger should be non-static field (SLF4J)</td>
+            <td>
+               Logger should be non-static field. Change this field (logger) to non-static field.
+               
+            </td>
+         </tr>
+         <tr class="alternate">
+            <td>checkstyle</td>
+            <td>3</td>
+            <td>0</td>
+            <td>style</td>
+            <td>NewlineAtEndOfFileCheck</td>
+            <td>File does not end with a newline.</td>
+         </tr>
+         <tr class="alternate">
+            <td>checkstyle</td>
+            <td>3</td>
+            <td>29</td>
+            <td>style</td>
+            <td>ConstantNameCheck</td>
+            <td>Name 'logger' must match pattern '^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$'.</td>
+         </tr>
+      </table><br><table width="90%" border="0" class="details">
+         <th align="left" colspan="6"><a name="org.openhab.binding.beeclear.internal.RestClient.java">org.openhab.binding.beeclear.internal.RestClient.java</a></th>
+         <tr>
+            <th align="left" width="80pt">tool</th>
+            <th align="left" width="50pt">priority</th>
+            <th align="left" width="30pt">line</th>
+            <th align="left" width="80pt">category</th>
+            <th align="left" width="380pt">rule</th>
+            <th align="left">message</th>
+         </tr>
+         <tr class="alternate">
+            <td>pmd</td>
+            <td>2</td>
+            <td>67</td>
+            <td>strict exceptions</td>
+            <td>AvoidThrowingRawExceptionTypes</td>
+            <td>
+               Avoid throwing raw exception types.
+               
+            </td>
+         </tr>
+         <tr class="alternate">
+            <td>pmd</td>
+            <td>2</td>
+            <td>98</td>
+            <td>strict exceptions</td>
+            <td>AvoidThrowingRawExceptionTypes</td>
+            <td>
+               Avoid throwing raw exception types.
+               
+            </td>
+         </tr>
+         <tr class="alternate">
+            <td>pmd</td>
+            <td>3</td>
+            <td>72</td>
+            <td>java logging</td>
+            <td>SystemPrintln</td>
+            <td>
+               System.out.println is used
+               
+            </td>
+         </tr>
+         <tr class="alternate">
+            <td>pmd</td>
+            <td>3</td>
+            <td>78</td>
+            <td>java logging</td>
+            <td>AvoidPrintStackTrace</td>
+            <td>
+               Avoid printStackTrace(); use a logger call instead.
+               
+            </td>
+         </tr>
+         <tr class="alternate">
+            <td>pmd</td>
+            <td>3</td>
+            <td>80</td>
+            <td>java logging</td>
+            <td>AvoidPrintStackTrace</td>
+            <td>
+               Avoid printStackTrace(); use a logger call instead.
+               
+            </td>
+         </tr>
+         <tr class="alternate">
+            <td>pmd</td>
+            <td>3</td>
+            <td>102</td>
+            <td>java logging</td>
+            <td>SystemPrintln</td>
+            <td>
+               System.out.println is used
+               
+            </td>
+         </tr>
+         <tr class="alternate">
+            <td>pmd</td>
+            <td>3</td>
+            <td>108</td>
+            <td>java logging</td>
+            <td>AvoidPrintStackTrace</td>
+            <td>
+               Avoid printStackTrace(); use a logger call instead.
+               
+            </td>
+         </tr>
+         <tr class="alternate">
+            <td>pmd</td>
+            <td>3</td>
+            <td>110</td>
+            <td>java logging</td>
+            <td>AvoidPrintStackTrace</td>
+            <td>
+               Avoid printStackTrace(); use a logger call instead.
+               
+            </td>
+         </tr>
+         <tr class="alternate">
+            <td>checkstyle</td>
+            <td>3</td>
+            <td>0</td>
+            <td>style</td>
+            <td>NewlineAtEndOfFileCheck</td>
+            <td>File does not end with a newline.</td>
+         </tr>
+      </table><br><table width="90%" border="0" class="details">
+         <th align="left" colspan="6"><a name="org.openhab.binding.beeclear.internal.data.ActiveValues.java">org.openhab.binding.beeclear.internal.data.ActiveValues.java</a></th>
+         <tr>
+            <th align="left" width="80pt">tool</th>
+            <th align="left" width="50pt">priority</th>
+            <th align="left" width="30pt">line</th>
+            <th align="left" width="80pt">category</th>
+            <th align="left" width="380pt">rule</th>
+            <th align="left">message</th>
+         </tr>
+         <tr class="alternate">
+            <td>checkstyle</td>
+            <td>3</td>
+            <td>0</td>
+            <td>style</td>
+            <td>NewlineAtEndOfFileCheck</td>
+            <td>File does not end with a newline.</td>
+         </tr>
+      </table><br><table width="90%" border="0" class="details">
+         <th align="left" colspan="6"><a name="org.openhab.binding.beeclear.internal.data.ActiveValuesImplRev1.java">org.openhab.binding.beeclear.internal.data.ActiveValuesImplRev1.java</a></th>
+         <tr>
+            <th align="left" width="80pt">tool</th>
+            <th align="left" width="50pt">priority</th>
+            <th align="left" width="30pt">line</th>
+            <th align="left" width="80pt">category</th>
+            <th align="left" width="380pt">rule</th>
+            <th align="left">message</th>
+         </tr>
+         <tr class="alternate">
+            <td>checkstyle</td>
+            <td>3</td>
+            <td>0</td>
+            <td>style</td>
+            <td>NewlineAtEndOfFileCheck</td>
+            <td>File does not end with a newline.</td>
+         </tr>
+      </table><br><table width="90%" border="0" class="details">
+         <th align="left" colspan="6"><a name="org.openhab.binding.beeclear.internal.data.SoftwareVersion.java">org.openhab.binding.beeclear.internal.data.SoftwareVersion.java</a></th>
+         <tr>
+            <th align="left" width="80pt">tool</th>
+            <th align="left" width="50pt">priority</th>
+            <th align="left" width="30pt">line</th>
+            <th align="left" width="80pt">category</th>
+            <th align="left" width="380pt">rule</th>
+            <th align="left">message</th>
+         </tr>
+         <tr class="alternate">
+            <td>checkstyle</td>
+            <td>3</td>
+            <td>0</td>
+            <td>style</td>
+            <td>NewlineAtEndOfFileCheck</td>
+            <td>File does not end with a newline.</td>
+         </tr>
+      </table><br><table width="90%" border="0" class="details">
+         <th align="left" colspan="6"><a name="org.openhab.binding.beeclear.internal.data.SoftwareVersionImpl.java">org.openhab.binding.beeclear.internal.data.SoftwareVersionImpl.java</a></th>
+         <tr>
+            <th align="left" width="80pt">tool</th>
+            <th align="left" width="50pt">priority</th>
+            <th align="left" width="30pt">line</th>
+            <th align="left" width="80pt">category</th>
+            <th align="left" width="380pt">rule</th>
+            <th align="left">message</th>
+         </tr>
+         <tr class="alternate">
+            <td>checkstyle</td>
+            <td>3</td>
+            <td>0</td>
+            <td>style</td>
+            <td>NewlineAtEndOfFileCheck</td>
+            <td>File does not end with a newline.</td>
+         </tr>
+      </table><br><table width="90%" border="0" class="details">
+         <th align="left" colspan="6"><a name="org.openhab.binding.beeclear.internal.data.Status.java">org.openhab.binding.beeclear.internal.data.Status.java</a></th>
+         <tr>
+            <th align="left" width="80pt">tool</th>
+            <th align="left" width="50pt">priority</th>
+            <th align="left" width="30pt">line</th>
+            <th align="left" width="80pt">category</th>
+            <th align="left" width="380pt">rule</th>
+            <th align="left">message</th>
+         </tr>
+         <tr class="alternate">
+            <td>checkstyle</td>
+            <td>3</td>
+            <td>0</td>
+            <td>style</td>
+            <td>NewlineAtEndOfFileCheck</td>
+            <td>File does not end with a newline.</td>
+         </tr>
+      </table><br><table width="90%" border="0" class="details">
+         <th align="left" colspan="6"><a name="org.openhab.binding.beeclear.internal.data.StatusImplRev1.java">org.openhab.binding.beeclear.internal.data.StatusImplRev1.java</a></th>
+         <tr>
+            <th align="left" width="80pt">tool</th>
+            <th align="left" width="50pt">priority</th>
+            <th align="left" width="30pt">line</th>
+            <th align="left" width="80pt">category</th>
+            <th align="left" width="380pt">rule</th>
+            <th align="left">message</th>
+         </tr>
+         <tr class="alternate">
+            <td>checkstyle</td>
+            <td>3</td>
+            <td>0</td>
+            <td>style</td>
+            <td>NewlineAtEndOfFileCheck</td>
+            <td>File does not end with a newline.</td>
+         </tr>
+      </table><br><table width="90%" border="0" class="details">
+         <th align="left" colspan="6"><a name="org.openhab.binding.beeclear.internal.data.TariffStatusType.java">org.openhab.binding.beeclear.internal.data.TariffStatusType.java</a></th>
+         <tr>
+            <th align="left" width="80pt">tool</th>
+            <th align="left" width="50pt">priority</th>
+            <th align="left" width="30pt">line</th>
+            <th align="left" width="80pt">category</th>
+            <th align="left" width="380pt">rule</th>
+            <th align="left">message</th>
+         </tr>
+         <tr class="alternate">
+            <td>checkstyle</td>
+            <td>3</td>
+            <td>0</td>
+            <td>style</td>
+            <td>NewlineAtEndOfFileCheck</td>
+            <td>File does not end with a newline.</td>
+         </tr>
+      </table><br><table width="90%" border="0" class="details">
+         <th align="left" colspan="6"><a name="org.openhab.binding.beeclear.internal.data.UnsupportedTariffCodeException.java">org.openhab.binding.beeclear.internal.data.UnsupportedTariffCodeException.java</a></th>
+         <tr>
+            <th align="left" width="80pt">tool</th>
+            <th align="left" width="50pt">priority</th>
+            <th align="left" width="30pt">line</th>
+            <th align="left" width="80pt">category</th>
+            <th align="left" width="380pt">rule</th>
+            <th align="left">message</th>
+         </tr>
+         <tr class="alternate">
+            <td>checkstyle</td>
+            <td>3</td>
+            <td>0</td>
+            <td>style</td>
+            <td>NewlineAtEndOfFileCheck</td>
+            <td>File does not end with a newline.</td>
+         </tr>
+      </table><br><table width="90%" border="0" class="details">
+         <th align="left" colspan="6"><a name="org.openhab.binding.beeclear.internal.data.UnsupportedVersionException.java">org.openhab.binding.beeclear.internal.data.UnsupportedVersionException.java</a></th>
+         <tr>
+            <th align="left" width="80pt">tool</th>
+            <th align="left" width="50pt">priority</th>
+            <th align="left" width="30pt">line</th>
+            <th align="left" width="80pt">category</th>
+            <th align="left" width="380pt">rule</th>
+            <th align="left">message</th>
+         </tr>
+         <tr class="alternate">
+            <td>checkstyle</td>
+            <td>3</td>
+            <td>0</td>
+            <td>style</td>
+            <td>NewlineAtEndOfFileCheck</td>
+            <td>File does not end with a newline.</td>
+         </tr>
+      </table><br><table width="90%" border="0" class="details">
+         <th align="left" colspan="6"><a name="org.openhab.binding.beeclear.internal.discovery.BeeClearDiscoveryService.java">org.openhab.binding.beeclear.internal.discovery.BeeClearDiscoveryService.java</a></th>
+         <tr>
+            <th align="left" width="80pt">tool</th>
+            <th align="left" width="50pt">priority</th>
+            <th align="left" width="30pt">line</th>
+            <th align="left" width="80pt">category</th>
+            <th align="left" width="380pt">rule</th>
+            <th align="left">message</th>
+         </tr>
+         <tr class="alternate">
+            <td>checkstyle</td>
+            <td>3</td>
+            <td>0</td>
+            <td>style</td>
+            <td>NewlineAtEndOfFileCheck</td>
+            <td>File does not end with a newline.</td>
+         </tr>
+         <tr class="alternate">
+            <td>checkstyle</td>
+            <td>3</td>
+            <td>49</td>
+            <td>style</td>
+            <td>StaticVariableNameCheck</td>
+            <td>Name 'SUPPORTED_THING_TYPES_UIDS' must match pattern '^[a-z][a-zA-Z0-9]*$'.</td>
+         </tr>
+         <tr class="alternate">
+            <td>pmd</td>
+            <td>3</td>
+            <td>52</td>
+            <td>design</td>
+            <td>NonThreadSafeSingleton</td>
+            <td>
+               Singleton is not thread safe
+               
+            </td>
+         </tr>
+         <tr class="alternate">
+            <td>pmd</td>
+            <td>3</td>
+            <td>141</td>
+            <td>empty code</td>
+            <td>EmptyIfStmt</td>
+            <td>
+               Avoid empty if statements
+               
+            </td>
+         </tr>
+      </table><br></body>
 </html>

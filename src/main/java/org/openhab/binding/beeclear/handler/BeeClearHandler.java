@@ -18,6 +18,8 @@ import java.util.concurrent.TimeUnit;
 
 import org.eclipse.smarthome.config.core.Configuration;
 import org.eclipse.smarthome.core.library.types.DecimalType;
+import org.eclipse.smarthome.core.library.types.OnOffType;
+import org.eclipse.smarthome.core.library.types.PercentType;
 import org.eclipse.smarthome.core.library.types.StringType;
 import org.eclipse.smarthome.core.thing.ChannelUID;
 import org.eclipse.smarthome.core.thing.Thing;
@@ -31,6 +33,8 @@ import org.openhab.binding.beeclear.internal.BeeClearRegistry;
 import org.openhab.binding.beeclear.internal.DataCollectorFacade;
 import org.openhab.binding.beeclear.internal.data.ActiveValues;
 import org.openhab.binding.beeclear.internal.data.ActiveValuesImplRev1;
+import org.openhab.binding.beeclear.internal.data.Status;
+import org.openhab.binding.beeclear.internal.data.StatusImplRev1;
 import org.openhab.binding.beeclear.internal.data.TariffStatusType;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -50,6 +54,9 @@ public class BeeClearHandler extends BaseThingHandler {
 
     // The last retrieved actual data
     private ActiveValues activeValues;
+
+    // The last retrieved status.
+    private Status status;
 
     // Helper fields and constants
     private boolean online;
@@ -76,6 +83,9 @@ public class BeeClearHandler extends BaseThingHandler {
         refreshFast.add(new ChannelUID(getThing().getUID(), CHANNEL_USED_HIGH));
         refreshFast.add(new ChannelUID(getThing().getUID(), CHANNEL_USED_LOW));
         refreshFast.add(new ChannelUID(getThing().getUID(), CHANNEL_USED_GAS));
+        refreshFast.add(new ChannelUID(getThing().getUID(), CHANNEL_P1));
+        refreshFast.add(new ChannelUID(getThing().getUID(), CHANNEL_SDCARD));
+        refreshFast.add(new ChannelUID(getThing().getUID(), CHANNEL_SDCARD_FREE));
         refreshSlow = new ArrayList<>();
         refreshSlow.add(new ChannelUID(getThing().getUID(), CHANNEL_TARIFF));
         refreshSlow.add(new ChannelUID(getThing().getUID(), CHANNEL_FIRMWARE));
@@ -84,8 +94,10 @@ public class BeeClearHandler extends BaseThingHandler {
         refreshSlow.add(new ChannelUID(getThing().getUID(), CHANNEL_SERIAL_GAS));
         refreshSlow.add(new ChannelUID(getThing().getUID(), CHANNEL_METER_TYPE));
         refreshSlow.add(new ChannelUID(getThing().getUID(), CHANNEL_PROTOCOL_VERSION));
+        refreshSlow.add(new ChannelUID(getThing().getUID(), CHANNEL_SDCARD_TOTAL));
         online = false;
         activeValues = new ActiveValuesImplRev1(new JSONObject());
+        status = new StatusImplRev1(new JSONObject());
     }
 
     @Override
@@ -142,6 +154,19 @@ public class BeeClearHandler extends BaseThingHandler {
                 case CHANNEL_UPTIME:
                     updateState(channelUID, new DecimalType(data.getSoftwareVersion().getUptimeHours()));
                     break;
+                case CHANNEL_P1:
+                    updateState(channelUID, status.isP1() ? OnOffType.ON : OnOffType.OFF);
+                    break;
+                case CHANNEL_SDCARD:
+                    updateState(channelUID, status.isSdCard() ? OnOffType.ON : OnOffType.OFF);
+                    break;
+                case CHANNEL_SDCARD_FREE:
+                    String no = status.getSdCardFree();
+                    updateState(channelUID, new PercentType(no.substring(0, no.length() - 1)));
+                    break;
+                case CHANNEL_SDCARD_TOTAL:
+                    updateState(channelUID, new StringType(status.getSdCardTotal()));
+                    break;
                 default:
                     logger.warn("Unexpected channel {}", channelUID);
             }
@@ -174,7 +199,9 @@ public class BeeClearHandler extends BaseThingHandler {
             updateStatus(ThingStatus.ONLINE);
             online = true;
         }
-        startAutomaticRefresh();
+        if (refreshJob == null) {
+            startAutomaticRefresh();
+        }
     }
 
     /**
@@ -191,11 +218,14 @@ public class BeeClearHandler extends BaseThingHandler {
                                 handleCommand(channel, RefreshType.REFRESH);
                             }
                         }
-
                         activeValues = data.getActiveValues();
+                        status = data.getStatus();
                         for (ChannelUID channel : refreshFast) {
                             handleCommand(channel, RefreshType.REFRESH);
                         }
+                    } else {
+                        // Try to (re)connect
+                        initialize();
                     }
                 } catch (Exception e) {
                     logger.debug("Exception occurred during execution: {}", e.getMessage(), e);

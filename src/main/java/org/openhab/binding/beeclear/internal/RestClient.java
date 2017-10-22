@@ -24,6 +24,7 @@ import org.openhab.binding.beeclear.handler.BeeClearHandler;
 import org.openhab.binding.beeclear.internal.data.ActiveValues;
 import org.openhab.binding.beeclear.internal.data.SoftwareVersion;
 import org.openhab.binding.beeclear.internal.data.SoftwareVersionImpl;
+import org.openhab.binding.beeclear.internal.data.Status;
 import org.openhab.binding.beeclear.internal.data.UnsupportedVersionException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -130,7 +131,7 @@ public class RestClient {
     }
 
     /**
-     * Retrieve the software/firmware version from the BeeClear unit.
+     * Retrieve the currently active values from the BeeClear unit.
      *
      * @return
      */
@@ -142,6 +143,26 @@ public class RestClient {
         try {
             JSONObject obj = (JSONObject) parser.parse(response);
             result = factory.createActiveValues(softwareVersion, obj);
+        } catch (ParseException e) {
+            logger.error("Invalid JSON response {}.", response);
+        } catch (UnsupportedVersionException e) {
+            logger.error("Unsupported software version for response {}.", response);
+        }
+        return result;
+    }
+
+    /**
+     * Retrieve the current status from the BeeClear unit.
+     *
+     * @return
+     */
+    public Status getStatus(SoftwareVersion softwareVersion) {
+        Status result = null;
+        JSONParser parser = new JSONParser();
+        String response = getResponse("/bc_status");
+        try {
+            JSONObject obj = (JSONObject) parser.parse(response);
+            result = factory.createStatus(softwareVersion, obj);
         } catch (ParseException e) {
             logger.error("Invalid JSON response {}.", response);
         } catch (UnsupportedVersionException e) {

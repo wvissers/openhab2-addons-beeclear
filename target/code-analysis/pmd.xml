@@ -1,36 +1,36 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<pmd version="5.5.1" timestamp="2017-08-18T16:56:28.802">
+<pmd version="5.8.1" timestamp="2017-10-22T12:25:05.541">
 <file name="C:\OH2dev\master\git\openhab2-addons\addons\binding\org.openhab.binding.beeclear\src\main\java\org\openhab\binding\beeclear\internal\RestClient.java">
-<violation beginline="66" endline="66" begincolumn="27" endcolumn="42" rule="AvoidThrowingRawExceptionTypes" ruleset="Strict Exceptions" package="org.openhab.binding.beeclear.internal" class="RestClient" method="getResponse" externalInfoUrl="https://pmd.github.io/pmd-5.5.1/pmd-java/rules/java/strictexception.html#AvoidThrowingRawExceptionTypes" priority="2">
+<violation beginline="67" endline="67" begincolumn="27" endcolumn="42" rule="AvoidThrowingRawExceptionTypes" ruleset="Strict Exceptions" package="org.openhab.binding.beeclear.internal" class="RestClient" method="getResponse" externalInfoUrl="https://pmd.github.io/pmd-5.8.1/pmd-java/rules/java/strictexception.html#AvoidThrowingRawExceptionTypes" priority="2">
 Avoid throwing raw exception types.
 </violation>
-<violation beginline="71" endline="71" begincolumn="13" endcolumn="30" rule="SystemPrintln" ruleset="Java Logging" package="org.openhab.binding.beeclear.internal" class="RestClient" method="getResponse" externalInfoUrl="https://pmd.github.io/pmd-5.5.1/pmd-java/rules/java/logging-java.html#SystemPrintln" priority="3">
+<violation beginline="72" endline="72" begincolumn="13" endcolumn="30" rule="SystemPrintln" ruleset="Java Logging" package="org.openhab.binding.beeclear.internal" class="RestClient" method="getResponse" externalInfoUrl="https://pmd.github.io/pmd-5.8.1/pmd-java/rules/java/logging-java.html#SystemPrintln" priority="3">
 System.out.println is used
 </violation>
-<violation beginline="77" endline="77" begincolumn="13" endcolumn="31" rule="AvoidPrintStackTrace" ruleset="Java Logging" package="org.openhab.binding.beeclear.internal" class="RestClient" method="getResponse" externalInfoUrl="https://pmd.github.io/pmd-5.5.1/pmd-java/rules/java/logging-java.html#AvoidPrintStackTrace" priority="3">
+<violation beginline="78" endline="78" begincolumn="13" endcolumn="31" rule="AvoidPrintStackTrace" ruleset="Java Logging" package="org.openhab.binding.beeclear.internal" class="RestClient" method="getResponse" externalInfoUrl="https://pmd.github.io/pmd-5.8.1/pmd-java/rules/java/logging-java.html#AvoidPrintStackTrace" priority="3">
 Avoid printStackTrace(); use a logger call instead.
 </violation>
-<violation beginline="79" endline="79" begincolumn="13" endcolumn="31" rule="AvoidPrintStackTrace" ruleset="Java Logging" package="org.openhab.binding.beeclear.internal" class="RestClient" method="getResponse" externalInfoUrl="https://pmd.github.io/pmd-5.5.1/pmd-java/rules/java/logging-java.html#AvoidPrintStackTrace" priority="3">
+<violation beginline="80" endline="80" begincolumn="13" endcolumn="31" rule="AvoidPrintStackTrace" ruleset="Java Logging" package="org.openhab.binding.beeclear.internal" class="RestClient" method="getResponse" externalInfoUrl="https://pmd.github.io/pmd-5.8.1/pmd-java/rules/java/logging-java.html#AvoidPrintStackTrace" priority="3">
 Avoid printStackTrace(); use a logger call instead.
 </violation>
-<violation beginline="97" endline="97" begincolumn="27" endcolumn="42" rule="AvoidThrowingRawExceptionTypes" ruleset="Strict Exceptions" package="org.openhab.binding.beeclear.internal" class="RestClient" method="postData" externalInfoUrl="https://pmd.github.io/pmd-5.5.1/pmd-java/rules/java/strictexception.html#AvoidThrowingRawExceptionTypes" priority="2">
+<violation beginline="98" endline="98" begincolumn="27" endcolumn="42" rule="AvoidThrowingRawExceptionTypes" ruleset="Strict Exceptions" package="org.openhab.binding.beeclear.internal" class="RestClient" method="postData" externalInfoUrl="https://pmd.github.io/pmd-5.8.1/pmd-java/rules/java/strictexception.html#AvoidThrowingRawExceptionTypes" priority="2">
 Avoid throwing raw exception types.
 </violation>
-<violation beginline="101" endline="101" begincolumn="13" endcolumn="30" rule="SystemPrintln" ruleset="Java Logging" package="org.openhab.binding.beeclear.internal" class="RestClient" method="postData" externalInfoUrl="https://pmd.github.io/pmd-5.5.1/pmd-java/rules/java/logging-java.html#SystemPrintln" priority="3">
+<violation beginline="102" endline="102" begincolumn="13" endcolumn="30" rule="SystemPrintln" ruleset="Java Logging" package="org.openhab.binding.beeclear.internal" class="RestClient" method="postData" externalInfoUrl="https://pmd.github.io/pmd-5.8.1/pmd-java/rules/java/logging-java.html#SystemPrintln" priority="3">
 System.out.println is used
 </violation>
-<violation beginline="107" endline="107" begincolumn="13" endcolumn="31" rule="AvoidPrintStackTrace" ruleset="Java Logging" package="org.openhab.binding.beeclear.internal" class="RestClient" method="postData" externalInfoUrl="https://pmd.github.io/pmd-5.5.1/pmd-java/rules/java/logging-java.html#AvoidPrintStackTrace" priority="3">
+<violation beginline="108" endline="108" begincolumn="13" endcolumn="31" rule="AvoidPrintStackTrace" ruleset="Java Logging" package="org.openhab.binding.beeclear.internal" class="RestClient" method="postData" externalInfoUrl="https://pmd.github.io/pmd-5.8.1/pmd-java/rules/java/logging-java.html#AvoidPrintStackTrace" priority="3">
 Avoid printStackTrace(); use a logger call instead.
 </violation>
-<violation beginline="109" endline="109" begincolumn="13" endcolumn="31" rule="AvoidPrintStackTrace" ruleset="Java Logging" package="org.openhab.binding.beeclear.internal" class="RestClient" method="postData" externalInfoUrl="https://pmd.github.io/pmd-5.5.1/pmd-java/rules/java/logging-java.html#AvoidPrintStackTrace" priority="3">
+<violation beginline="110" endline="110" begincolumn="13" endcolumn="31" rule="AvoidPrintStackTrace" ruleset="Java Logging" package="org.openhab.binding.beeclear.internal" class="RestClient" method="postData" externalInfoUrl="https://pmd.github.io/pmd-5.8.1/pmd-java/rules/java/logging-java.html#AvoidPrintStackTrace" priority="3">
 Avoid printStackTrace(); use a logger call instead.
 </violation>
 </file>
 <file name="C:\OH2dev\master\git\openhab2-addons\addons\binding\org.openhab.binding.beeclear\src\main\java\org\openhab\binding\beeclear\internal\discovery\BeeClearDiscoveryService.java">
-<violation beginline="54" endline="57" begincolumn="9" endcolumn="9" rule="NonThreadSafeSingleton" ruleset="Design" package="org.openhab.binding.beeclear.internal.discovery" class="BeeClearDiscoveryService" method="getSupportedTypes" externalInfoUrl="https://pmd.github.io/pmd-5.5.1/pmd-java/rules/java/design.html#NonThreadSafeSingleton" priority="3">
+<violation beginline="52" endline="55" begincolumn="9" endcolumn="9" rule="NonThreadSafeSingleton" ruleset="Design" package="org.openhab.binding.beeclear.internal.discovery" class="BeeClearDiscoveryService" method="getSupportedTypes" externalInfoUrl="https://pmd.github.io/pmd-5.8.1/pmd-java/rules/java/design.html#NonThreadSafeSingleton" priority="3">
 Singleton is not thread safe
 </violation>
-<violation beginline="143" endline="144" begincolumn="46" endcolumn="9" rule="EmptyIfStmt" ruleset="Empty Code" package="org.openhab.binding.beeclear.internal.discovery" class="BeeClearDiscoveryService" method="stopScan" externalInfoUrl="https://pmd.github.io/pmd-5.5.1/pmd-java/rules/java/empty.html#EmptyIfStmt" priority="3">
+<violation beginline="141" endline="142" begincolumn="46" endcolumn="9" rule="EmptyIfStmt" ruleset="Empty Code" package="org.openhab.binding.beeclear.internal.discovery" class="BeeClearDiscoveryService" method="stopScan" externalInfoUrl="https://pmd.github.io/pmd-5.8.1/pmd-java/rules/java/empty.html#EmptyIfStmt" priority="3">
 Avoid empty if statements
 </violation>
 </file>
