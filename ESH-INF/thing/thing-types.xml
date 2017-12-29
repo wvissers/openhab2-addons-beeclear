@@ -9,6 +9,7 @@
 		<description>BeeClear energy meter device</description>
 
 		<channels>
+            <channel id="online" typeId="online-channel" />
             <channel id="power" typeId="power-channel" />
             <channel id="powerHigh" typeId="power-high-channel" />
             <channel id="powerLow" typeId="power-low-channel" />
@@ -43,6 +44,11 @@
 	</thing-type>
 
 	<!-- Channel Types -->
+    <channel-type id="online-channel">
+        <item-type>OnOffType</item-type>
+        <label>Connected to BeeClear device</label>
+        <description>Current BeeClear device connection status.</description>
+    </channel-type>
     <channel-type id="power-channel">
         <item-type>DecimalType</item-type>
         <label>Current power consumption (W)</label>

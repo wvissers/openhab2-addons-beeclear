@@ -102,7 +102,8 @@ public class ActiveValuesImplRev1 implements ActiveValues {
     @SuppressWarnings("unchecked")
     @Override
     public TariffStatusType getTariffStatus() {
-        Long status = (Long) jsonObj.getOrDefault("tariefStatus", 0);
+        // Default is invalid to avoid implicit low tariff
+        BigDecimal status = new BigDecimal(jsonObj.getOrDefault("tariefStatus", 10).toString());
         try {
             return TariffStatusType.getByCode(status.intValue());
         } catch (UnsupportedTariffCodeException e) {

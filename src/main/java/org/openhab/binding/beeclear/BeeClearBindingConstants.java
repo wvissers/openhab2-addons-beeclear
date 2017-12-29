@@ -24,6 +24,7 @@ public class BeeClearBindingConstants {
     public static final ThingTypeUID THING_TYPE_METER = new ThingTypeUID(BINDING_ID, "meter");
 
     // List of all Channel ids
+    public static final String CHANNEL_ONLINE = "online";
     public static final String CHANNEL_POWER = "power";
     public static final String CHANNEL_POWER_HIGH = "powerHigh";
     public static final String CHANNEL_POWER_LOW = "powerLow";

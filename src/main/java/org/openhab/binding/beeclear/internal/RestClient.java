@@ -13,7 +13,6 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
 import java.net.URL;
 import java.time.Instant;
 
@@ -54,7 +53,7 @@ public class RestClient {
         logger.info("Creating RestClient with endPoint {}", endPoint);
     }
 
-    private String getResponse(String resourcePath) {
+    private String getResponse(String resourcePath) throws IOException {
         StringBuilder output = new StringBuilder();
         try {
             URL url = new URL(endPoint + resourcePath);
@@ -74,15 +73,14 @@ public class RestClient {
                 output.append(line);
             }
             conn.disconnect();
-        } catch (MalformedURLException e) {
-            e.printStackTrace();
         } catch (IOException e) {
-            e.printStackTrace();
+            logger.error("Error connecting to BeeClear", e);
+            throw e;
         }
         return output.toString();
     }
 
-    private String postData(String resourcePath, String data) {
+    private String postData(String resourcePath, String data) throws IOException {
         StringBuilder output = new StringBuilder();
         try {
             URL url = new URL(endPoint + resourcePath);
@@ -104,10 +102,9 @@ public class RestClient {
                 output.append(line);
             }
             conn.disconnect();
-        } catch (MalformedURLException e) {
-            e.printStackTrace();
         } catch (IOException e) {
-            e.printStackTrace();
+            logger.error("Error connecting to BeeClear", e);
+            throw e;
         }
         return output.toString();
     }
@@ -117,7 +114,7 @@ public class RestClient {
      *
      * @return
      */
-    public SoftwareVersion getSoftwareVersion() {
+    public SoftwareVersion getSoftwareVersion() throws IOException {
         SoftwareVersion result = null;
         JSONParser parser = new JSONParser();
         String response = getResponse("/bc_softwareVersion");
@@ -135,7 +132,7 @@ public class RestClient {
      *
      * @return
      */
-    public ActiveValues getActiveValues(SoftwareVersion softwareVersion) {
+    public ActiveValues getActiveValues(SoftwareVersion softwareVersion) throws IOException {
         ActiveValues result = null;
         JSONParser parser = new JSONParser();
         Instant instant = Instant.now();
@@ -156,7 +153,7 @@ public class RestClient {
      *
      * @return
      */
-    public Status getStatus(SoftwareVersion softwareVersion) {
+    public Status getStatus(SoftwareVersion softwareVersion) throws IOException {
         Status result = null;
         JSONParser parser = new JSONParser();
         String response = getResponse("/bc_status");

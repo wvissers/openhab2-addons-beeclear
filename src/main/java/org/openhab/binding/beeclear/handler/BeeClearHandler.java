@@ -10,6 +10,7 @@ package org.openhab.binding.beeclear.handler;
 
 import static org.openhab.binding.beeclear.BeeClearBindingConstants.*;
 
+import java.io.IOException;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
@@ -76,6 +77,7 @@ public class BeeClearHandler extends BaseThingHandler {
     public BeeClearHandler(Thing thing) {
         super(thing);
         refreshFast = new ArrayList<>();
+        refreshFast.add(new ChannelUID(getThing().getUID(), CHANNEL_ONLINE));
         refreshFast.add(new ChannelUID(getThing().getUID(), CHANNEL_UPTIME));
         refreshFast.add(new ChannelUID(getThing().getUID(), CHANNEL_POWER));
         refreshFast.add(new ChannelUID(getThing().getUID(), CHANNEL_POWER_HIGH));
@@ -104,6 +106,9 @@ public class BeeClearHandler extends BaseThingHandler {
     public void handleCommand(ChannelUID channelUID, Command command) {
         if (command instanceof RefreshType) {
             switch (channelUID.getId()) {
+                case CHANNEL_ONLINE:
+                    updateState(channelUID, online ? OnOffType.ON : OnOffType.OFF);
+                    break;
                 case CHANNEL_POWER:
                     updateState(channelUID, new DecimalType(activeValues.getUsedPower()));
                     break;
@@ -185,19 +190,25 @@ public class BeeClearHandler extends BaseThingHandler {
         id = BeeClearRegistry.getInstance().registerByName(host, port.intValue());
 
         // Create a Facade to the API
-        data = new DataCollectorFacade(host, port.intValue());
+        try {
+            data = new DataCollectorFacade(host, port.intValue());
 
-        if (data.getSoftwareVersion().getInfo().equals("notAuthenticated")) {
-            updateStatus(ThingStatus.OFFLINE, ThingStatusDetail.CONFIGURATION_ERROR,
-                    "Not authenticated. Please use the BeeClear software, login and enter http://youraddress/bc_securitybc_security?set=off and try again.");
+            if (data.getSoftwareVersion().getInfo().equals("notAuthenticated")) {
+                updateStatus(ThingStatus.OFFLINE, ThingStatusDetail.CONFIGURATION_ERROR,
+                        "Not authenticated. Please use the BeeClear software, login and enter http://youraddress/bc_security?set=off and try again.");
+                online = false;
+            } else if (!data.isVersionSupported()) {
+                updateStatus(ThingStatus.OFFLINE, ThingStatusDetail.CONFIGURATION_ERROR,
+                        "Firmware version " + data.getSoftwareVersion().getFirmware() + " not supported.");
+                online = false;
+            } else {
+                updateStatus(ThingStatus.ONLINE);
+                online = true;
+            }
+        } catch (IOException e) {
+            updateStatus(ThingStatus.OFFLINE, ThingStatusDetail.COMMUNICATION_ERROR,
+                    "IO error connecting to BeeClear device.");
             online = false;
-        } else if (!data.isVersionSupported()) {
-            updateStatus(ThingStatus.OFFLINE, ThingStatusDetail.CONFIGURATION_ERROR,
-                    "Firmware version " + data.getSoftwareVersion().getFirmware() + " not supported.");
-            online = false;
-        } else {
-            updateStatus(ThingStatus.ONLINE);
-            online = true;
         }
         if (refreshJob == null) {
             startAutomaticRefresh();

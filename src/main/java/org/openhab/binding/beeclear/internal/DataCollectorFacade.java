@@ -8,8 +8,11 @@
  */
 package org.openhab.binding.beeclear.internal;
 
+import java.io.IOException;
+
 import org.openhab.binding.beeclear.internal.data.ActiveValues;
 import org.openhab.binding.beeclear.internal.data.SoftwareVersion;
+import org.openhab.binding.beeclear.internal.data.SoftwareVersionImpl;
 import org.openhab.binding.beeclear.internal.data.Status;
 
 /**
@@ -28,7 +31,7 @@ public class DataCollectorFacade {
     private static final long VERSION_INIT_DELAY = 1000 * 30;
     private static final long VERSION_REFRESH_INTERVAL = 1000 * 60 * 15;
 
-    public DataCollectorFacade(String host, int port) {
+    public DataCollectorFacade(String host, int port) throws IOException {
         restClient = new RestClient(host, port);
         softwareVersion = restClient.getSoftwareVersion();
         versionRefreshed = System.currentTimeMillis() - VERSION_REFRESH_INTERVAL + VERSION_INIT_DELAY;
@@ -41,8 +44,14 @@ public class DataCollectorFacade {
      */
     public SoftwareVersion getSoftwareVersion() {
         if (softwareVersion == null || isVersionDataExpired()) {
-            softwareVersion = restClient.getSoftwareVersion();
-            versionRefreshed = System.currentTimeMillis();
+            try {
+                softwareVersion = restClient.getSoftwareVersion();
+                versionRefreshed = System.currentTimeMillis();
+            } catch (IOException e) {
+                if (softwareVersion == null) {
+                    softwareVersion = new SoftwareVersionImpl(null);
+                }
+            }
         }
         return softwareVersion;
     }
@@ -61,7 +70,7 @@ public class DataCollectorFacade {
      *
      * @return
      */
-    public boolean isVersionSupported() {
+    public boolean isVersionSupported() throws IOException {
         return restClient.isSupported(getSoftwareVersion());
     }
 
@@ -70,7 +79,7 @@ public class DataCollectorFacade {
      *
      * @return
      */
-    public ActiveValues getActiveValues() {
+    public ActiveValues getActiveValues() throws IOException {
         return restClient.getActiveValues(softwareVersion);
     }
 
@@ -79,7 +88,7 @@ public class DataCollectorFacade {
      *
      * @return
      */
-    public Status getStatus() {
+    public Status getStatus() throws IOException {
         return restClient.getStatus(softwareVersion);
     }
 

@@ -32,49 +32,50 @@ public class SoftwareVersionImpl implements SoftwareVersion {
     @SuppressWarnings("unchecked")
     @Override
     public String getName() {
-        return jsonObj.getOrDefault("name", "").toString();
+        return jsonObj == null ? "-" : jsonObj.getOrDefault("name", "").toString();
     }
 
     @SuppressWarnings("unchecked")
     @Override
     public String getFirmware() {
-        return jsonObj.getOrDefault("firmware", "").toString();
+        return jsonObj == null ? "-" : jsonObj.getOrDefault("firmware", "").toString();
     }
 
     @SuppressWarnings("unchecked")
     @Override
     public String getHardware() {
-        return jsonObj.getOrDefault("hardware", "").toString();
+        return jsonObj == null ? "-" : jsonObj.getOrDefault("hardware", "").toString();
     }
 
     @SuppressWarnings("unchecked")
     @Override
     public String getProtocolVersion() {
-        return jsonObj.getOrDefault("protocolVersion", "").toString();
+        return jsonObj == null ? "-" : jsonObj.getOrDefault("protocolVersion", "").toString();
     }
 
     @SuppressWarnings("unchecked")
     @Override
     public String getSerialElec() {
-        return jsonObj.getOrDefault("serialElec", "").toString();
+        return jsonObj == null ? "-" : jsonObj.getOrDefault("serialElec", "").toString();
     }
 
     @SuppressWarnings("unchecked")
     @Override
     public String getSerialGas() {
-        return jsonObj.getOrDefault("serialGas", "").toString();
+        return jsonObj == null ? "-" : jsonObj.getOrDefault("serialGas", "").toString();
     }
 
     @SuppressWarnings("unchecked")
     @Override
     public String getInfo() {
-        return jsonObj.getOrDefault("info", "").toString();
+        return jsonObj == null ? "-" : jsonObj.getOrDefault("info", "").toString();
     }
 
     @SuppressWarnings("unchecked")
     @Override
     public BigDecimal getUptimeHours() {
-        return new BigDecimal((Long) jsonObj.getOrDefault("uptime", 0L) / 60 / 60);
+        return jsonObj == null ? new BigDecimal(0)
+                : new BigDecimal((Long) jsonObj.getOrDefault("uptime", 0L) / 60 / 60);
     }
 
 }

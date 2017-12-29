@@ -10,6 +10,7 @@ package org.openhab.binding.beeclear.internal.discovery;
 
 import static org.openhab.binding.beeclear.BeeClearBindingConstants.THING_TYPE_METER;
 
+import java.io.IOException;
 import java.math.BigDecimal;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -78,13 +79,17 @@ public class BeeClearDiscoveryService extends AbstractDiscoveryService {
     private void discover() {
         if (holdOff == 0) {
             if (!BeeClearRegistry.getInstance().isRegistered(BEECLEAR_HOSTNAME, BEECLEAR_PORT)) {
-                SoftwareVersion softwareVersion = restClient.getSoftwareVersion();
-                if (softwareVersion.getInfo() != null && !softwareVersion.getInfo().isEmpty()) {
-                    DiscoveryResult discoveryResult = DiscoveryResultBuilder
-                            .create(new ThingUID("beeclear:meter:unit1")).withProperties(getConfigProperties())
-                            .withLabel("BeeClear Device").build();
-                    thingDiscovered(discoveryResult);
-                    BeeClearRegistry.getInstance().registerByName(BEECLEAR_HOSTNAME, BEECLEAR_PORT);
+                try {
+                    SoftwareVersion softwareVersion = restClient.getSoftwareVersion();
+                    if (softwareVersion.getInfo() != null && !softwareVersion.getInfo().isEmpty()) {
+                        DiscoveryResult discoveryResult = DiscoveryResultBuilder
+                                .create(new ThingUID("beeclear:meter:unit1")).withProperties(getConfigProperties())
+                                .withLabel("BeeClear Device").build();
+                        thingDiscovered(discoveryResult);
+                        BeeClearRegistry.getInstance().registerByName(BEECLEAR_HOSTNAME, BEECLEAR_PORT);
+                    }
+                } catch (IOException e) {
+                    logger.debug("Could not connect to BeeClear device.", e);
                 }
             }
         }
