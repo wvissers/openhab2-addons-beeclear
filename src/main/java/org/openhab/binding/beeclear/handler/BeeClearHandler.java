@@ -88,8 +88,8 @@ public class BeeClearHandler extends BaseThingHandler {
         refreshFast.add(new ChannelUID(getThing().getUID(), CHANNEL_P1));
         refreshFast.add(new ChannelUID(getThing().getUID(), CHANNEL_SDCARD));
         refreshFast.add(new ChannelUID(getThing().getUID(), CHANNEL_SDCARD_FREE));
+        refreshFast.add(new ChannelUID(getThing().getUID(), CHANNEL_TARIFF));
         refreshSlow = new ArrayList<>();
-        refreshSlow.add(new ChannelUID(getThing().getUID(), CHANNEL_TARIFF));
         refreshSlow.add(new ChannelUID(getThing().getUID(), CHANNEL_FIRMWARE));
         refreshSlow.add(new ChannelUID(getThing().getUID(), CHANNEL_HARDWARE));
         refreshSlow.add(new ChannelUID(getThing().getUID(), CHANNEL_SERIAL_ELEC));
@@ -107,7 +107,7 @@ public class BeeClearHandler extends BaseThingHandler {
         if (command instanceof RefreshType) {
             switch (channelUID.getId()) {
                 case CHANNEL_ONLINE:
-                    updateState(channelUID, online ? OnOffType.ON : OnOffType.OFF);
+                    updateState(channelUID, data.isConnected() ? OnOffType.ON : OnOffType.OFF);
                     break;
                 case CHANNEL_POWER:
                     updateState(channelUID, new DecimalType(activeValues.getUsedPower()));
@@ -234,12 +234,19 @@ public class BeeClearHandler extends BaseThingHandler {
                         for (ChannelUID channel : refreshFast) {
                             handleCommand(channel, RefreshType.REFRESH);
                         }
+                        if (!data.isConnected()) {
+                            for (ChannelUID channel : refreshSlow) {
+                                handleCommand(channel, RefreshType.REFRESH);
+                            }
+                            online = false;
+                        }
                     } else {
                         // Try to (re)connect
                         initialize();
                     }
                 } catch (Exception e) {
-                    logger.debug("Exception occurred during execution: {}", e.getMessage(), e);
+                    logger.info("Exception occurred during execution: {}", e.getMessage());
+                    online = false;
                 }
             }
         };

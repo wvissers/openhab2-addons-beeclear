@@ -64,7 +64,7 @@ public class BeeClearDiscoveryService extends AbstractDiscoveryService {
 
     public void activate() {
         logger.debug("Starting BeeClear discovery...");
-        removeOlderResults(System.currentTimeMillis(), getSupportedTypes());
+        // removeOlderResults(System.currentTimeMillis(), getSupportedTypes());
         startScan();
         startBackgroundDiscovery();
     }
@@ -126,7 +126,7 @@ public class BeeClearDiscoveryService extends AbstractDiscoveryService {
 
     @Override
     protected void stopBackgroundDiscovery() {
-        logger.info("Stop Souliss2 background discovery");
+        logger.info("Stop Beeclear background discovery");
         if (discoveryJob != null && !discoveryJob.isCancelled()) {
             discoveryJob.cancel(true);
             restClient = null;

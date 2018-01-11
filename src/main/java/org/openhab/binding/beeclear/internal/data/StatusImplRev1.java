@@ -34,7 +34,7 @@ public class StatusImplRev1 implements Status {
     @SuppressWarnings("unchecked")
     @Override
     public boolean isP1() {
-        return jsonObj.getOrDefault("p1", "0").toString().equals("1");
+        return jsonObj == null ? false : jsonObj.getOrDefault("p1", "0").toString().equals("1");
     }
 
     /**
@@ -45,7 +45,7 @@ public class StatusImplRev1 implements Status {
     @SuppressWarnings("unchecked")
     @Override
     public boolean isSdCard() {
-        return jsonObj.getOrDefault("sdcard", "0").toString().equals("1");
+        return jsonObj == null ? false : jsonObj.getOrDefault("sdcard", "0").toString().equals("1");
     }
 
     /**
@@ -56,7 +56,7 @@ public class StatusImplRev1 implements Status {
     @SuppressWarnings("unchecked")
     @Override
     public String getSdCardFree() {
-        return jsonObj.getOrDefault("sdcardFree", "0%").toString();
+        return jsonObj == null ? "0%" : jsonObj.getOrDefault("sdcardFree", "0%").toString();
     }
 
     /**
@@ -67,7 +67,7 @@ public class StatusImplRev1 implements Status {
     @SuppressWarnings("unchecked")
     @Override
     public String getSdCardTotal() {
-        return jsonObj.getOrDefault("sdcardTotal", "0 MB").toString();
+        return jsonObj == null ? "0 MB" : jsonObj.getOrDefault("sdcardTotal", "0 MB").toString();
     }
 
 }

@@ -60,49 +60,52 @@ public class ActiveValuesImplRev1 implements ActiveValues {
     @SuppressWarnings("unchecked")
     @Override
     public BigDecimal getUsedElectricityHigh() {
-        return convert(jsonObj.getOrDefault("uh", "0").toString());
+        return jsonObj == null ? convert(null) : convert(jsonObj.getOrDefault("uh", "0").toString());
     }
 
     @SuppressWarnings("unchecked")
     @Override
     public BigDecimal getUsedElectricityLow() {
-        return convert(jsonObj.getOrDefault("ul", "0").toString());
+        return jsonObj == null ? convert(null) : convert(jsonObj.getOrDefault("ul", "0").toString());
     }
 
     @SuppressWarnings("unchecked")
     @Override
     public BigDecimal getGeneratedElectricityHigh() {
-        return convert(jsonObj.getOrDefault("gh", "0").toString());
+        return jsonObj == null ? convert(null) : convert(jsonObj.getOrDefault("gh", "0").toString());
     }
 
     @SuppressWarnings("unchecked")
     @Override
     public BigDecimal getGeneratedElectricityLow() {
-        return convert(jsonObj.getOrDefault("gl", "0").toString());
+        return jsonObj == null ? convert(null) : convert(jsonObj.getOrDefault("gl", "0").toString());
     }
 
     @SuppressWarnings("unchecked")
     @Override
     public BigDecimal getUsedPower() {
-        return new BigDecimal(jsonObj.getOrDefault("u", "0").toString());
+        return jsonObj == null ? convert(null) : new BigDecimal(jsonObj.getOrDefault("u", "0").toString());
     }
 
     @SuppressWarnings("unchecked")
     @Override
     public BigDecimal getGeneratedPower() {
-        return new BigDecimal(jsonObj.getOrDefault("g", "0").toString());
+        return jsonObj == null ? convert(null) : new BigDecimal(jsonObj.getOrDefault("g", "0").toString());
     }
 
     @SuppressWarnings("unchecked")
     @Override
     public BigDecimal getUsedGas() {
-        return new BigDecimal(jsonObj.getOrDefault("gas", "0").toString());
+        return jsonObj == null ? convert(null) : new BigDecimal(jsonObj.getOrDefault("gas", "0").toString());
     }
 
     @SuppressWarnings("unchecked")
     @Override
     public TariffStatusType getTariffStatus() {
         // Default is invalid to avoid implicit low tariff
+        if (jsonObj == null) {
+            return null;
+        }
         BigDecimal status = new BigDecimal(jsonObj.getOrDefault("tariefStatus", 10).toString());
         try {
             return TariffStatusType.getByCode(status.intValue());

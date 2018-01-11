@@ -77,7 +77,7 @@
 </file>
 <file name="c:\OH2dev\master\git\openhab2-addons\addons\binding\org.openhab.binding.beeclear\src\main\java\org\openhab\binding\beeclear\internal\discovery\BeeClearDiscoveryService.java">
 <error line="0" severity="info" message="File does not end with a newline." source="com.puppycrawl.tools.checkstyle.checks.NewlineAtEndOfFileCheck"/>
-<error line="49" column="38" severity="info" message="Name &apos;SUPPORTED_THING_TYPES_UIDS&apos; must match pattern &apos;^[a-z][a-zA-Z0-9]*$&apos;." source="com.puppycrawl.tools.checkstyle.checks.naming.StaticVariableNameCheck"/>
+<error line="50" column="38" severity="info" message="Name &apos;SUPPORTED_THING_TYPES_UIDS&apos; must match pattern &apos;^[a-z][a-zA-Z0-9]*$&apos;." source="com.puppycrawl.tools.checkstyle.checks.naming.StaticVariableNameCheck"/>
 </file>
 <file name="c:\OH2dev\master\git\openhab2-addons\addons\binding\org.openhab.binding.beeclear\src\main\java\org\openhab\binding\beeclear\internal\RestClient.java">
 <error line="0" severity="info" message="File does not end with a newline." source="com.puppycrawl.tools.checkstyle.checks.NewlineAtEndOfFileCheck"/>

@@ -55,57 +55,47 @@ public class RestClient {
 
     private String getResponse(String resourcePath) throws IOException {
         StringBuilder output = new StringBuilder();
-        try {
-            URL url = new URL(endPoint + resourcePath);
-            HttpURLConnection conn = (HttpURLConnection) url.openConnection();
-            conn.setRequestMethod("GET");
-            conn.setRequestProperty("Accept", "application/json");
-            conn.setConnectTimeout(CONNECTION_TIMEOUT);
-            if (conn.getResponseCode() != 200) {
-                logger.error("Unexpected response {}", conn.getResponseCode());
-                throw new RuntimeException("Failed : HTTP error code : " + conn.getResponseCode());
-            }
-
-            BufferedReader br = new BufferedReader(new InputStreamReader((conn.getInputStream())));
-            String line;
-            System.out.println("Output from Server .... \n");
-            while ((line = br.readLine()) != null) {
-                output.append(line);
-            }
-            conn.disconnect();
-        } catch (IOException e) {
-            logger.error("Error connecting to BeeClear", e);
-            throw e;
+        URL url = new URL(endPoint + resourcePath);
+        HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+        conn.setRequestMethod("GET");
+        conn.setRequestProperty("Accept", "application/json");
+        conn.setConnectTimeout(CONNECTION_TIMEOUT);
+        if (conn.getResponseCode() != 200) {
+            logger.error("Unexpected response {}", conn.getResponseCode());
+            throw new RuntimeException("Failed : HTTP error code : " + conn.getResponseCode());
         }
+
+        BufferedReader br = new BufferedReader(new InputStreamReader((conn.getInputStream())));
+        String line;
+        System.out.println("Output from Server .... \n");
+        while ((line = br.readLine()) != null) {
+            output.append(line);
+        }
+        conn.disconnect();
         return output.toString();
     }
 
     private String postData(String resourcePath, String data) throws IOException {
         StringBuilder output = new StringBuilder();
-        try {
-            URL url = new URL(endPoint + resourcePath);
-            HttpURLConnection conn = (HttpURLConnection) url.openConnection();
-            conn.setRequestMethod("POST");
-            conn.setRequestProperty("Content-type", "application/json");
-            conn.setRequestProperty("Content-length", "" + data.length());
-            conn.setDoOutput(true);
-            conn.setConnectTimeout(CONNECTION_TIMEOUT);
-            OutputStream out = conn.getOutputStream();
-            out.write(data.getBytes());
-            if (conn.getResponseCode() != 200) {
-                throw new RuntimeException("Failed : HTTP error code : " + conn.getResponseCode());
-            }
-            BufferedReader br = new BufferedReader(new InputStreamReader((conn.getInputStream())));
-            String line;
-            System.out.println("Output from Server .... \n");
-            while ((line = br.readLine()) != null) {
-                output.append(line);
-            }
-            conn.disconnect();
-        } catch (IOException e) {
-            logger.error("Error connecting to BeeClear", e);
-            throw e;
+        URL url = new URL(endPoint + resourcePath);
+        HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+        conn.setRequestMethod("POST");
+        conn.setRequestProperty("Content-type", "application/json");
+        conn.setRequestProperty("Content-length", "" + data.length());
+        conn.setDoOutput(true);
+        conn.setConnectTimeout(CONNECTION_TIMEOUT);
+        OutputStream out = conn.getOutputStream();
+        out.write(data.getBytes());
+        if (conn.getResponseCode() != 200) {
+            throw new RuntimeException("Failed : HTTP error code : " + conn.getResponseCode());
         }
+        BufferedReader br = new BufferedReader(new InputStreamReader((conn.getInputStream())));
+        String line;
+        System.out.println("Output from Server .... \n");
+        while ((line = br.readLine()) != null) {
+            output.append(line);
+        }
+        conn.disconnect();
         return output.toString();
     }
 

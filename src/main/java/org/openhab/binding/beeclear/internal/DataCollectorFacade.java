@@ -11,9 +11,11 @@ package org.openhab.binding.beeclear.internal;
 import java.io.IOException;
 
 import org.openhab.binding.beeclear.internal.data.ActiveValues;
+import org.openhab.binding.beeclear.internal.data.ActiveValuesImplRev1;
 import org.openhab.binding.beeclear.internal.data.SoftwareVersion;
 import org.openhab.binding.beeclear.internal.data.SoftwareVersionImpl;
 import org.openhab.binding.beeclear.internal.data.Status;
+import org.openhab.binding.beeclear.internal.data.StatusImplRev1;
 
 /**
  * The Facade that is used for a firmware version independent way
@@ -26,6 +28,7 @@ public class DataCollectorFacade {
     private final RestClient restClient;
 
     private SoftwareVersion softwareVersion;
+    private boolean connected;
 
     private long versionRefreshed;
     private static final long VERSION_INIT_DELAY = 1000 * 30;
@@ -47,10 +50,12 @@ public class DataCollectorFacade {
             try {
                 softwareVersion = restClient.getSoftwareVersion();
                 versionRefreshed = System.currentTimeMillis();
+                connected = true;
             } catch (IOException e) {
                 if (softwareVersion == null) {
                     softwareVersion = new SoftwareVersionImpl(null);
                 }
+                connected = false;
             }
         }
         return softwareVersion;
@@ -79,8 +84,14 @@ public class DataCollectorFacade {
      *
      * @return
      */
-    public ActiveValues getActiveValues() throws IOException {
-        return restClient.getActiveValues(softwareVersion);
+    public ActiveValues getActiveValues() {
+        try {
+            connected = true;
+            return restClient.getActiveValues(softwareVersion);
+        } catch (IOException e) {
+            connected = false;
+            return new ActiveValuesImplRev1(null);
+        }
     }
 
     /**
@@ -88,8 +99,23 @@ public class DataCollectorFacade {
      *
      * @return
      */
-    public Status getStatus() throws IOException {
-        return restClient.getStatus(softwareVersion);
+    public Status getStatus() {
+        try {
+            connected = true;
+            return restClient.getStatus(softwareVersion);
+        } catch (IOException e) {
+            connected = false;
+            return new StatusImplRev1(null);
+        }
+    }
+
+    /**
+     * Return true if the binding is connected to the BeeClear device.
+     *
+     * @return
+     */
+    public boolean isConnected() {
+        return connected;
     }
 
 }
