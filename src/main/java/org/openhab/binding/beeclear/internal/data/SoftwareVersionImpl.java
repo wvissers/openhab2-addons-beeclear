@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2010-2017 by the respective copyright holders.
+ * Copyright (c) 2010-2018 by the respective copyright holders.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -62,7 +62,15 @@ public class SoftwareVersionImpl implements SoftwareVersion {
     @SuppressWarnings("unchecked")
     @Override
     public String getSerialGas() {
-        return jsonObj == null ? "-" : jsonObj.getOrDefault("serialGas", "").toString();
+        if (jsonObj == null) {
+            return "-";
+        } else {
+            if (jsonObj.containsKey("serialGas")) {
+                return jsonObj.getOrDefault("serialGas", "").toString();
+            } else {
+                return "-";
+            }
+        }
     }
 
     @SuppressWarnings("unchecked")

@@ -3,19 +3,19 @@ Bundle-SymbolicName: org.openhab.binding.beeclear;singleton:=true
 Export-Package: org.openhab.binding.beeclear,org.openhab.binding.beecl
  ear.handler
 Bundle-Name: BeeClear Binding
-Bundle-Version: 2.2.0.201801051546
+Bundle-Version: 2.4.0.201901191332
 Bundle-ClassPath: .,lib/json-simple-1.1.1.jar
 Bundle-ManifestVersion: 2
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
 Bundle-ActivationPolicy: lazy
 Bundle-Vendor: openHAB
 Import-Package: javax.annotation;resolution:=optional,org.openhab.bind
- ing.beeclear,org.openhab.binding.beeclear.handler,org.eclipse.smartho
- me.config.core,org.eclipse.smarthome.config.discovery,org.eclipse.sma
- rthome.core.library.types,org.eclipse.smarthome.core.thing,org.eclips
- e.smarthome.core.thing.binding,org.eclipse.smarthome.core.thing.bindi
- ng.builder,org.eclipse.smarthome.core.thing.type,org.eclipse.smarthom
- e.core.types,org.osgi.service.component.annotations;resolution:=optio
- nal,org.slf4j
+ ing.beeclear,org.eclipse.jdt.annotation;resolution:=optional,org.open
+ hab.binding.beeclear.handler,org.eclipse.smarthome.config.core,org.ec
+ lipse.smarthome.config.discovery,org.eclipse.smarthome.core.library.t
+ ypes,org.eclipse.smarthome.core.thing,org.eclipse.smarthome.core.thin
+ g.binding,org.eclipse.smarthome.core.thing.binding.builder,org.eclips
+ e.smarthome.core.thing.type,org.eclipse.smarthome.core.types,org.osgi
+ .service.component.annotations;resolution:=optional,org.slf4j
 Service-Component: OSGI-INF/*.xml
 

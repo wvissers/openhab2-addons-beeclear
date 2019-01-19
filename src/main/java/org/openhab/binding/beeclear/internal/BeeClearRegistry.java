@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2010-2017 by the respective copyright holders.
+ * Copyright (c) 2010-2018 by the respective copyright holders.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -49,7 +49,7 @@ public class BeeClearRegistry {
      * Register a host by name and port, and return an identifier.
      *
      * @param hostName the name or ip-address of the host.
-     * @param port the port.
+     * @param port     the port.
      * @return an identifier, ip-address:port.
      */
     public String registerByName(String hostName, int port) {

@@ -1,20 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<pmd version="5.8.1" timestamp="2018-01-05T16:46:56.057">
-<file name="C:\OH2dev\master\git\openhab2-addons\addons\binding\org.openhab.binding.beeclear\src\main\java\org\openhab\binding\beeclear\internal\RestClient.java">
+<pmd version="5.8.1" timestamp="2019-01-19T14:33:30.890">
+<file name="C:\OH2.4dev\openhab2-master\git\openhab2-addons\addons\binding\org.openhab.binding.beeclear\src\main\java\org\openhab\binding\beeclear\internal\RestClient.java">
 <violation beginline="65" endline="65" begincolumn="23" endcolumn="38" rule="AvoidThrowingRawExceptionTypes" ruleset="Strict Exceptions" package="org.openhab.binding.beeclear.internal" class="RestClient" method="getResponse" externalInfoUrl="https://pmd.github.io/pmd-5.8.1/pmd-java/rules/java/strictexception.html#AvoidThrowingRawExceptionTypes" priority="2">
 Avoid throwing raw exception types.
 </violation>
-<violation beginline="70" endline="70" begincolumn="9" endcolumn="26" rule="SystemPrintln" ruleset="Java Logging" package="org.openhab.binding.beeclear.internal" class="RestClient" method="getResponse" externalInfoUrl="https://pmd.github.io/pmd-5.8.1/pmd-java/rules/java/logging-java.html#SystemPrintln" priority="3">
+<violation beginline="70" endline="70" begincolumn="9" endcolumn="26" rule="SystemPrintln" ruleset="Java Logging" package="org.openhab.binding.beeclear.internal" class="RestClient" method="getResponse" externalInfoUrl="https://pmd.github.io/pmd-5.8.1/pmd-java/rules/java/logging-java.html#SystemPrintln" priority="2">
 System.out.println is used
 </violation>
 <violation beginline="90" endline="90" begincolumn="23" endcolumn="38" rule="AvoidThrowingRawExceptionTypes" ruleset="Strict Exceptions" package="org.openhab.binding.beeclear.internal" class="RestClient" method="postData" externalInfoUrl="https://pmd.github.io/pmd-5.8.1/pmd-java/rules/java/strictexception.html#AvoidThrowingRawExceptionTypes" priority="2">
 Avoid throwing raw exception types.
 </violation>
-<violation beginline="94" endline="94" begincolumn="9" endcolumn="26" rule="SystemPrintln" ruleset="Java Logging" package="org.openhab.binding.beeclear.internal" class="RestClient" method="postData" externalInfoUrl="https://pmd.github.io/pmd-5.8.1/pmd-java/rules/java/logging-java.html#SystemPrintln" priority="3">
+<violation beginline="94" endline="94" begincolumn="9" endcolumn="26" rule="SystemPrintln" ruleset="Java Logging" package="org.openhab.binding.beeclear.internal" class="RestClient" method="postData" externalInfoUrl="https://pmd.github.io/pmd-5.8.1/pmd-java/rules/java/logging-java.html#SystemPrintln" priority="2">
 System.out.println is used
 </violation>
 </file>
-<file name="C:\OH2dev\master\git\openhab2-addons\addons\binding\org.openhab.binding.beeclear\src\main\java\org\openhab\binding\beeclear\internal\discovery\BeeClearDiscoveryService.java">
+<file name="C:\OH2.4dev\openhab2-master\git\openhab2-addons\addons\binding\org.openhab.binding.beeclear\src\main\java\org\openhab\binding\beeclear\internal\discovery\BeeClearDiscoveryService.java">
 <violation beginline="53" endline="56" begincolumn="9" endcolumn="9" rule="NonThreadSafeSingleton" ruleset="Design" package="org.openhab.binding.beeclear.internal.discovery" class="BeeClearDiscoveryService" method="getSupportedTypes" externalInfoUrl="https://pmd.github.io/pmd-5.8.1/pmd-java/rules/java/design.html#NonThreadSafeSingleton" priority="3">
 Singleton is not thread safe
 </violation>
