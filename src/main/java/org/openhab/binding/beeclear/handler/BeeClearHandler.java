@@ -48,6 +48,9 @@ import org.slf4j.LoggerFactory;
  */
 public class BeeClearHandler extends BaseThingHandler {
 
+    public static final int REFRESH_INTERVAL_SECONDS = 60;
+    public static final int MAX_RETRIES = 8;
+
     private final Logger logger = LoggerFactory.getLogger(BeeClearHandler.class);
 
     // The Facade to the BeeClear restfull webAPI.
@@ -180,18 +183,26 @@ public class BeeClearHandler extends BaseThingHandler {
         }
     }
 
-    @Override
-    public void initialize() {
+    /**
+     * Helper method to create a data collector facade.
+     *
+     * @return a new data collector facade instance.
+     * @throws IOException when it could not be created.
+     */
+    private DataCollectorFacade createDataCollectorFacade() throws IOException {
         Configuration config = getThing().getConfiguration();
         String host = (String) config.get("host");
         BigDecimal port = ((BigDecimal) config.get("port"));
-
         // Register the device
         id = BeeClearRegistry.getInstance().registerByName(host, port.intValue());
+        return new DataCollectorFacade(host, port.intValue());
+    }
 
+    @Override
+    public void initialize() {
         // Create a Facade to the API
         try {
-            data = new DataCollectorFacade(host, port.intValue());
+            data = createDataCollectorFacade();
 
             if (data.getSoftwareVersion().getInfo().equals("notAuthenticated")) {
                 updateStatus(ThingStatus.OFFLINE, ThingStatusDetail.CONFIGURATION_ERROR,
@@ -238,10 +249,11 @@ public class BeeClearHandler extends BaseThingHandler {
                             for (ChannelUID channel : refreshSlow) {
                                 handleCommand(channel, RefreshType.REFRESH);
                             }
-                            online = false;
+                            initialize();
+                            // online = false;
                         }
                     } else {
-                        // Try to (re)connect
+                        // Try to (re)initialize
                         initialize();
                     }
                 } catch (Exception e) {
@@ -250,8 +262,7 @@ public class BeeClearHandler extends BaseThingHandler {
                 }
             }
         };
-
-        refreshJob = scheduler.scheduleAtFixedRate(runnable, 0, 60, TimeUnit.SECONDS);
+        refreshJob = scheduler.scheduleAtFixedRate(runnable, 0, REFRESH_INTERVAL_SECONDS, TimeUnit.SECONDS);
     }
 
     /**

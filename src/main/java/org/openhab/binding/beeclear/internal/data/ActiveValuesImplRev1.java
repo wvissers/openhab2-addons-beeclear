@@ -96,7 +96,11 @@ public class ActiveValuesImplRev1 implements ActiveValues {
     @SuppressWarnings("unchecked")
     @Override
     public BigDecimal getUsedGas() {
-        return jsonObj == null ? convert(null) : new BigDecimal(jsonObj.getOrDefault("gas", "0").toString());
+        try {
+            return jsonObj == null ? convert(null) : new BigDecimal(jsonObj.getOrDefault("gas", "0").toString());
+        } catch (NumberFormatException ex) {
+            return new BigDecimal(0);
+        }
     }
 
     @SuppressWarnings("unchecked")

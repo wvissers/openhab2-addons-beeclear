@@ -45,7 +45,7 @@ public class BeeClearDiscoveryService extends AbstractDiscoveryService {
 
     private static final String BEECLEAR_HOSTNAME = "beeclear";
     private static final int BEECLEAR_PORT = 80;
-    private static final int INTERVAL = 30;
+    private static final int INTERVAL_SECONDS = 60;
 
     private static Set<ThingTypeUID> SUPPORTED_THING_TYPES_UIDS;
 
@@ -89,7 +89,7 @@ public class BeeClearDiscoveryService extends AbstractDiscoveryService {
                         BeeClearRegistry.getInstance().registerByName(BEECLEAR_HOSTNAME, BEECLEAR_PORT);
                     }
                 } catch (IOException e) {
-                    logger.debug("Could not connect to BeeClear device.", e);
+                    logger.info("Could not connect to BeeClear device.");
                 }
             }
         }
@@ -120,7 +120,7 @@ public class BeeClearDiscoveryService extends AbstractDiscoveryService {
         logger.info("Start BeeClear device background discovery");
         if (discoveryJob == null || discoveryJob.isCancelled()) {
             restClient = new RestClient(BEECLEAR_HOSTNAME, BEECLEAR_PORT);
-            discoveryJob = scheduler.scheduleAtFixedRate(runnable, 0, INTERVAL, TimeUnit.SECONDS);
+            discoveryJob = scheduler.scheduleAtFixedRate(runnable, 0, INTERVAL_SECONDS, TimeUnit.SECONDS);
         }
     }
 

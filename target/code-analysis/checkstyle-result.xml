@@ -35,73 +35,56 @@
 <error line="0" severity="info" message="File does not end with a newline." source="com.puppycrawl.tools.checkstyle.checks.NewlineAtEndOfFileCheck"/>
 </file>
 <file name="c:\OH2.4dev\openhab2-master\git\openhab2-addons\addons\binding\org.openhab.binding.beeclear\src\main\java\org\openhab\binding\beeclear\BeeClearBindingConstants.java">
-<error line="2" severity="error" message="Header line doesn&apos;t match pattern ^ \* Copyright \(c\) 2010-2018 by the respective copyright holders\.$" source="org.openhab.tools.analysis.checkstyle.ParameterizedRegexpHeaderCheck"/>
 </file>
 <file name="c:\OH2.4dev\openhab2-master\git\openhab2-addons\addons\binding\org.openhab.binding.beeclear\src\main\java\org\openhab\binding\beeclear\handler\BeeClearHandler.java">
-<error line="2" severity="error" message="Header line doesn&apos;t match pattern ^ \* Copyright \(c\) 2010-2018 by the respective copyright holders\.$" source="org.openhab.tools.analysis.checkstyle.ParameterizedRegexpHeaderCheck"/>
-<error line="254" severity="warning" message="For periodically executed jobs that do not require a fixed rate scheduleWithFixedDelay should be preferred over scheduleAtFixedRate." source="org.openhab.tools.analysis.checkstyle.AvoidScheduleAtFixedRateCheck"/>
+<error line="265" severity="warning" message="For periodically executed jobs that do not require a fixed rate scheduleWithFixedDelay should be preferred over scheduleAtFixedRate." source="org.openhab.tools.analysis.checkstyle.AvoidScheduleAtFixedRateCheck"/>
 </file>
 <file name="c:\OH2.4dev\openhab2-master\git\openhab2-addons\addons\binding\org.openhab.binding.beeclear\src\main\java\org\openhab\binding\beeclear\internal\BeeClearHandlerFactory.java">
-<error line="2" severity="error" message="Header line doesn&apos;t match pattern ^ \* Copyright \(c\) 2010-2018 by the respective copyright holders\.$" source="org.openhab.tools.analysis.checkstyle.ParameterizedRegexpHeaderCheck"/>
 </file>
 <file name="c:\OH2.4dev\openhab2-master\git\openhab2-addons\addons\binding\org.openhab.binding.beeclear\src\main\java\org\openhab\binding\beeclear\internal\BeeClearRegistry.java">
 <error line="0" severity="info" message="File does not end with a newline." source="com.puppycrawl.tools.checkstyle.checks.NewlineAtEndOfFileCheck"/>
-<error line="2" severity="error" message="Header line doesn&apos;t match pattern ^ \* Copyright \(c\) 2010-2018 by the respective copyright holders\.$" source="org.openhab.tools.analysis.checkstyle.ParameterizedRegexpHeaderCheck"/>
 </file>
 <file name="c:\OH2.4dev\openhab2-master\git\openhab2-addons\addons\binding\org.openhab.binding.beeclear\src\main\java\org\openhab\binding\beeclear\internal\data\ActiveValues.java">
 <error line="0" severity="info" message="File does not end with a newline." source="com.puppycrawl.tools.checkstyle.checks.NewlineAtEndOfFileCheck"/>
-<error line="2" severity="error" message="Header line doesn&apos;t match pattern ^ \* Copyright \(c\) 2010-2018 by the respective copyright holders\.$" source="org.openhab.tools.analysis.checkstyle.ParameterizedRegexpHeaderCheck"/>
 </file>
 <file name="c:\OH2.4dev\openhab2-master\git\openhab2-addons\addons\binding\org.openhab.binding.beeclear\src\main\java\org\openhab\binding\beeclear\internal\data\ActiveValuesImplRev1.java">
 <error line="0" severity="info" message="File does not end with a newline." source="com.puppycrawl.tools.checkstyle.checks.NewlineAtEndOfFileCheck"/>
-<error line="2" severity="error" message="Header line doesn&apos;t match pattern ^ \* Copyright \(c\) 2010-2018 by the respective copyright holders\.$" source="org.openhab.tools.analysis.checkstyle.ParameterizedRegexpHeaderCheck"/>
 </file>
 <file name="c:\OH2.4dev\openhab2-master\git\openhab2-addons\addons\binding\org.openhab.binding.beeclear\src\main\java\org\openhab\binding\beeclear\internal\data\SoftwareVersion.java">
 <error line="0" severity="info" message="File does not end with a newline." source="com.puppycrawl.tools.checkstyle.checks.NewlineAtEndOfFileCheck"/>
-<error line="2" severity="error" message="Header line doesn&apos;t match pattern ^ \* Copyright \(c\) 2010-2018 by the respective copyright holders\.$" source="org.openhab.tools.analysis.checkstyle.ParameterizedRegexpHeaderCheck"/>
 </file>
 <file name="c:\OH2.4dev\openhab2-master\git\openhab2-addons\addons\binding\org.openhab.binding.beeclear\src\main\java\org\openhab\binding\beeclear\internal\data\SoftwareVersionImpl.java">
 <error line="0" severity="info" message="File does not end with a newline." source="com.puppycrawl.tools.checkstyle.checks.NewlineAtEndOfFileCheck"/>
-<error line="2" severity="error" message="Header line doesn&apos;t match pattern ^ \* Copyright \(c\) 2010-2018 by the respective copyright holders\.$" source="org.openhab.tools.analysis.checkstyle.ParameterizedRegexpHeaderCheck"/>
 </file>
 <file name="c:\OH2.4dev\openhab2-master\git\openhab2-addons\addons\binding\org.openhab.binding.beeclear\src\main\java\org\openhab\binding\beeclear\internal\data\Status.java">
 <error line="0" severity="info" message="File does not end with a newline." source="com.puppycrawl.tools.checkstyle.checks.NewlineAtEndOfFileCheck"/>
-<error line="2" severity="error" message="Header line doesn&apos;t match pattern ^ \* Copyright \(c\) 2010-2018 by the respective copyright holders\.$" source="org.openhab.tools.analysis.checkstyle.ParameterizedRegexpHeaderCheck"/>
 </file>
 <file name="c:\OH2.4dev\openhab2-master\git\openhab2-addons\addons\binding\org.openhab.binding.beeclear\src\main\java\org\openhab\binding\beeclear\internal\data\StatusImplRev1.java">
 <error line="0" severity="info" message="File does not end with a newline." source="com.puppycrawl.tools.checkstyle.checks.NewlineAtEndOfFileCheck"/>
-<error line="2" severity="error" message="Header line doesn&apos;t match pattern ^ \* Copyright \(c\) 2010-2018 by the respective copyright holders\.$" source="org.openhab.tools.analysis.checkstyle.ParameterizedRegexpHeaderCheck"/>
 </file>
 <file name="c:\OH2.4dev\openhab2-master\git\openhab2-addons\addons\binding\org.openhab.binding.beeclear\src\main\java\org\openhab\binding\beeclear\internal\data\TariffStatusType.java">
 <error line="0" severity="info" message="File does not end with a newline." source="com.puppycrawl.tools.checkstyle.checks.NewlineAtEndOfFileCheck"/>
-<error line="2" severity="error" message="Header line doesn&apos;t match pattern ^ \* Copyright \(c\) 2010-2018 by the respective copyright holders\.$" source="org.openhab.tools.analysis.checkstyle.ParameterizedRegexpHeaderCheck"/>
 <error line="21" column="23" severity="info" message="Name &apos;_code&apos; must match pattern &apos;^[a-z][a-zA-Z0-9]*$&apos;." source="com.puppycrawl.tools.checkstyle.checks.naming.MemberNameCheck"/>
 </file>
 <file name="c:\OH2.4dev\openhab2-master\git\openhab2-addons\addons\binding\org.openhab.binding.beeclear\src\main\java\org\openhab\binding\beeclear\internal\data\UnsupportedTariffCodeException.java">
 <error line="0" severity="info" message="File does not end with a newline." source="com.puppycrawl.tools.checkstyle.checks.NewlineAtEndOfFileCheck"/>
-<error line="2" severity="error" message="Header line doesn&apos;t match pattern ^ \* Copyright \(c\) 2010-2018 by the respective copyright holders\.$" source="org.openhab.tools.analysis.checkstyle.ParameterizedRegexpHeaderCheck"/>
 </file>
 <file name="c:\OH2.4dev\openhab2-master\git\openhab2-addons\addons\binding\org.openhab.binding.beeclear\src\main\java\org\openhab\binding\beeclear\internal\data\UnsupportedVersionException.java">
 <error line="0" severity="info" message="File does not end with a newline." source="com.puppycrawl.tools.checkstyle.checks.NewlineAtEndOfFileCheck"/>
-<error line="2" severity="error" message="Header line doesn&apos;t match pattern ^ \* Copyright \(c\) 2010-2018 by the respective copyright holders\.$" source="org.openhab.tools.analysis.checkstyle.ParameterizedRegexpHeaderCheck"/>
 </file>
 <file name="c:\OH2.4dev\openhab2-master\git\openhab2-addons\addons\binding\org.openhab.binding.beeclear\src\main\java\org\openhab\binding\beeclear\internal\DataCollectorFacade.java">
 <error line="0" severity="info" message="File does not end with a newline." source="com.puppycrawl.tools.checkstyle.checks.NewlineAtEndOfFileCheck"/>
-<error line="2" severity="error" message="Header line doesn&apos;t match pattern ^ \* Copyright \(c\) 2010-2018 by the respective copyright holders\.$" source="org.openhab.tools.analysis.checkstyle.ParameterizedRegexpHeaderCheck"/>
 </file>
 <file name="c:\OH2.4dev\openhab2-master\git\openhab2-addons\addons\binding\org.openhab.binding.beeclear\src\main\java\org\openhab\binding\beeclear\internal\DataElementFactory.java">
 <error line="0" severity="info" message="File does not end with a newline." source="com.puppycrawl.tools.checkstyle.checks.NewlineAtEndOfFileCheck"/>
-<error line="2" severity="error" message="Header line doesn&apos;t match pattern ^ \* Copyright \(c\) 2010-2018 by the respective copyright holders\.$" source="org.openhab.tools.analysis.checkstyle.ParameterizedRegexpHeaderCheck"/>
 <error line="29" column="33" severity="info" message="Name &apos;logger&apos; must match pattern &apos;^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$&apos;." source="com.puppycrawl.tools.checkstyle.checks.naming.ConstantNameCheck"/>
 </file>
 <file name="c:\OH2.4dev\openhab2-master\git\openhab2-addons\addons\binding\org.openhab.binding.beeclear\src\main\java\org\openhab\binding\beeclear\internal\discovery\BeeClearDiscoveryService.java">
 <error line="0" severity="info" message="File does not end with a newline." source="com.puppycrawl.tools.checkstyle.checks.NewlineAtEndOfFileCheck"/>
-<error line="2" severity="error" message="Header line doesn&apos;t match pattern ^ \* Copyright \(c\) 2010-2018 by the respective copyright holders\.$" source="org.openhab.tools.analysis.checkstyle.ParameterizedRegexpHeaderCheck"/>
 <error line="50" column="38" severity="info" message="Name &apos;SUPPORTED_THING_TYPES_UIDS&apos; must match pattern &apos;^[a-z][a-zA-Z0-9]*$&apos;." source="com.puppycrawl.tools.checkstyle.checks.naming.StaticVariableNameCheck"/>
 <error line="123" severity="warning" message="For periodically executed jobs that do not require a fixed rate scheduleWithFixedDelay should be preferred over scheduleAtFixedRate." source="org.openhab.tools.analysis.checkstyle.AvoidScheduleAtFixedRateCheck"/>
 </file>
 <file name="c:\OH2.4dev\openhab2-master\git\openhab2-addons\addons\binding\org.openhab.binding.beeclear\src\main\java\org\openhab\binding\beeclear\internal\RestClient.java">
 <error line="0" severity="info" message="File does not end with a newline." source="com.puppycrawl.tools.checkstyle.checks.NewlineAtEndOfFileCheck"/>
-<error line="2" severity="error" message="Header line doesn&apos;t match pattern ^ \* Copyright \(c\) 2010-2018 by the respective copyright holders\.$" source="org.openhab.tools.analysis.checkstyle.ParameterizedRegexpHeaderCheck"/>
 </file>
 </checkstyle>
