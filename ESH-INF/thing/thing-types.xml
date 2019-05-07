@@ -28,6 +28,7 @@
             <channel id="sdcard" typeId="sdcard-channel" />
             <channel id="sdcardFree" typeId="sdcard-free-channel" />
             <channel id="sdcardTotal" typeId="sdcard-total-channel" />
+            <channel id="ip" typeId="ip-channel" />
 		</channels>
 		<config-description>
 			<parameter name="host" type="text" required="true">
@@ -143,6 +144,11 @@
         <item-type>String</item-type>
         <label>SD card total memory.</label>
         <description>Returns the total memory on the SD card as text.</description>
+    </channel-type>
+    <channel-type id="ip-channel">
+        <item-type>String</item-type>
+        <label>IP address.</label>
+        <description>Returns the IP address of the last successful connection.</description>
     </channel-type>
 
 </thing:thing-descriptions>

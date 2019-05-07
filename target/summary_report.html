@@ -11,8 +11,8 @@
    <body>
       <h2>Report
          					 
-         					(2019-05-06+02:00;
-         					 20:29:53.306+02:00)
+         					(2019-05-07+02:00;
+         					 20:14:33.914+02:00)
          				
       </h2>
       <h3>Summary Messages</h3>
@@ -52,7 +52,7 @@
             <td>pmd</td>
             <td align="left">2</td>
             <td> <a href="https://pmd.github.io/pmd-5.8.1/pmd-java/rules/java/logging-java.html#SystemPrintln">SystemPrintln</a></td>
-            <td align="center">2</td>
+            <td align="center">4</td>
          </tr>
          <tr>
             <td colspan="5">strict exceptions</td>
@@ -62,7 +62,7 @@
             <td>pmd</td>
             <td align="left">2</td>
             <td> <a href="https://pmd.github.io/pmd-5.8.1/pmd-java/rules/java/strictexception.html#AvoidThrowingRawExceptionTypes">AvoidThrowingRawExceptionTypes</a></td>
-            <td align="center">2</td>
+            <td align="center">4</td>
          </tr>
          <tr>
             <td colspan="5">style</td>
@@ -86,7 +86,7 @@
             <td>checkstyle</td>
             <td align="left">2</td>
             <td>AvoidScheduleAtFixedRateCheck</td>
-            <td align="center">5</td>
+            <td align="center">6</td>
          </tr>
          <tr class="alternate">
             <td></td>
@@ -118,7 +118,7 @@
          </tr>
          <tr class="dark">
             <td colspan="4"></td>
-            <td align="center">37</td>
+            <td align="center">42</td>
          </tr>
       </table>
       <p></p>
@@ -257,13 +257,13 @@
                <div class="p1">0</div>
             </td>
             <td align="center">
-               <div class="p2">4</div>
+               <div class="p2">5</div>
             </td>
             <td align="center">
                <div class="p3">0</div>
             </td>
             <td align="center">
-               <div class="p3">4</div>
+               <div class="p3">5</div>
             </td>
          </tr>
          <tr class="alternate">
@@ -317,13 +317,13 @@
                <div class="p1">0</div>
             </td>
             <td align="center">
-               <div class="p2">4</div>
+               <div class="p2">8</div>
             </td>
             <td align="center">
                <div class="p3">1</div>
             </td>
             <td align="center">
-               <div class="p3">5</div>
+               <div class="p3">9</div>
             </td>
          </tr>
          <tr class="alternate">
@@ -482,13 +482,13 @@
                <div class="p1">1</div>
             </td>
             <td align="center">
-               <div class="p2">12</div>
+               <div class="p2">17</div>
             </td>
             <td align="center">
                <div class="p3">24</div>
             </td>
             <td align="center">
-               <div class="p3">37</div>
+               <div class="p3">42</div>
             </td>
          </tr>
       </table>
@@ -688,6 +688,14 @@
             <td>AvoidScheduleAtFixedRateCheck</td>
             <td>For periodically executed jobs that do not require a fixed rate scheduleWithFixedDelay should be preferred over scheduleAtFixedRate.</td>
          </tr>
+         <tr class="alternate">
+            <td>checkstyle</td>
+            <td>2</td>
+            <td>283</td>
+            <td>style</td>
+            <td>AvoidScheduleAtFixedRateCheck</td>
+            <td>For periodically executed jobs that do not require a fixed rate scheduleWithFixedDelay should be preferred over scheduleAtFixedRate.</td>
+         </tr>
       </table><br><table width="90%" border="0" class="details">
          <th align="left" colspan="6"><a name="org.openhab.binding.beeclear.internal.BeeClearRegistry.java">org.openhab.binding.beeclear.internal.BeeClearRegistry.java</a></th>
          <tr>
@@ -797,6 +805,50 @@
             <td>pmd</td>
             <td>2</td>
             <td>94</td>
+            <td>java logging</td>
+            <td>SystemPrintln</td>
+            <td>
+               System.out.println is used
+               
+            </td>
+         </tr>
+         <tr class="alternate">
+            <td>pmd</td>
+            <td>2</td>
+            <td>70</td>
+            <td>strict exceptions</td>
+            <td>AvoidThrowingRawExceptionTypes</td>
+            <td>
+               Avoid throwing raw exception types.
+               
+            </td>
+         </tr>
+         <tr class="alternate">
+            <td>pmd</td>
+            <td>2</td>
+            <td>75</td>
+            <td>java logging</td>
+            <td>SystemPrintln</td>
+            <td>
+               System.out.println is used
+               
+            </td>
+         </tr>
+         <tr class="alternate">
+            <td>pmd</td>
+            <td>2</td>
+            <td>99</td>
+            <td>strict exceptions</td>
+            <td>AvoidThrowingRawExceptionTypes</td>
+            <td>
+               Avoid throwing raw exception types.
+               
+            </td>
+         </tr>
+         <tr class="alternate">
+            <td>pmd</td>
+            <td>2</td>
+            <td>103</td>
             <td>java logging</td>
             <td>SystemPrintln</td>
             <td>

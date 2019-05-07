@@ -43,5 +43,6 @@ public class BeeClearBindingConstants {
     public static final String CHANNEL_SDCARD = "sdcard";
     public static final String CHANNEL_SDCARD_FREE = "sdcardFree";
     public static final String CHANNEL_SDCARD_TOTAL = "sdcardTotal";
+    public static final String CHANNEL_IP = "ip";
 
 }

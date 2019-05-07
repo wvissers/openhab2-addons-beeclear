@@ -93,6 +93,7 @@ public class BeeClearHandler extends BaseThingHandler {
         refreshFast.add(new ChannelUID(getThing().getUID(), CHANNEL_SDCARD));
         refreshFast.add(new ChannelUID(getThing().getUID(), CHANNEL_SDCARD_FREE));
         refreshFast.add(new ChannelUID(getThing().getUID(), CHANNEL_TARIFF));
+        refreshFast.add(new ChannelUID(getThing().getUID(), CHANNEL_IP));
         refreshSlow = new ArrayList<>();
         refreshSlow.add(new ChannelUID(getThing().getUID(), CHANNEL_FIRMWARE));
         refreshSlow.add(new ChannelUID(getThing().getUID(), CHANNEL_HARDWARE));
@@ -175,6 +176,9 @@ public class BeeClearHandler extends BaseThingHandler {
                     break;
                 case CHANNEL_SDCARD_TOTAL:
                     updateState(channelUID, new StringType(status.getSdCardTotal()));
+                    break;
+                case CHANNEL_IP:
+                    updateState(channelUID, data.getIpAddress());
                     break;
                 default:
                     logger.warn("Unexpected channel {}", channelUID);

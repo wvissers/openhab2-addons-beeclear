@@ -10,6 +10,7 @@ package org.openhab.binding.beeclear.internal;
 
 import java.io.IOException;
 
+import org.eclipse.smarthome.core.library.types.StringType;
 import org.openhab.binding.beeclear.internal.data.ActiveValues;
 import org.openhab.binding.beeclear.internal.data.ActiveValuesImplRev1;
 import org.openhab.binding.beeclear.internal.data.SoftwareVersion;
@@ -38,6 +39,15 @@ public class DataCollectorFacade {
         restClient = new RestClient(host, port);
         softwareVersion = restClient.getSoftwareVersion();
         versionRefreshed = System.currentTimeMillis() - VERSION_REFRESH_INTERVAL + VERSION_INIT_DELAY;
+    }
+
+    /**
+     * Get the IP address, if at least one successful connection was made.
+     *
+     * @return the IP address as StringType, ready to publish.
+     */
+    public StringType getIpAddress() {
+        return restClient.getIpAddress();
     }
 
     /**

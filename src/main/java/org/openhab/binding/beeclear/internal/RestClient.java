@@ -17,6 +17,7 @@ import java.net.InetAddress;
 import java.net.URL;
 import java.time.Instant;
 
+import org.eclipse.smarthome.core.library.types.StringType;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
@@ -41,7 +42,7 @@ public class RestClient {
     private String endPoint;
 
     // The ip address of the last successful connection.
-    private String ipAddress;
+    private StringType ipAddress;
 
     // The factory to create data elements
     private DataElementFactory factory;
@@ -52,7 +53,6 @@ public class RestClient {
      * @param endPoint
      */
     public RestClient(String server, int port) {
-        ipAddress = "0.0.0.0";
         endPoint = "http://" + server + ":" + port;
         factory = DataElementFactory.getInstance();
         logger.info("Creating RestClient with endPoint {}", endPoint);
@@ -76,8 +76,10 @@ public class RestClient {
         while ((line = br.readLine()) != null) {
             output.append(line);
         }
-        InetAddress address = InetAddress.getByName(url.getHost());
-        ipAddress = address.getHostAddress();
+        if (ipAddress == null) {
+            InetAddress address = InetAddress.getByName(url.getHost());
+            ipAddress = new StringType(address.getHostAddress());
+        }
         conn.disconnect();
         return output.toString();
     }
@@ -107,11 +109,11 @@ public class RestClient {
     }
 
     /**
-     * Get the IP adddress of the last successful connection.
-     * 
-     * @return the IP address as
+     * Get the IP address, if at least one successful connection was made.
+     *
+     * @return the IP address as StringType, ready to publish.
      */
-    public String getIpAddress() {
+    public StringType getIpAddress() {
         return ipAddress;
     }
 
