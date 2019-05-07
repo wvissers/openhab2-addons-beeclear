@@ -3,8 +3,6 @@
       <message tool="checkstyle" line="0" message="File does not end with a newline." priority="3" rule="NewlineAtEndOfFileCheck" category="style"/>
    </file>
 
-
-
    <file name=".binding.beeclear\build.properties">
       <message tool="checkstyle" line="0" message="There is a jar outside of the lib folder c:\OH2.4dev\openhab2-master\git\openhab2-addons\addons\binding\org.openhab.binding.beeclear\previous\org.openhab.binding.beeclear-2.4.0-SNAPSHOT.jar" priority="1" rule="OutsideOfLibExternalLibrariesCheck" category="style"/>
    </file>
@@ -33,10 +31,7 @@
    </file>
 
    <file name="org.openhab.binding.beeclear.handler.BeeClearHandler.java">
-      <message tool="checkstyle" line="265" message="For periodically executed jobs that do not require a fixed rate scheduleWithFixedDelay should be preferred over scheduleAtFixedRate." priority="2" rule="AvoidScheduleAtFixedRateCheck" category="style"/>
-   <message tool="checkstyle" line="278" message="For periodically executed jobs that do not require a fixed rate scheduleWithFixedDelay should be preferred over scheduleAtFixedRate." priority="2" rule="AvoidScheduleAtFixedRateCheck" category="style"/>
-   <message tool="checkstyle" line="280" message="For periodically executed jobs that do not require a fixed rate scheduleWithFixedDelay should be preferred over scheduleAtFixedRate." priority="2" rule="AvoidScheduleAtFixedRateCheck" category="style"/>
-   <message tool="checkstyle" line="279" message="For periodically executed jobs that do not require a fixed rate scheduleWithFixedDelay should be preferred over scheduleAtFixedRate." priority="2" rule="AvoidScheduleAtFixedRateCheck" category="style"/>
+      <message tool="checkstyle" line="278" message="For periodically executed jobs that do not require a fixed rate scheduleWithFixedDelay should be preferred over scheduleAtFixedRate." priority="2" rule="AvoidScheduleAtFixedRateCheck" category="style"/>
    </file>
 
    <file name="org.openhab.binding.beeclear.internal.BeeClearRegistry.java">

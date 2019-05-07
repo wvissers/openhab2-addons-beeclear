@@ -13,6 +13,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.net.HttpURLConnection;
+import java.net.InetAddress;
 import java.net.URL;
 import java.time.Instant;
 
@@ -39,6 +40,9 @@ public class RestClient {
     // The endpoint address of the BeeClear WebAPI.
     private String endPoint;
 
+    // The ip address of the last successful connection.
+    private String ipAddress;
+
     // The factory to create data elements
     private DataElementFactory factory;
 
@@ -48,6 +52,7 @@ public class RestClient {
      * @param endPoint
      */
     public RestClient(String server, int port) {
+        ipAddress = "0.0.0.0";
         endPoint = "http://" + server + ":" + port;
         factory = DataElementFactory.getInstance();
         logger.info("Creating RestClient with endPoint {}", endPoint);
@@ -71,6 +76,8 @@ public class RestClient {
         while ((line = br.readLine()) != null) {
             output.append(line);
         }
+        InetAddress address = InetAddress.getByName(url.getHost());
+        ipAddress = address.getHostAddress();
         conn.disconnect();
         return output.toString();
     }
@@ -97,6 +104,15 @@ public class RestClient {
         }
         conn.disconnect();
         return output.toString();
+    }
+
+    /**
+     * Get the IP adddress of the last successful connection.
+     * 
+     * @return the IP address as
+     */
+    public String getIpAddress() {
+        return ipAddress;
     }
 
     /**

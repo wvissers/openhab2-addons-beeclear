@@ -14,6 +14,7 @@ import java.io.IOException;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.StringTokenizer;
 import java.util.concurrent.ScheduledFuture;
 import java.util.concurrent.TimeUnit;
 
@@ -190,12 +191,25 @@ public class BeeClearHandler extends BaseThingHandler {
      * @throws IOException when it could not be created.
      */
     private DataCollectorFacade createDataCollectorFacade() throws IOException {
+        DataCollectorFacade result = null;
         Configuration config = getThing().getConfiguration();
-        String host = (String) config.get("host");
+        String hosts = (String) config.get("host");
         BigDecimal port = ((BigDecimal) config.get("port"));
-        // Register the device
-        id = BeeClearRegistry.getInstance().registerByName(host, port.intValue());
-        return new DataCollectorFacade(host, port.intValue());
+        StringTokenizer st = new StringTokenizer(hosts, ",");
+        while (st.hasMoreTokens() && result == null) {
+            try {
+                // Register the device
+                String host = st.nextToken();
+                logger.info("Connecting to: {}", host);
+                id = BeeClearRegistry.getInstance().registerByName(host, port.intValue());
+                result = new DataCollectorFacade(host, port.intValue());
+            } catch (IOException ex) {
+            }
+        }
+        if (result == null) {
+            throw new IOException();
+        }
+        return result;
     }
 
     @Override

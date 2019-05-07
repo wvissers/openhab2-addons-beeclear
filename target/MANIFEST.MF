@@ -3,7 +3,7 @@ Bundle-SymbolicName: org.openhab.binding.beeclear;singleton:=true
 Export-Package: org.openhab.binding.beeclear,org.openhab.binding.beecl
  ear.handler
 Bundle-Name: BeeClear Binding
-Bundle-Version: 2.4.0.201902121633
+Bundle-Version: 2.4.0.201905061828
 Bundle-ClassPath: .,lib/json-simple-1.1.1.jar
 Bundle-ManifestVersion: 2
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
