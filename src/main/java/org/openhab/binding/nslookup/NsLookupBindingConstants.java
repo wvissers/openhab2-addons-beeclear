@@ -24,7 +24,7 @@ public class NsLookupBindingConstants {
     public static final ThingTypeUID THING_TYPE_HOST = new ThingTypeUID(BINDING_ID, "host");
 
     // List of all Channel ids
-    public static final String CHANNEL_ONLINE = "online";
+    public static final String CHANNEL_EXISTS = "exists";
     public static final String CHANNEL_IP = "ip";
 
 }

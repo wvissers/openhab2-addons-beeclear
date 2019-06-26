@@ -68,7 +68,7 @@ public class NsLookupHandler extends BaseThingHandler {
     public NsLookupHandler(Thing thing) {
         super(thing);
         refreshFast = new ArrayList<>();
-        refreshFast.add(new ChannelUID(getThing().getUID(), CHANNEL_ONLINE));
+        refreshFast.add(new ChannelUID(getThing().getUID(), CHANNEL_EXISTS));
         refreshFast.add(new ChannelUID(getThing().getUID(), CHANNEL_IP));
         refreshSlow = new ArrayList<>();
         online = false;
@@ -80,7 +80,7 @@ public class NsLookupHandler extends BaseThingHandler {
         if (command instanceof RefreshType) {
             refreshState();
             switch (channelUID.getId()) {
-                case CHANNEL_ONLINE:
+                case CHANNEL_EXISTS:
                     updateState(channelUID, online ? OnOffType.ON : OnOffType.OFF);
                     break;
                 case CHANNEL_IP:
@@ -99,6 +99,7 @@ public class NsLookupHandler extends BaseThingHandler {
             InetAddress addr = InetAddress.getByName(host);
             if (!ip.toFullString().equals(addr.getHostAddress())) {
                 ip = new StringType(addr.getHostAddress());
+                online = true;
             }
             logger.info("Host {} found with address {}.", host, addr.getHostAddress());
         } catch (UnknownHostException e) {
@@ -116,10 +117,8 @@ public class NsLookupHandler extends BaseThingHandler {
             refresh = ((BigDecimal) config.get("refresh")).intValue();
             logger.info("Looking for DNS entry for {}", host);
             updateStatus(ThingStatus.ONLINE);
-            online = true;
         } catch (Exception e) {
             updateStatus(ThingStatus.OFFLINE, ThingStatusDetail.COMMUNICATION_ERROR, "Error creating DNS lookup.");
-            online = false;
         }
         if (refreshJob == null) {
             startAutomaticRefresh();

@@ -9,7 +9,7 @@
 		<description>Host to be monitored by DNS lookup</description>
 
 		<channels>
-            <channel id="online" typeId="online-channel" />
+            <channel id="exists" typeId="exists-channel" />
             <channel id="ip" typeId="ip-channel" />
 		</channels>
 		<config-description>
@@ -26,7 +26,7 @@
 	</thing-type>
 
 	<!-- Channel Types -->
-    <channel-type id="online-channel">
+    <channel-type id="exists-channel">
         <item-type>OnOffType</item-type>
         <label>Host exists in DNS.</label>
         <description>Host found in DNS status.</description>
