@@ -1,45 +1,26 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<thing:thing-descriptions bindingId="beeclear" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+<thing:thing-descriptions bindingId="nslookup" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xmlns:thing="http://eclipse.org/smarthome/schemas/thing-description/v1.0.0"
 	xsi:schemaLocation="http://eclipse.org/smarthome/schemas/thing-description/v1.0.0 http://eclipse.org/smarthome/schemas/thing-description-1.0.0.xsd">
 
 	<!-- Thing Type -->
-	<thing-type id="meter">
-		<label>BeeClear Device</label>
-		<description>BeeClear energy meter device</description>
+	<thing-type id="host">
+		<label>DNS host</label>
+		<description>Host to be monitored by DNS lookup</description>
 
 		<channels>
             <channel id="online" typeId="online-channel" />
-            <channel id="power" typeId="power-channel" />
-            <channel id="powerHigh" typeId="power-high-channel" />
-            <channel id="powerLow" typeId="power-low-channel" />
-            <channel id="usedHigh" typeId="reading-high-channel" />
-            <channel id="usedLow" typeId="reading-low-channel" />
-            <channel id="usedGas" typeId="reading-gas-channel" />
-            <channel id="tariff" typeId="tariff-channel" />
-            <channel id="firmware" typeId="firmware-channel" />
-            <channel id="hardware" typeId="hardware-channel" />
-            <channel id="serialElec" typeId="serial-elec-channel" />
-            <channel id="serialGas" typeId="serial-gas-channel" />
-            <channel id="meterType" typeId="meter-type-channel" />
-            <channel id="protocolVersion" typeId="protocol-version-channel" />
-            <channel id="uptime" typeId="uptime-channel" />
-            <channel id="p1" typeId="p1-channel" />
-            <channel id="sdcard" typeId="sdcard-channel" />
-            <channel id="sdcardFree" typeId="sdcard-free-channel" />
-            <channel id="sdcardTotal" typeId="sdcard-total-channel" />
             <channel id="ip" typeId="ip-channel" />
 		</channels>
 		<config-description>
 			<parameter name="host" type="text" required="true">
 				<label>Host address</label>
-				<description>Host name or IP address of BeeClear device (beeclear if router supports it).</description>
-                <default>beeclear</default>
+				<description>Host name of device.</description>
 			</parameter>
-			<parameter name="port" type="integer">
-				<label>TCP/IP port</label>
-				<description>TCP/IP Port of BeeClear device (usually 80).</description>
-				<default>80</default>
+			<parameter name="refresh" type="integer">
+				<label>Refresh rate in seconds</label>
+				<description>Refresh rate in seconds (usually 60).</description>
+				<default>60</default>
 			</parameter>
 		</config-description>
 	</thing-type>
@@ -47,108 +28,13 @@
 	<!-- Channel Types -->
     <channel-type id="online-channel">
         <item-type>OnOffType</item-type>
-        <label>Connected to BeeClear device</label>
-        <description>Current BeeClear device connection status.</description>
+        <label>Host exists in DNS.</label>
+        <description>Host found in DNS status.</description>
     </channel-type>
-    <channel-type id="power-channel">
-        <item-type>DecimalType</item-type>
-        <label>Current power consumption (W)</label>
-        <description>Current total power consumption in Watts.</description>
-    </channel-type>
-    <channel-type id="power-high-channel">
-        <item-type>DecimalType</item-type>
-        <label>Current power consumption high tariff (W)</label>
-        <description>Current total power consumption in Watts.</description>
-    </channel-type>
-    <channel-type id="power-low-channel">
-        <item-type>DecimalType</item-type>
-        <label>Current power consumption low tariff (W)</label>
-        <description>Current total power consumption in Watts.</description>
-    </channel-type>
-    <channel-type id="reading-high-channel">
-        <item-type>DecimalType</item-type>
-        <label>Meter reading high tariff electricity (kWh)</label>
-        <description>Current meter reading for used or generated power in high tariff.</description>
-    </channel-type>
-    <channel-type id="reading-low-channel">
-        <item-type>DecimalType</item-type>
-        <label>Meter reading low tariff electricity (kWh)</label>
-        <description>Current meter reading for used or generated power in low tariff.</description>
-    </channel-type>
-    <channel-type id="reading-gas-channel">
-        <item-type>DecimalType</item-type>
-        <label>Meter reading gas (m3)</label>
-        <description>Current meter reading for used gas.</description>
-    </channel-type>
-    <channel-type id="tariff-channel">
-        <item-type>StringType</item-type>
-        <label>Electricity tariff (HIGH/LOW).</label>
-        <description>Current electricity tariff (HIGH/LOW).</description>
-    </channel-type>
-    <channel-type id="firmware-channel">
-        <item-type>String</item-type>
-        <label>Firmware version</label>
-        <description>Firmware version of BeeClear.</description>
-    </channel-type>
-    <channel-type id="hardware-channel">
-        <item-type>String</item-type>
-        <label>Hardware version</label>
-        <description>Hardware version of BeeClear.</description>
-    </channel-type>
-    <channel-type id="serial-elec-channel">
-        <item-type>String</item-type>
-        <label>Electricity meter serial number.</label>
-        <description>Electricity meter serial number reported by BeeClear.</description>
-    </channel-type>
-    <channel-type id="serial-gas-channel">
-        <item-type>String</item-type>
-        <label>Gas meter serial number.</label>
-        <description>Gas meter serial number reported by BeeClear.</description>
-    </channel-type>
-    <channel-type id="meter-type-channel">
-        <item-type>String</item-type>
-        <label>Meter type name.</label>
-        <description>The meter type reported by the BeeClear unit.</description>
-    </channel-type>
-    <channel-type id="protocol-version-channel">
-        <item-type>String</item-type>
-        <label>Protocol version.</label>
-        <description>The version of the DSMR protocol used.</description>
-    </channel-type>
-    <channel-type id="uptime-channel">
-        <item-type>DecimalType</item-type>
-        <label>Uptime in hours.</label>
-        <description>The time (in hours) the Beeclear unit was switched on.</description>
-    </channel-type>
-    <channel-type id="p1-channel">
-        <item-type>OnOffType</item-type>
-        <label>P1 signal status.</label>
-        <description>When ON, the P1 signal is available, otherwise the BeeClear unit is not receiving data.</description>
-    </channel-type>
-    <channel-type id="sdcard-channel">
-        <item-type>OnOffType</item-type>
-        <label>SD card available.</label>
-        <description>When ON, the SD card signal is available, otherwise the BeeClear unit will not run properly.</description>
-    </channel-type>
-    <channel-type id="sdcard-channel">
-        <item-type>OnOffType</item-type>
-        <label>SD card available.</label>
-        <description>When ON, the SD card signal is available, otherwise the BeeClear unit will not run properly.</description>
-    </channel-type>
-    <channel-type id="sdcard-free-channel">
-        <item-type>PercentType</item-type>
-        <label>SD card free memory.</label>
-        <description>Returns the percentage (as PercentType) of free memory on the SD card.</description>
-    </channel-type>
-    <channel-type id="sdcard-total-channel">
-        <item-type>String</item-type>
-        <label>SD card total memory.</label>
-        <description>Returns the total memory on the SD card as text.</description>
-    </channel-type>
-    <channel-type id="ip-channel">
+     <channel-type id="ip-channel">
         <item-type>String</item-type>
         <label>IP address.</label>
-        <description>Returns the IP address of the last successful connection.</description>
+        <description>Returns the IP address, or 0.0.0.0 if not found.</description>
     </channel-type>
 
 </thing:thing-descriptions>

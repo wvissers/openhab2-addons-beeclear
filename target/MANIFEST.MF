@@ -1,21 +1,21 @@
 Manifest-Version: 1.0
-Bundle-SymbolicName: org.openhab.binding.beeclear;singleton:=true
-Export-Package: org.openhab.binding.beeclear,org.openhab.binding.beecl
- ear.handler
-Bundle-Name: BeeClear Binding
-Bundle-Version: 2.4.0.201905071813
+Bundle-SymbolicName: org.openhab.binding.nslookup;singleton:=true
+Export-Package: org.openhab.binding.nslookup,org.openhab.binding.nsloo
+ kup.handler
+Bundle-Name: NaLookup Binding
+Bundle-Version: 2.4.0.201906261847
 Bundle-ClassPath: .,lib/json-simple-1.1.1.jar
 Bundle-ManifestVersion: 2
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
 Bundle-ActivationPolicy: lazy
 Bundle-Vendor: openHAB
-Import-Package: javax.annotation;resolution:=optional,org.openhab.bind
- ing.beeclear,org.eclipse.jdt.annotation;resolution:=optional,org.open
- hab.binding.beeclear.handler,org.eclipse.smarthome.config.core,org.ec
- lipse.smarthome.config.discovery,org.eclipse.smarthome.core.library.t
- ypes,org.eclipse.smarthome.core.thing,org.eclipse.smarthome.core.thin
- g.binding,org.eclipse.smarthome.core.thing.binding.builder,org.eclips
- e.smarthome.core.thing.type,org.eclipse.smarthome.core.types,org.osgi
+Import-Package: javax.annotation;resolution:=optional,org.eclipse.jdt.
+ annotation;resolution:=optional,org.eclipse.smarthome.config.core,org
+ .eclipse.smarthome.config.discovery,org.eclipse.smarthome.core.librar
+ y.types,org.eclipse.smarthome.core.thing,org.eclipse.smarthome.core.t
+ hing.binding,org.eclipse.smarthome.core.thing.binding.builder,org.ecl
+ ipse.smarthome.core.thing.type,org.eclipse.smarthome.core.types,org.o
+ penhab.binding.nslookup,org.openhab.binding.nslookup.handler,org.osgi
  .service.component.annotations;resolution:=optional,org.slf4j
 Service-Component: OSGI-INF/*.xml
 

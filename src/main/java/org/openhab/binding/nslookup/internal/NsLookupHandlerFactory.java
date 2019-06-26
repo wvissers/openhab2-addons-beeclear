@@ -6,9 +6,9 @@
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
  */
-package org.openhab.binding.beeclear.internal;
+package org.openhab.binding.nslookup.internal;
 
-import static org.openhab.binding.beeclear.BeeClearBindingConstants.THING_TYPE_METER;
+import static org.openhab.binding.nslookup.NsLookupBindingConstants.THING_TYPE_HOST;
 
 import java.util.Collections;
 import java.util.Set;
@@ -18,19 +18,19 @@ import org.eclipse.smarthome.core.thing.ThingTypeUID;
 import org.eclipse.smarthome.core.thing.binding.BaseThingHandlerFactory;
 import org.eclipse.smarthome.core.thing.binding.ThingHandler;
 import org.eclipse.smarthome.core.thing.binding.ThingHandlerFactory;
-import org.openhab.binding.beeclear.handler.BeeClearHandler;
+import org.openhab.binding.nslookup.handler.NsLookupHandler;
 import org.osgi.service.component.annotations.Component;
 
 /**
- * The {@link BeeClearHandlerFactory} is responsible for creating things and thing
+ * The {@link NsLookupHandlerFactory} is responsible for creating things and thing
  * handlers.
  *
  * @author Wim Vissers - Initial contribution
  */
 @Component(service = ThingHandlerFactory.class, immediate = true)
-public class BeeClearHandlerFactory extends BaseThingHandlerFactory {
+public class NsLookupHandlerFactory extends BaseThingHandlerFactory {
 
-    private static final Set<ThingTypeUID> SUPPORTED_THING_TYPES_UIDS = Collections.singleton(THING_TYPE_METER);
+    private static final Set<ThingTypeUID> SUPPORTED_THING_TYPES_UIDS = Collections.singleton(THING_TYPE_HOST);
 
     @Override
     public boolean supportsThingType(ThingTypeUID thingTypeUID) {
@@ -41,8 +41,8 @@ public class BeeClearHandlerFactory extends BaseThingHandlerFactory {
     protected ThingHandler createHandler(Thing thing) {
         ThingTypeUID thingTypeUID = thing.getThingTypeUID();
 
-        if (thingTypeUID.equals(THING_TYPE_METER)) {
-            return new BeeClearHandler(thing);
+        if (thingTypeUID.equals(THING_TYPE_HOST)) {
+            return new NsLookupHandler(thing);
         }
 
         return null;

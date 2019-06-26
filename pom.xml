@@ -10,10 +10,10 @@
 		<version>2.4.0-SNAPSHOT</version>
 	</parent>
 
-	<artifactId>org.openhab.binding.beeclear</artifactId>
+	<artifactId>org.openhab.binding.nslookup</artifactId>
 	<version>2.4.0-SNAPSHOT</version>
 
-	<name>BeeClear Binding</name>
+	<name>NsLookup Binding</name>
 	<packaging>eclipse-plugin</packaging>
 
 </project>

@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<binding:binding id="beeclear" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+<binding:binding id="nslookup" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xmlns:binding="http://eclipse.org/smarthome/schemas/binding/v1.0.0"
 	xsi:schemaLocation="http://eclipse.org/smarthome/schemas/binding/v1.0.0 http://eclipse.org/smarthome/schemas/binding-1.0.0.xsd">
-	<name>BeeClear Binding</name>
-	<description>This is the binding for the BeeClear Energy measurement device (http://www.beeclear.nl).</description>
+	<name>NsLookup Binding</name>
+	<description>This is the binding for the DNS lookup of hosts that may or may not be available on the network.</description>
 	<author>Wim Vissers</author>
 </binding:binding>
